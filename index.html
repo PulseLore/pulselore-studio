@@ -1,60 +1,43 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PulseLore Studio</title>
-    <meta
-      name="description"
-      content="PulseLore Studio cinematic hero page."
-    />
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PulseLore AI Music Meter — Beta</title>
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <main class="hero-page" id="home" aria-label="PulseLore Studio hero page">
-      <video
-        class="hero-video"
-        data-hero-video
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        poster="pulselore-radio-ashtray-hero.png"
-        aria-hidden="true"
-      >
-        <source src="pulselore-hero-video.mp4" type="video/mp4" />
-      </video>
-
-      <audio
-        data-hero-audio
-        src="pulselore-urban-fusion-web.wav"
-        preload="auto"
-        loop
-      ></audio>
-
-      <div class="video-fallback" aria-hidden="true"></div>
-      <div class="navy-grade" aria-hidden="true"></div>
-
-      <header class="top-bar" aria-label="Main navigation">
-        <a class="site-url" href="#home">PulseLore&trade;</a>
-        <nav class="station-nav">
-          <a href="#home">Home station</a>
-          <a href="#artist-station">Artist station</a>
-          <a href="#beats-station">Beats station</a>
-          <a href="#service-station">Service station</a>
-          <a href="#about">About</a>
-          <a href="mailto:contact@pulselore.studio">Contact</a>
-        </nav>
-      </header>
-
-      <div class="grain" aria-hidden="true"></div>
-
-      <button class="sound-toggle" type="button" data-sound-toggle hidden>
-        Sound on
-      </button>
+    <header class="site-header">
+      <a class="brand logo-brand" href="./services/">
+        <img src="./assets/pulselore-logo.png" alt="PulseLore Studio logo">
+        <span>PulseLore Studio</span>
+      </a>
+      <nav class="nav">
+        <a href="./services/">Services Station</a>
+        <a href="./services/ai-music-meter/">AI Music Meter</a>
+        <a href="./music-meter/upload/">Start Beta Check</a>
+        <a href="./privacy/">Privacy</a>
+      </nav>
+    </header>
+    <main class="page hero">
+      <section>
+        <span class="tagline">Services Station beta prototype</span>
+        <h1>PulseLore AI Music Meter</h1>
+        <p class="lead">AI song review, artifact risk, and release-readiness checker for artists and creators.</p>
+        <div class="actions">
+          <a class="button" href="./services/">View Services Station</a>
+          <a class="button secondary" href="./music-meter/upload/">Try Music Meter</a>
+        </div>
+      </section>
+      <aside class="meter-panel">
+        <h3>Sample readiness signal</h3>
+        <div class="wave" aria-hidden="true">
+          <span style="height: 36%"></span><span style="height: 70%"></span><span style="height: 46%"></span><span style="height: 86%"></span><span style="height: 58%"></span><span style="height: 74%"></span><span style="height: 42%"></span><span style="height: 68%"></span>
+        </div>
+        <div class="score-row"><span>Overall readiness</span><strong>78 / 100</strong></div>
+        <div class="score-row"><span>AI artifact risk</span><strong>Medium</strong></div>
+        <div class="score-row"><span>Storage promise</span><strong>Delete within 24h</strong></div>
+      </aside>
     </main>
-
-    <script src="script.js"></script>
   </body>
 </html>
