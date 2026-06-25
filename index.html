@@ -1,27 +1,60 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=/services/">
-  <title>PulseLore Studio</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      font-family: system-ui, sans-serif;
-      color: #f5f7fb;
-      background: #050b1a;
-    }
-    a { color: #8edcff; }
-  </style>
-</head>
-<body>
-  <main>
-    <p>Opening PulseLore Studio Service Station...</p>
-    <p><a href="/services/">Continue to Service Station</a></p>
-  </main>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PulseLore Studio</title>
+    <meta
+      name="description"
+      content="PulseLore Studio cinematic hero page."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="hero-page" id="home" aria-label="PulseLore Studio hero page">
+      <video
+        class="hero-video"
+        data-hero-video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="pulselore-radio-ashtray-hero.png"
+        aria-hidden="true"
+      >
+        <source src="pulselore-hero-video.mp4" type="video/mp4" />
+      </video>
+
+      <audio
+        data-hero-audio
+        src="pulselore-urban-fusion-web.wav"
+        preload="auto"
+        loop
+      ></audio>
+
+      <div class="video-fallback" aria-hidden="true"></div>
+      <div class="navy-grade" aria-hidden="true"></div>
+
+      <header class="top-bar" aria-label="Main navigation">
+        <a class="site-url" href="#home">PulseLore&trade;</a>
+        <nav class="station-nav">
+          <a href="#home">Home station</a>
+          <a href="#artist-station">Artist station</a>
+          <a href="#beats-station">Beats station</a>
+          <a href="#service-station">Service station</a>
+          <a href="#about">About</a>
+          <a href="mailto:contact@pulselore.studio">Contact</a>
+        </nav>
+      </header>
+
+      <div class="grain" aria-hidden="true"></div>
+
+      <button class="sound-toggle" type="button" data-sound-toggle hidden>
+        Sound on
+      </button>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
 </html>
