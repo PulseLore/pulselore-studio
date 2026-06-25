@@ -1,0 +1,16 @@
+Baby's QA Garden fixed package
+
+Use this folder as /baby-qa-garden/ inside pulselore-meter-prototype.
+
+Fixed:
+- corrupted today apostrophe -> today's
+- corrupted Baby dash text -> Baby — not
+- service worker cache version bumped to v2
+- images/panda-garden.svg included at correct path
+
+Before deploy:
+1. Rename old pulselore-meter-prototype/baby-qa-garden to baby-qa-garden-disabled-backup.
+2. Copy this folder into pulselore-meter-prototype and rename it to baby-qa-garden.
+3. Open baby-qa-garden/index.html and test access code.
+
+Cloud button visual fix applied: v3 service-worker cache.
