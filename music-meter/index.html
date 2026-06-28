@@ -7,7 +7,61 @@
   <meta name="description" content="PulseLore Music Meter V1 — browser-only audio technical preview. No upload. No API." />
   <meta name="theme-color" content="#03070d" />
   <link rel="preload" as="image" href="assets/pulselore-logo.png" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260629-nav-polish" />
+  <style>
+    .meter-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .meter-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid rgba(22, 197, 238, 0.28);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.035);
+      color: #c4d4e5;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .meter-nav a:hover {
+      border-color: rgba(22, 197, 238, 0.65);
+      background: rgba(22, 197, 238, 0.1);
+      color: #f1f7ff;
+    }
+
+    @media (max-width: 980px) {
+      .meter-nav {
+        order: 3;
+        width: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .meter-nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .meter-nav a {
+        min-height: 36px;
+        padding: 0 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
