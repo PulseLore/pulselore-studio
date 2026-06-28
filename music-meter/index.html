@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PulseLore Music Meter V1</title>
+  <meta name="description" content="PulseLore Music Meter V1 — browser-only audio technical preview. No upload. No API." />
+  <meta name="theme-color" content="#03070d" />
+  <link rel="preload" as="image" href="assets/pulselore-logo.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="PulseLore Studio Music Meter">
+      <img src="assets/pulselore-logo.png" alt="PulseLore Studio logo" />
+      <span>
+        <strong>Music Meter</strong>
+        <small>PulseLore Studio</small>
+      </span>
+    </a>
+    <div class="header-meta" aria-label="Tool status">
+      <span class="badge">V1</span>
+      <span class="badge ghost">Browser-only</span>
+      <span class="dot-line"><i></i>No upload · No API</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <video class="hero-video" src="assets/PulseLore.mp4" autoplay muted loop playsinline poster="assets/pulselore-logo.png"></video>
+      <div class="hero-shade"></div>
+      <div class="hero-inner reveal">
+        <div class="hero-copy">
+          <p class="eyebrow">Emotion · Sound · Atmosphere</p>
+          <h1 id="hero-title">Drop your track here.</h1>
+          <p>Check technical readiness before release with a local browser-only meter.</p>
+        </div>
+
+        <section class="upload-card" aria-label="Upload audio file">
+          <input id="audioInput" type="file" accept="audio/*" />
+          <label class="drop-zone" id="dropZone" for="audioInput">
+            <span class="cassette-mark" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <strong id="fileName">Drop audio file or click to choose</strong>
+            <small id="fileHelp">MP3, WAV, M4A, WEBM, and browser-supported audio</small>
+          </label>
+          <div class="actions">
+            <button class="analyze-btn" id="analyzeBtn" type="button" disabled>
+              <span class="btn-idle">Analyze Track</span>
+              <span class="btn-busy"><i></i><b id="busyText">Reading waveform…</b></span>
+            </button>
+          </div>
+          <p class="privacy"><span>▣</span> Music Meter V1 analyzes audio locally in your browser. Your file is not uploaded anywhere by this page.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="results-shell" id="results" aria-live="polite">
+      <div class="results-head reveal">
+        <div>
+          <p class="eyebrow">Browser-only technical preview</p>
+          <h2>Track analysis</h2>
+        </div>
+        <p id="trackHeadline">Choose a track to begin.</p>
+      </div>
+
+      <section class="top-grid">
+        <article class="card score-card reveal">
+          <div class="card-title">
+            <span>Release Readiness</span>
+            <em id="scoreStatus">Waiting</em>
+          </div>
+          <div class="score-stage">
+            <svg class="score-ring" viewBox="0 0 220 220" role="img" aria-label="Release readiness score">
+              <circle class="score-bg" cx="110" cy="110" r="86"></circle>
+              <circle class="score-progress" id="scoreProgress" cx="110" cy="110" r="86"></circle>
+            </svg>
+            <div class="score-center">
+              <strong id="scoreValue">--</strong>
+              <small>/100</small>
+              <span>Music Meter</span>
+            </div>
+          </div>
+          <p class="score-summary" id="scoreSummary">Upload a file to calculate a local readiness score.</p>
+        </article>
+
+        <article class="card waveform-card reveal">
+          <div class="card-title">
+            <span>Waveform Preview</span>
+            <em id="waveMeta">No audio loaded</em>
+          </div>
+          <div class="wave-wrap">
+            <canvas id="waveCanvas" width="1400" height="320"></canvas>
+            <div class="scanline" id="scanline" aria-hidden="true"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="metrics-block reveal" aria-labelledby="metrics-title">
+        <h3 id="metrics-title">Technical Metrics</h3>
+        <div class="metrics-grid" id="metricsGrid">
+          <article class="metric-card" data-state="idle">
+            <i></i><small>Peak Level</small><strong id="peakValue">--</strong>
+            <div class="meter"><span id="peakFill"></span></div>
+            <p id="peakText">Highest sample peak. Aim below -1 dBFS before release.</p>
+          </article>
+          <article class="metric-card" data-state="idle">
+            <i></i><small>Rough RMS</small><strong id="rmsValue">--</strong>
+            <div class="meter"><span id="rmsFill"></span></div>
+            <p id="rmsText">Average perceived loudness. Useful for rough loudness checking.</p>
+          </article>
+          <article class="metric-card" data-state="idle">
+            <i></i><small>Clipping Risk</small><strong id="clipValue">--</strong>
+            <div class="meter"><span id="clipFill"></span></div>
+            <p id="clipText">Samples near digital ceiling. Lower values are safer.</p>
+          </article>
+          <article class="metric-card" data-state="idle">
+            <i></i><small>Stereo Balance</small><strong id="stereoValue">--</strong>
+            <div class="meter"><span id="stereoFill"></span></div>
+            <p id="stereoText">Left/right energy balance. Keep centered unless intentional.</p>
+          </article>
+          <article class="metric-card" data-state="idle">
+            <i></i><small>Silence / Low Audio</small><strong id="silenceValue">--</strong>
+            <div class="meter"><span id="silenceFill"></span></div>
+            <p id="silenceText">Very quiet sections. High values may indicate gaps or long silence.</p>
+          </article>
+          <article class="metric-card" data-state="idle">
+            <i></i><small>Dynamic Feel</small><strong id="dynamicValue">--</strong>
+            <div class="meter"><span id="dynamicFill"></span></div>
+            <p id="dynamicText">Peak-to-average movement. Higher values feel more open.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="notes-grid" id="notes">
+        <article class="note-card good reveal">
+          <div class="card-title"><span>What Looks Good</span><em>Auto notes</em></div>
+          <ul id="goodList">
+            <li><b>✓</b><span>Select a track to see strengths.</span></li>
+          </ul>
+        </article>
+        <article class="note-card warning reveal">
+          <div class="card-title"><span>Fix Before Release</span><em>Auto notes</em></div>
+          <ul id="fixList">
+            <li><b>!</b><span>Select a track to see release checks.</span></li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="studio-note reveal" id="studio-note" aria-labelledby="studio-title">
+        <div class="studio-head">
+          <span class="mini-logo"><img src="assets/pulselore-logo.png" alt="" /></span>
+          <div>
+            <h3 id="studio-title">PulseLore Studio Note</h3>
+            <p>Score breakdown · human-readable next move</p>
+          </div>
+        </div>
+
+        <div class="calc-row" id="calcRow">
+          <div class="calc-box"><small>Base Score</small><strong>100</strong></div>
+          <span class="operator">−</span>
+          <div class="calc-box penalty"><small>Peak Ceiling</small><strong id="peakPenalty">0</strong></div>
+          <span class="operator">−</span>
+          <div class="calc-box penalty"><small>Clipping Risk</small><strong id="clipPenalty">0</strong></div>
+          <span class="operator">−</span>
+          <div class="calc-box penalty"><small>Other Checks</small><strong id="otherPenalty">0</strong></div>
+          <span class="operator">=</span>
+          <div class="calc-box final"><small>Final Score</small><strong id="finalScore">--</strong></div>
+        </div>
+
+        <p class="score-path" id="scorePath">Score path will appear after analysis.</p>
+
+        <div class="studio-columns">
+          <article>
+            <small>Result</small>
+            <strong id="noteResult">--</strong>
+            <p id="noteResultText">Upload a file first.</p>
+          </article>
+          <article>
+            <small>Main Reason</small>
+            <strong id="noteReason">--</strong>
+            <p id="noteReasonText">The meter will find the main technical reason.</p>
+          </article>
+          <article>
+            <small>Next Move</small>
+            <strong id="noteNext">--</strong>
+            <p id="noteNextText">Action notes will appear here.</p>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Music Meter V1 is a browser-only technical preview. For professional release decisions, compare with DAW meters and trusted reference tracks.</p>
+    <span>© 2026 PulseLore Studio · pulselore.studio</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
