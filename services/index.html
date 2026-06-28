@@ -1629,6 +1629,41 @@ select option {
   line-height: 1.6;
 }
 
+.free-tool-card {
+  border-color: rgba(230, 169, 71, 0.44);
+  background:
+    radial-gradient(circle at top right, rgba(230, 169, 71, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(12, 30, 44, 0.94), rgba(5, 13, 22, 0.95));
+}
+
+.tool-badge {
+  display: inline-flex;
+  width: fit-content;
+  margin-bottom: 18px;
+  padding: 6px 9px;
+  border: 1px solid rgba(230, 169, 71, 0.44);
+  border-radius: 999px;
+  color: var(--ref-gold);
+  font-size: 11px;
+  font-weight: 760;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.free-tool-card .card-icon {
+  margin-bottom: 18px;
+}
+
+.free-tool-card small {
+  display: block;
+  margin-top: 14px;
+}
+
+.tool-card-button {
+  margin-top: 22px;
+}
+
 .card-icon {
   display: block;
   margin-bottom: 26px;
@@ -2146,6 +2181,14 @@ select option {
             <p>Prompt improvement, style direction, lyric arrangement, regeneration planning, and weak-result fixing.</p>
             <small>Workflow support for Suno, Udio, and other AI music tools.</small>
           </article>
+          <article class="refined-card free-tool-card">
+            <span class="tool-badge">FREE BROWSER TOOL</span>
+            <span class="card-icon cyan" aria-hidden="true">≋</span>
+            <h3>PulseLore Music Meter V1</h3>
+            <p>Check peak level, rough loudness, clipping risk, stereo balance, silence, dynamics, and release readiness before uploading your track.</p>
+            <small>Browser-only &middot; No upload &middot; No API</small>
+            <a class="refined-button gold tool-card-button" href="../music-meter/" data-file-href="../music-meter/index.html">Check My Track <span aria-hidden="true">&rarr;</span></a>
+          </article>
         </div>
       </section>
 
@@ -2286,6 +2329,17 @@ select option {
       <span>© PulseLore Studio</span>
     </footer>
   <script src='./script.js'></script>
+  <script>
+    document.querySelectorAll("[data-file-href]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        if (window.location.protocol !== "file:") {
+          return;
+        }
+        event.preventDefault();
+        window.location.href = link.dataset.fileHref;
+      });
+    });
+  </script>
 </body>
 </html>
 
