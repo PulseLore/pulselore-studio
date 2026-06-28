@@ -65,13 +65,13 @@ a {
 }
 
 .hero-video {
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 1;
-  filter: saturate(1.06) contrast(1.06) brightness(1.03);
+  opacity: 0.18;
+  filter: saturate(1.08) contrast(1.08) brightness(1.04);
   transition:
     opacity 420ms ease,
     filter 420ms ease;
@@ -79,26 +79,26 @@ a {
 }
 
 .video-fallback {
-  z-index: 0;
+  z-index: 1;
   background:
-    radial-gradient(ellipse at 62% 42%, rgba(42, 92, 145, 0.28), transparent 36rem),
-    linear-gradient(145deg, rgba(3, 7, 18, 0.45), rgba(6, 21, 43, 0.45) 52%, rgba(2, 8, 23, 0.55)),
-    url("assets/pulselore-radio-ashtray-hero.png") center / cover no-repeat,
+    radial-gradient(ellipse at 62% 42%, rgba(42, 92, 145, 0.14), transparent 36rem),
+    linear-gradient(145deg, rgba(3, 7, 18, 0.16), rgba(6, 21, 43, 0.14) 52%, rgba(2, 8, 23, 0.18)),
+    url("pulselore-radio-ashtray-hero-4k.jpg") center / cover no-repeat,
     linear-gradient(145deg, #030712, #06152b 52%, #020817);
 }
 
 .navy-grade {
-  z-index: 2;
+  z-index: 3;
   background:
-    radial-gradient(ellipse at 64% 45%, rgba(36, 70, 130, 0.025), transparent 38rem),
-    linear-gradient(90deg, rgba(2, 8, 23, 0.05), rgba(4, 14, 35, 0.01) 42%, rgba(2, 8, 23, 0.04)),
-    linear-gradient(180deg, rgba(2, 8, 23, 0.12), transparent 34%, rgba(2, 8, 23, 0.1));
+    radial-gradient(ellipse at 64% 45%, rgba(36, 70, 130, 0.018), transparent 38rem),
+    linear-gradient(90deg, rgba(2, 8, 23, 0.04), rgba(4, 14, 35, 0.006) 42%, rgba(2, 8, 23, 0.03)),
+    linear-gradient(180deg, rgba(2, 8, 23, 0.08), transparent 34%, rgba(2, 8, 23, 0.08));
   mix-blend-mode: normal;
 }
 
 .grain {
   z-index: 6;
-  opacity: 0.04;
+  opacity: 0.025;
   mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
 }
