@@ -65,13 +65,13 @@ a {
 }
 
 .hero-video {
-  z-index: 2;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.18;
-  filter: saturate(1.08) contrast(1.08) brightness(1.04);
+  opacity: 1;
+  filter: saturate(1.04) contrast(1.04) brightness(1.02);
   transition:
     opacity 420ms ease,
     filter 420ms ease;
@@ -79,16 +79,16 @@ a {
 }
 
 .video-fallback {
-  z-index: 1;
+  z-index: 0;
   background:
-    radial-gradient(ellipse at 62% 42%, rgba(42, 92, 145, 0.14), transparent 36rem),
-    linear-gradient(145deg, rgba(3, 7, 18, 0.16), rgba(6, 21, 43, 0.14) 52%, rgba(2, 8, 23, 0.18)),
+    radial-gradient(ellipse at 62% 42%, rgba(42, 92, 145, 0.2), transparent 36rem),
+    linear-gradient(145deg, rgba(3, 7, 18, 0.28), rgba(6, 21, 43, 0.26) 52%, rgba(2, 8, 23, 0.32)),
     url("pulselore-radio-ashtray-hero-4k.jpg") center / cover no-repeat,
     linear-gradient(145deg, #030712, #06152b 52%, #020817);
 }
 
 .navy-grade {
-  z-index: 3;
+  z-index: 2;
   background:
     radial-gradient(ellipse at 64% 45%, rgba(36, 70, 130, 0.018), transparent 38rem),
     linear-gradient(90deg, rgba(2, 8, 23, 0.04), rgba(4, 14, 35, 0.006) 42%, rgba(2, 8, 23, 0.03)),
