@@ -8,7 +8,7 @@
       content="PulseLore Studio Service Station for music-centered services, private tools, web apps, artist systems, and AI-assisted creative workflows."
     >
     <title>Service Station - PulseLore Studio</title>
-    <link rel="stylesheet" href=./styles.css">
+    <link rel="stylesheet" href="./styles.css">
   <style id=SERVICE_INLINE_CSS_START>:root {
   --bg: #000405;
   --panel: #071014;
@@ -1433,6 +1433,22 @@ select option {
   background: rgba(91, 188, 255, 0.1);
 }
 
+.is-disabled,
+.refined-button.is-disabled,
+.overview-grid .is-disabled,
+.refined-footer .is-disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.46;
+  filter: grayscale(0.35);
+}
+
+.refined-button.is-disabled:hover {
+  transform: none;
+  border-color: rgba(91, 188, 255, 0.24);
+  background: rgba(91, 188, 255, 0.035);
+}
+
 .refined-button.gold,
 .refined-button.gold-border {
   border-color: rgba(215, 168, 75, 0.86);
@@ -2080,15 +2096,15 @@ select option {
 </style></head>
   <body class="service-station-page service-station-refined">
     <header class="site-header service-nav refined-nav">
-      <a class="refined-brand" href="../" aria-label="PulseLore Studio home">
+      <a class="refined-brand" href="https://www.pulselore.studio/" aria-label="PulseLore Studio home">
         <img src="../assets/pulselore-logo.png" alt="">
         <span>PulseLore Studio</span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
-        <a class="is-active" href=/">Service Station</a>
-        <a href="#music-services">Music Services</a>
-        <a href="#chord-room">PulseLore Chord Room</a>
-        <a href="#web-app-services">Web &amp; App Services</a>
+        <a class="is-active" href="https://www.pulselore.studio/">Home Station</a>
+        <span class="is-disabled" aria-disabled="true">Music Services</span>
+        <span class="is-disabled" aria-disabled="true">PulseLore Chord Room</span>
+        <span class="is-disabled" aria-disabled="true">Web &amp; App Services</span>
       </nav>
       <a class="nav-orb" href="#private-app-example" aria-label="Private app example">
         <img src="../assets/pulselore-logo.png" alt="">
@@ -2103,7 +2119,7 @@ select option {
             <h1>PulseLore<br>Studio</h1>
             <span class="gold-rule" aria-hidden="true"></span>
             <p>Our hub for music and digital craftsmanship. Explore our services, tools, and private experiences built for creators and collaborators.</p>
-            <a class="refined-button gold" href="#music-services">Explore Services <span aria-hidden="true">→</span></a>
+            <span class="refined-button gold is-disabled" aria-disabled="true">Services Paused <span aria-hidden="true">→</span></span>
           </div>
         </div>
 
@@ -2117,21 +2133,21 @@ select option {
             <p class="dashboard-label">Overview</p>
             <p>Choose a service area to get started.</p>
             <div class="overview-grid">
-              <a href="#music-services">
+              <a href="https://www.pulselore.studio/music-meter/">
                 <span class="icon-note" aria-hidden="true">♪</span>
-                <strong>Music Services</strong>
-                <small>Beat direction, songwriting, and creative tools.</small>
+                <strong>Music Meter</strong>
+                <small>Free browser track checker is open.</small>
               </a>
-              <a href="#chord-room">
+              <span class="is-disabled" aria-disabled="true">
                 <span class="icon-grid" aria-hidden="true">▦</span>
                 <strong>PulseLore Chord Room</strong>
-                <small>Explore chords, progressions, and song ideas.</small>
-              </a>
-              <a href="#web-app-services">
+                <small>Temporarily closed while it is being improved.</small>
+              </span>
+              <span class="is-disabled" aria-disabled="true">
                 <span class="icon-code" aria-hidden="true">&lt;/&gt;</span>
                 <strong>Web &amp; App Services</strong>
-                <small>Websites, apps, and digital experiences.</small>
-              </a>
+                <small>Temporarily closed for public browsing.</small>
+              </span>
               <a href="#private-app-example">
                 <span class="icon-lock" aria-hidden="true">⌂</span>
                 <strong>Private Access</strong>
@@ -2187,7 +2203,15 @@ select option {
             <h3>PulseLore Music Meter V1</h3>
             <p>Check peak level, rough loudness, clipping risk, stereo balance, silence, dynamics, and release readiness before uploading your track.</p>
             <small>Browser-only &middot; No upload &middot; No API</small>
-            <a class="refined-button gold tool-card-button" href="../music-meter/" data-file-href="../music-meter/index.html">Check My Track <span aria-hidden="true">&rarr;</span></a>
+            <a class="refined-button gold tool-card-button" href="https://www.pulselore.studio/music-meter/">Check My Track <span aria-hidden="true">&rarr;</span></a>
+          </article>
+          <article class="refined-card free-tool-card">
+            <span class="tool-badge">BROWSER SONGWRITING TOOL</span>
+            <span class="card-icon cyan" aria-hidden="true">&#9835;</span>
+            <h3>PulseLore Chord Room V1</h3>
+            <p>Create chord progressions, play browser-only backing ideas, test ukulele-friendly chords, and sketch song sections.</p>
+            <small>Browser-only &middot; No upload &middot; No API</small>
+            <span class="refined-button gold tool-card-button is-disabled" aria-disabled="true">Temporarily Closed <span aria-hidden="true">&rarr;</span></span>
           </article>
         </div>
       </section>
@@ -2198,7 +2222,7 @@ select option {
             <h2>PulseLore Chord Room</h2>
             <span class="gold-rule" aria-hidden="true"></span>
             <p>Explore chords, progressions, and ideas. Built for songwriters to test chord ideas and progressions.</p>
-            <a class="refined-button outline" href="#contact">Prototype Soon <span aria-hidden="true">→</span></a>
+            <span class="refined-button outline is-disabled" aria-disabled="true">Temporarily Closed <span aria-hidden="true">→</span></span>
           </div>
           <div class="chord-widget" aria-label="Chord Room visual mockup">
             <div class="mock-select">C Major</div>
@@ -2239,7 +2263,7 @@ select option {
           <h2>Private App Example</h2>
           <span class="gold-rule" aria-hidden="true"></span>
           <p>A private QA companion app with a login/access box, built for structured bug notes, re-test reports, templates, and soft work support.</p>
-          <a class="refined-button outline" href="../baby-qa-garden/">View Private App <span aria-hidden="true">→</span></a>
+          <a class="refined-button outline" href="https://www.pulselore.studio/baby-qa-garden/">View Private App <span aria-hidden="true">→</span></a>
         </div>
         <div class="qa-preview" aria-label="Baby's QA Garden private app preview">
           <div class="qa-sidebar">
@@ -2261,7 +2285,7 @@ select option {
           <span class="lock-ring" aria-hidden="true">⌂</span>
           <h3>Private Access</h3>
           <p>This area is available through authorized private access.</p>
-          <a class="refined-button outline gold-border" href="../baby-qa-garden/">Private Access</a>
+          <a class="refined-button outline gold-border" href="https://www.pulselore.studio/baby-qa-garden/">Private Access</a>
         </aside>
       </section>
 
@@ -2309,9 +2333,9 @@ select option {
         <h2>Have a project in mind?</h2>
         <p>Tell PulseLore what you want to build - a music idea, private mini app, website, class system, business workflow, or artist page.</p>
         <div class="service-actions">
-          <a class="refined-button gold" href="mailto:hello@pulselore.studio">Contact PulseLore</a>
-          <a class="refined-button outline" href="mailto:hello@pulselore.studio?subject=Service%20Request">Request a Service</a>
-          <a class="refined-button outline" href="mailto:hello@pulselore.studio?subject=Private%20App%20Discussion">Discuss a Private App</a>
+          <span class="refined-button gold is-disabled" aria-disabled="true">Contact Paused</span>
+          <span class="refined-button outline is-disabled" aria-disabled="true">Request Paused</span>
+          <span class="refined-button outline is-disabled" aria-disabled="true">Private App Discussion Paused</span>
         </div>
       </section>
     </main>
@@ -2322,9 +2346,9 @@ select option {
         <p>Music. Code. Experience.</p>
       </div>
       <nav aria-label="Footer navigation">
-        <a href="#music-services">Music Services</a>
-        <a href="#chord-room">PulseLore Chord Room</a>
-        <a href="#web-app-services">Web &amp; App Services</a>
+        <span class="is-disabled" aria-disabled="true">Music Services</span>
+        <span class="is-disabled" aria-disabled="true">PulseLore Chord Room</span>
+        <span class="is-disabled" aria-disabled="true">Web &amp; App Services</span>
       </nav>
       <span>© PulseLore Studio</span>
     </footer>

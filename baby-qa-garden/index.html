@@ -93,6 +93,41 @@ button.ghost,
   background: rgba(255, 255, 255, 0.82);
 }
 
+.garden-exit-links {
+  position: fixed;
+  top: 18px;
+  left: 18px;
+  z-index: 60;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.garden-exit-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(124, 84, 110, 0.12);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.garden-exit-links a:hover,
+.garden-exit-links a:focus-visible {
+  outline: none;
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(96, 70, 92, 0.28);
+}
+
 button.danger,
 .danger {
   background: #d96c86;
@@ -977,6 +1012,19 @@ textarea:focus {
 }
 
 @media (max-width: 430px) {
+  .garden-exit-links {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    gap: 8px;
+  }
+
+  .garden-exit-links a {
+    min-height: 34px;
+    padding: 0 11px;
+    font-size: 11px;
+  }
+
   .guide-card {
     grid-template-columns: 1fr;
     text-align: center;
@@ -1007,6 +1055,11 @@ textarea:focus {
     </style>
   </head>
   <body>
+    <nav class="garden-exit-links" aria-label="Garden exit navigation">
+      <a href="https://www.pulselore.studio/services/">← Service Station</a>
+      <a href="https://www.pulselore.studio/">Home Station</a>
+    </nav>
+
     <section id="accessScreen" class="access-screen">
       <div class="access-card">
         <div class="panda-face" aria-hidden="true">
