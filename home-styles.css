@@ -82,8 +82,7 @@ a {
   z-index: 0;
   background:
     radial-gradient(ellipse at 62% 42%, rgba(42, 92, 145, 0.2), transparent 36rem),
-    linear-gradient(145deg, rgba(3, 7, 18, 0.28), rgba(6, 21, 43, 0.26) 52%, rgba(2, 8, 23, 0.32)),
-    url("pulselore-radio-ashtray-hero-4k.jpg") center / cover no-repeat,
+    linear-gradient(145deg, rgba(3, 7, 18, 0.62), rgba(6, 21, 43, 0.72) 52%, rgba(2, 8, 23, 0.84)),
     linear-gradient(145deg, #030712, #06152b 52%, #020817);
 }
 
