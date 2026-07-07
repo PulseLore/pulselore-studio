@@ -121,10 +121,10 @@ function getPlan() {
 
 function slugToTemplate(slug) {
   const map = {
-    "red-magazine": "Red Magazine",
-    "teal-grid": "Teal Grid",
-    "purple-product": "Purple Product",
-    "silver-editorial": "Silver Editorial",
+    "band-story": "Band Story",
+    "minimal-professional": "Minimal Professional",
+    "editorial-portrait": "Editorial Portrait",
+    "interactive-portal": "Interactive Portal",
     "emerald-luxe": "Emerald Luxe",
     "cinematic-artist": "Cinematic Artist",
   };
@@ -479,7 +479,8 @@ function render() {
   progressText.textContent = `${currentStep} / ${steps.length}`;
   currentStepLabel.textContent = activeTitle;
   progressBar.style.width = `${(currentStep / steps.length) * 100}%`;
-  prevBtn.disabled = currentStep === 1;
+  prevBtn.disabled = false;
+  prevBtn.textContent = currentStep === 1 ? "Back to Artist Station" : "Back";
   nextBtn.classList.toggle("hidden", currentStep === steps.length);
   submitBtn.classList.toggle("hidden", currentStep !== steps.length);
   if (currentStep === 8) renderReview();
@@ -517,7 +518,16 @@ form.addEventListener("input", () => {
 });
 
 prevBtn.addEventListener("click", () => {
-  currentStep = Math.max(1, currentStep - 1);
+  if (currentStep === 1) {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = "../index.html";
+    }
+    return;
+  }
+
+  currentStep -= 1;
   setError("");
   render();
 });
