@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio Station - PulseLore Studio</title>
+    <meta name="description" content="PulseLore Portfolio Station creates artist and creator portfolio pages as a managed service.">
+    <link rel="stylesheet" href="../site-styles.css">
+    <link rel="stylesheet" href="./artist-station.css">
+  </head>
+  <body class="portfolio-station">
+    <header class="site-header portfolio-header">
+      <a class="brand" href="../"><span class="brand-mark">PL</span>PulseLore Studio</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="../">Home</a>
+        <a href="../services/">Services</a>
+        <a href="../web-apps/">Web Apps</a>
+        <a href="#templates">Templates</a>
+        <a href="./request/">Request</a>
+      </nav>
+    </header>
+
+    <main class="site-shell portfolio-shell">
+      <section class="portfolio-hero" id="top">
+        <div class="portfolio-hero-copy">
+          <p class="kicker">Portfolio Station</p>
+          <h1>Artist portfolios built by PulseLore.</h1>
+          <p class="lead">
+            You provide the identity, story, media, songs, and links. PulseLore shapes the design, builds the page, reviews it with you, revises it, and publishes only after approval.
+          </p>
+          <div class="actions">
+            <a class="button" href="./request/">Request a Portfolio</a>
+            <a class="button secondary" href="#templates">Browse Templates</a>
+          </div>
+        </div>
+        <div class="dream-panel" aria-label="Portfolio Station service flow preview">
+          <div class="dream-frame">
+            <span>Discover</span>
+            <span>Choose</span>
+            <span>Request</span>
+            <span>Review</span>
+            <span>Publish</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="artists">
+        <div class="section-head">
+          <p class="kicker">Browse Artists</p>
+          <h2>Public pages open after approval.</h2>
+          <p class="muted">
+            Artist profiles appear here only when real content, permissions, and final public approval are ready. PulseLore does not publish placeholder artist pages automatically.
+          </p>
+        </div>
+        <div class="portfolio-empty panel">
+          <div>
+            <h3>First approved profiles are being prepared.</h3>
+            <p>Use Portfolio Station now to request a portfolio build. Published artist pages will become stable public routes later, for example <code>/artists/artist-name/</code>.</p>
+          </div>
+          <a class="button secondary" href="./request/">Start Your Portfolio</a>
+        </div>
+      </section>
+
+      <section class="section" id="plans">
+        <div class="section-head">
+          <p class="kicker">Choose Plan</p>
+          <h2>Three service levels.</h2>
+          <p class="muted">Prices are confirmed after PulseLore reviews your scope, media, timeline, and revision needs. No automatic checkout is used in this phase.</p>
+        </div>
+        <div class="plan-grid">
+          <article class="plan-card">
+            <span class="status">Essential</span>
+            <h3>Clean professional presence.</h3>
+            <p>A focused portfolio page for creators who need a clear online identity.</p>
+            <strong class="price-note">Contact for current price</strong>
+            <ul>
+              <li>PulseLore chooses the design</li>
+              <li>Artist name, short bio, full about</li>
+              <li>Profile image, banner, selected images</li>
+              <li>Social links, contact link, mobile-ready page</li>
+              <li>One review round</li>
+            </ul>
+            <p class="not-included">No template selection, video portfolio, audio player, advanced motion, or 3D embed.</p>
+            <a class="button" href="./request/?plan=essential">Choose Essential</a>
+          </article>
+
+          <article class="plan-card featured">
+            <span class="status warn">Pro</span>
+            <h3>More creative control.</h3>
+            <p>A richer portfolio with template choice, gallery, project sections, and selected motion style.</p>
+            <strong class="price-note">From [editable price]</strong>
+            <ul>
+              <li>Client may choose a template</li>
+              <li>Profile image, banner, photo gallery</li>
+              <li>Full bio, about, project sections</li>
+              <li>Custom links and selected motion style</li>
+              <li>Locked client review and revision rounds</li>
+            </ul>
+            <p class="not-included">No full video portfolio, advanced audio presentation, or 3D experience.</p>
+            <a class="button" href="./request/?plan=pro">Choose Pro</a>
+          </article>
+
+          <article class="plan-card">
+            <span class="status">Prime</span>
+            <h3>Media-rich portfolio experience.</h3>
+            <p>A cinematic portfolio for music, video, credits, release context, and advanced sections.</p>
+            <strong class="price-note">From [editable price]</strong>
+            <ul>
+              <li>Choose supported template</li>
+              <li>Images, gallery, video, music/audio</li>
+              <li>Spotify, YouTube, release information</li>
+              <li>Credits, advanced motion, cinematic sections</li>
+              <li>3D embed where suitable and priority production</li>
+            </ul>
+            <p class="not-included">Custom direction is scoped and confirmed before build.</p>
+            <a class="button" href="./request/?plan=prime">Choose Prime</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="templates">
+        <div class="section-head">
+          <p class="kicker">Browse Templates</p>
+          <h2>Preview before sending personal details.</h2>
+          <p class="muted">Visitors can browse templates first. Essential requests do not choose a template; Pro and Prime can select one before continuing.</p>
+        </div>
+        <div class="template-grid editorial-templates">
+          <article class="template-card template-red">
+            <div class="template-art editorial-red" aria-hidden="true">
+              <div class="mock-sheet">
+                <span class="mock-label">Artist Portfolio</span>
+                <strong class="mock-title">PORTFOLIO</strong>
+                <span class="mock-photo"></span>
+                <span class="mock-line long"></span>
+                <span class="mock-line short"></span>
+                <div class="mock-projects"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <span class="status">Magazine</span>
+            <h3>Red Magazine</h3>
+            <p>Large editorial headline, bold portrait hero, project panels, and high-drama red/black layout.</p>
+            <div class="card-actions">
+              <button class="button secondary" type="button" data-preview-template>Preview</button>
+              <a class="button" href="./request/?plan=pro&template=red-magazine">Request this Template</a>
+            </div>
+          </article>
+
+          <article class="template-card template-teal">
+            <div class="template-art teal-grid" aria-hidden="true">
+              <div class="mock-sheet">
+                <span class="mock-label">Creator Board</span>
+                <strong class="mock-title split">PORT<br>FOLIO</strong>
+                <span class="mock-photo square"></span>
+                <div class="mock-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <span class="status">Grid</span>
+            <h3>Teal Grid</h3>
+            <p>Clean portfolio board with content blocks, project tiles, and calm teal presentation.</p>
+            <div class="card-actions">
+              <button class="button secondary" type="button" data-preview-template>Preview</button>
+              <a class="button" href="./request/?plan=pro&template=teal-grid">Request this Template</a>
+            </div>
+          </article>
+
+          <article class="template-card template-purple">
+            <div class="template-art purple-product" aria-hidden="true">
+              <div class="mock-sheet">
+                <span class="mock-label">Modern Creator</span>
+                <strong class="mock-title">CREATIVE</strong>
+                <span class="mock-photo"></span>
+                <div class="mock-cards"><span></span><span></span><span></span></div>
+                <span class="mock-line long"></span>
+              </div>
+            </div>
+            <span class="status">Modern</span>
+            <h3>Purple Product</h3>
+            <p>Modern dark portfolio with purple accents, product cards, services, and testimonial space.</p>
+            <div class="card-actions">
+              <button class="button secondary" type="button" data-preview-template>Preview</button>
+              <a class="button" href="./request/?plan=pro&template=purple-product">Request this Template</a>
+            </div>
+          </article>
+
+          <article class="template-card template-silver">
+            <div class="template-art silver-editorial" aria-hidden="true">
+              <div class="mock-sheet">
+                <span class="mock-label">Editorial Profile</span>
+                <strong class="mock-title">DIGITAL</strong>
+                <span class="mock-photo"></span>
+                <div class="mock-projects"><span></span><span></span><span></span></div>
+                <span class="mock-line long"></span>
+              </div>
+            </div>
+            <span class="status">Editorial</span>
+            <h3>Silver Editorial</h3>
+            <p>Premium monochrome profile with big display type, capability blocks, and refined project cards.</p>
+            <div class="card-actions">
+              <button class="button secondary" type="button" data-preview-template>Preview</button>
+              <a class="button" href="./request/?plan=prime&template=silver-editorial">Request this Template</a>
+            </div>
+          </article>
+
+          <article class="template-card template-emerald">
+            <div class="template-art emerald-luxe" aria-hidden="true">
+              <div class="mock-sheet">
+                <span class="mock-label">Luxury Direction</span>
+                <strong class="mock-title">PORTFOLIO</strong>
+                <span class="mock-photo"></span>
+                <span class="mock-line long"></span>
+                <div class="mock-logos"><span></span><span></span><span></span><span></span></div>
+                <div class="mock-projects"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <span class="status">Luxury</span>
+            <h3>Emerald Luxe</h3>
+            <p>Dark green and gold mood for premium creative direction, brand identity, and visual storytelling.</p>
+            <div class="card-actions">
+              <button class="button secondary" type="button" data-preview-template>Preview</button>
+              <a class="button" href="./request/?plan=prime&template=emerald-luxe">Request this Template</a>
+            </div>
+          </article>
+
+          <article class="template-card template-cinematic">
+            <div class="template-art cinematic-artist" aria-hidden="true">
+              <div class="mock-sheet">
+                <span class="mock-label">Music Artist</span>
+                <strong class="mock-title">2026</strong>
+                <span class="mock-photo wide"></span>
+                <div class="mock-tracklist"><span></span><span></span><span></span><span></span></div>
+                <div class="mock-projects"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+            <span class="status">Cinematic</span>
+            <h3>Cinematic Artist</h3>
+            <p>Music-ready cinematic layout for portraits, releases, showreels, audio links, and credits.</p>
+            <div class="card-actions">
+              <button class="button secondary" type="button" data-preview-template>Preview</button>
+              <a class="button" href="./request/?plan=prime&template=cinematic-artist">Request this Template</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="preview-strip">
+          <h3>Preview opens on this page.</h3>
+          <p>Use the Preview button to inspect the template direction without leaving this section. The full portfolio is built by PulseLore after request review, media collection, and approval.</p>
+        </div>
+      </section>
+
+      <section class="section service-flow">
+        <div class="section-head center">
+          <p class="kicker">How it works</p>
+          <h2>Discover, request, talk, approve.</h2>
+        </div>
+        <ol class="flow-list">
+          <li>Browse Artists</li>
+          <li>Browse Templates</li>
+          <li>Request a Portfolio</li>
+          <li>Choose Plan</li>
+          <li>Provide Information</li>
+          <li>PulseLore Contacts Client</li>
+          <li>Price and Timeline Confirmed</li>
+          <li>Zen Builds Portfolio</li>
+          <li>Client Reviews</li>
+          <li>Zen Revises</li>
+          <li>Client Approves</li>
+          <li>Zen Publishes</li>
+        </ol>
+        <div class="actions center-actions">
+          <a class="button" href="./request/">Request a Portfolio</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>PulseLore Studio</span>
+      <span><a href="../privacy/">Privacy</a> / <a href="../terms/">Terms</a> / <a href="../disclosures/">Disclosures</a></span>
+    </footer>
+
+    <div class="template-modal" data-template-modal hidden>
+      <div class="template-modal-backdrop" data-preview-close></div>
+      <section class="template-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="template-preview-title">
+        <button class="modal-close" type="button" data-preview-close aria-label="Close preview">Close</button>
+        <div class="modal-art" data-modal-art></div>
+        <div class="modal-copy">
+          <span class="status" data-modal-status>Template</span>
+          <h2 id="template-preview-title" data-modal-title>Template Preview</h2>
+          <p data-modal-description></p>
+          <div class="modal-actions">
+            <a class="button" data-modal-request href="./request/">Request this Template</a>
+            <button class="button secondary" type="button" data-preview-close>Keep Browsing</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="./artist-station.js"></script>
+  </body>
+</html>

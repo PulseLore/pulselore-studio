@@ -1,75 +1,200 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PulseLore Music Meter V1</title>
-  <meta name="description" content="PulseLore Music Meter V1 — browser-only audio technical preview. No upload. No API." />
-  <meta name="theme-color" content="#03070d" />
-  <link rel="preload" as="image" href="assets/pulselore-logo.png" />
-  <link rel="stylesheet" href="style.css?v=20260629-nav-polish" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PulseLore Music Meter - Feature Update Preview</title>
+  <meta name="description" content="Music Meter feature-update preview. Same product direction, added export and deeper release checks.">
   <style>
-    .meter-nav {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-left: auto;
+    :root {
+      color-scheme: dark;
+      --bg:#03070d;
+      --panel:#0c121c;
+      --panel2:#101824;
+      --ink:#f1f7ff;
+      --soft:#c4d4e5;
+      --muted:#7d8da2;
+      --line:rgba(142,204,240,.18);
+      --cyan:#16c5ee;
+      --green:#42d182;
+      --amber:#d9a33a;
+      --red:#ff6070;
+      --shadow:0 22px 80px rgba(0,0,0,.46);
+      --radius:28px;
+      --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     }
-
-    .meter-nav a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 0 14px;
-      border: 1px solid rgba(22, 197, 238, 0.28);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.035);
-      color: #c4d4e5;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 800;
-      white-space: nowrap;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 18% 5%,rgba(22,197,238,.11),transparent 25%),
+        radial-gradient(circle at 90% 10%,rgba(217,163,58,.08),transparent 22%),
+        linear-gradient(135deg,#02050a 0%,#06101a 45%,#02050a 100%);
+      overflow-x:hidden;
     }
-
-    .meter-nav a:hover {
-      border-color: rgba(22, 197, 238, 0.65);
-      background: rgba(22, 197, 238, 0.1);
-      color: #f1f7ff;
+    body::before{
+      position:fixed;inset:0;z-index:-2;pointer-events:none;content:"";
+      opacity:.08;
+      background-image:linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom,#000,transparent 80%);
     }
-
-    @media (max-width: 980px) {
-      .meter-nav {
-        order: 3;
-        width: 100%;
-        margin-left: 0;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-      }
+    body::after{
+      position:fixed;inset:auto -12vw -20vh auto;width:50vw;height:50vw;border-radius:50%;z-index:-1;content:"";
+      background:radial-gradient(circle,rgba(22,197,238,.18),transparent 68%);
+      filter:blur(20px);
+      animation:floatGlow 12s ease-in-out infinite alternate;
     }
-
-    @media (max-width: 640px) {
-      .meter-nav {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .meter-nav a {
-        min-height: 36px;
-        padding: 0 10px;
-        font-size: 12px;
-      }
+    @keyframes floatGlow{from{transform:translate3d(0,0,0) scale(.9)}to{transform:translate3d(-8vw,-4vh,0) scale(1.1)}}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    .site-header{
+      position:sticky;top:0;z-index:20;min-height:76px;
+      padding:12px clamp(16px,4vw,56px);
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(3,7,13,.72);backdrop-filter:blur(20px);
     }
+    .brand{display:flex;align-items:center;gap:13px}
+    .brand-mark{
+      width:54px;height:54px;border-radius:50%;
+      display:grid;place-items:center;
+      border:1px solid rgba(22,197,238,.45);
+      color:var(--cyan);
+      box-shadow:0 0 34px rgba(22,197,238,.36);
+      font-weight:900;
+    }
+    .brand strong{display:block;font-size:20px;letter-spacing:-.02em}
+    .brand small{display:block;color:var(--muted);font-size:13px;margin-top:1px}
+    .meter-nav{display:flex;align-items:center;gap:10px;margin-left:auto}
+    .meter-nav a,.header-button{
+      display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:0 14px;
+      border:1px solid rgba(22,197,238,.28);border-radius:12px;background:rgba(255,255,255,.035);
+      color:var(--soft);font-size:13px;font-weight:800;white-space:nowrap;cursor:pointer;
+      transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease;
+    }
+    .meter-nav a:hover,.header-button:hover{transform:translateY(-1px);border-color:rgba(22,197,238,.65);background:rgba(22,197,238,.1);color:var(--ink)}
+    .header-meta{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+    .badge{display:inline-flex;align-items:center;border:1px solid rgba(22,197,238,.45);background:rgba(22,197,238,.09);color:var(--cyan);border-radius:8px;padding:6px 9px;text-transform:uppercase;font:700 12px/1 var(--mono)}
+    main{width:min(1180px,calc(100% - 32px));margin:0 auto}
+    .hero{
+      position:relative;min-height:600px;margin:24px auto 36px;border:1px solid var(--line);border-radius:36px;overflow:hidden;
+      box-shadow:var(--shadow);background:#050a11;
+    }
+    .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.76;
+      filter:saturate(.92) contrast(1.04) brightness(1.08);
+      animation:heroDrift 22s ease-in-out infinite alternate;
+    }
+    .hero-shade{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,rgba(2,5,10,.78),rgba(2,5,10,.38) 48%,rgba(2,5,10,.64)),
+        radial-gradient(circle at 72% 34%,rgba(22,197,238,.2),transparent 24rem),
+        linear-gradient(180deg,rgba(2,5,10,.08),rgba(2,5,10,.56));
+    }
+    @keyframes heroDrift{from{transform:scale(1.02) translateX(-.5%)}to{transform:scale(1.08) translateX(1.5%)}}
+    .hero-inner{position:relative;z-index:1;min-height:600px;display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center;padding:clamp(24px,5vw,68px)}
+    .eyebrow{margin:0 0 14px;text-transform:uppercase;letter-spacing:.18em;color:#8be8ff;font:700 12px/1.4 var(--mono)}
+    h1{margin:0;font-size:clamp(42px,6vw,86px);line-height:.94;letter-spacing:-.07em}
+    h2{margin:0;font-size:clamp(28px,3vw,44px);letter-spacing:-.05em}
+    h3{margin:0}
+    .hero-copy p:not(.eyebrow){color:var(--soft);font-size:clamp(17px,2vw,22px);line-height:1.55;margin:22px 0 0;max-width:600px}
+    .upload-card{padding:18px;border:1px solid rgba(22,197,238,.28);background:linear-gradient(180deg,rgba(8,14,24,.82),rgba(3,7,13,.72));border-radius:28px;box-shadow:0 24px 80px rgba(0,0,0,.34),inset 0 0 0 1px rgba(255,255,255,.03)}
+    #audioInput{position:absolute;inline-size:1px;block-size:1px;opacity:0;pointer-events:none}
+    .drop-zone{
+      min-height:245px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+      border:1px dashed rgba(139,232,255,.42);background:radial-gradient(circle at 50% 0%,rgba(22,197,238,.12),transparent 50%),rgba(255,255,255,.025);
+      border-radius:22px;padding:28px;cursor:pointer;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease,background .25s ease;
+    }
+    .drop-zone:hover,.drop-zone.dragover{transform:translateY(-3px) scale(1.01);border-color:rgba(22,197,238,.95);box-shadow:0 0 0 4px rgba(22,197,238,.08),0 0 42px rgba(22,197,238,.18);background:radial-gradient(circle at 50% 0%,rgba(22,197,238,.22),transparent 56%),rgba(255,255,255,.04)}
+    .cassette-mark{width:76px;height:76px;border-radius:50%;border:1px solid rgba(22,197,238,.42);display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:18px;color:var(--cyan);box-shadow:inset 0 0 26px rgba(22,197,238,.08)}
+    .cassette-mark span{width:5px;height:28px;border-radius:10px;background:var(--cyan);box-shadow:0 0 14px rgba(22,197,238,.55)}
+    .cassette-mark span:nth-child(2){height:44px}
+    .drop-zone strong{font-size:18px;color:var(--cyan);max-width:100%;overflow:hidden;text-overflow:ellipsis}
+    .drop-zone small{color:var(--muted);margin-top:10px;line-height:1.45}
+    .actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0 8px}
+    .analyze-btn,.secondary-btn{
+      position:relative;min-width:150px;border:0;border-radius:14px;font-weight:850;padding:14px 20px;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease;
+    }
+    .analyze-btn{background:linear-gradient(135deg,var(--cyan),#8be8ff);color:#031019;box-shadow:0 14px 34px rgba(22,197,238,.16)}
+    .secondary-btn{background:rgba(255,255,255,.04);color:var(--soft);border:1px solid rgba(22,197,238,.25)}
+    .analyze-btn:not(:disabled):hover,.secondary-btn:not(:disabled):hover{transform:translateY(-2px)}
+    .analyze-btn:disabled,.secondary-btn:disabled{opacity:.52;cursor:not-allowed}
+    .btn-busy{display:none}.analyze-btn.loading .btn-idle{display:none}.analyze-btn.loading .btn-busy{display:inline}
+    .privacy{margin:12px 4px 0;color:var(--muted);font-size:13px;text-align:center;line-height:1.45}
+    .results-shell{padding:0 0 36px}
+    .results-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin:0 0 18px}
+    .results-head p:last-child{color:var(--muted);margin:0;max-width:520px;text-align:right}
+    .top-grid{display:grid;grid-template-columns:340px 1fr;gap:18px}
+    .card,.note-card,.studio-note,.report-card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025));border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card{padding:24px}
+    .card-title{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+    .card-title span,.metrics-block h3{font-size:13px;color:#9badc3;letter-spacing:.16em;text-transform:uppercase;font-weight:850}
+    .card-title em{font-style:normal;color:var(--muted);font-size:13px;font-family:var(--mono)}
+    .score-stage{position:relative;width:260px;height:260px;margin:12px auto}
+    .score-ring{width:100%;height:100%;transform:rotate(-90deg)}
+    .score-bg,.score-progress{fill:none;stroke-width:18;stroke-linecap:round}
+    .score-bg{stroke:rgba(255,255,255,.10)}
+    .score-progress{stroke:var(--cyan);stroke-dasharray:540;stroke-dashoffset:540;transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1),stroke .3s ease;filter:drop-shadow(0 0 18px rgba(22,197,238,.5))}
+    .score-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .score-center strong{font-size:74px;line-height:.9;color:var(--cyan)}
+    .score-center small{font-size:16px;color:var(--soft);margin-top:4px}
+    .score-center span{margin-top:8px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-size:11px}
+    .score-summary{margin:8px auto 0;text-align:center;color:var(--soft);line-height:1.55;max-width:260px}
+    .wave-wrap{position:relative;border:1px solid rgba(255,255,255,.08);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(0,0,0,.15))}
+    canvas{display:block;width:100%;height:300px}
+    .metrics-block{margin-top:24px}
+    .metrics-block h3{margin:0 0 14px}
+    .metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .metric-card{position:relative;padding:22px;border:1px solid var(--line);border-radius:20px;background:rgba(11,17,27,.74);min-height:168px;opacity:.92}
+    .metric-card i{position:absolute;right:22px;top:24px;width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 16px currentColor}
+    .metric-card[data-state="warn"] i{background:var(--amber)}.metric-card[data-state="bad"] i{background:var(--red)}
+    .metric-card small{display:block;text-transform:uppercase;letter-spacing:.16em;color:#8fa1b8;font-weight:850;font-size:12px}
+    .metric-card strong{display:block;font-size:28px;margin:12px 0 10px;letter-spacing:-.03em}
+    .metric-card p{margin:10px 0 0;color:var(--muted);line-height:1.48;font-size:14px}
+    .meter{height:5px;border-radius:999px;background:rgba(255,255,255,.09);overflow:hidden}
+    .meter span{display:block;width:0%;height:100%;border-radius:999px;background:var(--green);transition:width 1s cubic-bezier(.2,.8,.2,1),background .2s ease}
+    .metric-card[data-state="warn"] .meter span{background:var(--amber)}.metric-card[data-state="bad"] .meter span{background:var(--red)}
+    .notes-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+    .note-card{padding:22px}
+    .note-card.good{border-color:rgba(66,209,130,.22);background:linear-gradient(180deg,rgba(66,209,130,.055),rgba(255,255,255,.025))}
+    .note-card.warning{border-color:rgba(217,163,58,.24);background:linear-gradient(180deg,rgba(217,163,58,.065),rgba(255,255,255,.025))}
+    .note-card ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+    .note-card li{display:flex;gap:11px;align-items:flex-start;color:#e7f0fb;line-height:1.5;border-top:1px solid rgba(255,255,255,.06);padding-top:12px}
+    .note-card li:first-child{border-top:0;padding-top:0}
+    .note-card b{display:inline-grid;place-items:center;flex:0 0 22px;width:22px;height:22px;border-radius:50%;font-size:13px;background:rgba(66,209,130,.12);color:var(--green)}
+    .note-card.warning b{background:rgba(217,163,58,.12);color:var(--amber)}
+    .studio-note,.report-card{margin-top:24px;padding:24px;border-color:rgba(22,197,238,.28);background:linear-gradient(180deg,rgba(22,197,238,.07),rgba(255,255,255,.025))}
+    .studio-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+    .studio-columns article{border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;background:rgba(0,0,0,.16)}
+    .studio-columns small{display:block;text-transform:uppercase;letter-spacing:.14em;color:#9badc3;font-size:11px}
+    .studio-columns strong{display:block;margin-top:10px;color:var(--cyan);font-size:18px}
+    .studio-columns p{margin:8px 0 0;color:var(--soft);line-height:1.5}
+    .report-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .report-output{margin-top:16px;white-space:pre-wrap;font-family:var(--mono);font-size:12px;line-height:1.65;color:#dfeeff;border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;background:rgba(0,0,0,.16);max-height:280px;overflow:auto}
+    .status{min-height:22px;margin-top:10px;color:var(--muted);font-size:13px}
+    .footer{border-top:1px solid rgba(255,255,255,.08);padding:28px 16px 42px;text-align:center;color:var(--muted);font-size:13px}
+    .footer p{margin:0 auto 10px;max-width:840px;line-height:1.55}
+    @media (max-width:980px){.site-header{height:auto;align-items:flex-start;gap:10px;flex-direction:column}.meter-nav{margin-left:0;order:3;width:100%;justify-content:flex-start;flex-wrap:wrap}.header-meta{flex-wrap:wrap}.hero{min-height:auto;border-radius:24px}.hero-inner{min-height:auto;grid-template-columns:1fr;padding:28px}.top-grid,.notes-grid,.studio-columns{grid-template-columns:1fr}.metrics-grid{grid-template-columns:repeat(2,1fr)}.results-head{align-items:flex-start;flex-direction:column}.results-head p:last-child{text-align:left}}
+    @media (max-width:640px){main{width:min(100% - 20px,1180px)}.meter-nav{display:grid;grid-template-columns:1fr 1fr}.hero-inner{padding:20px}.drop-zone{min-height:210px}.metrics-grid{grid-template-columns:1fr}.card,.note-card,.studio-note,.report-card{border-radius:20px;padding:18px}canvas{height:220px}}
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.hero-video{animation:none}}
   </style>
 </head>
 <body>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="ambient" aria-hidden="true"></div>
-
   <header class="site-header" id="top">
     <a class="brand" href="#top" aria-label="PulseLore Studio Music Meter">
-      <img src="assets/pulselore-logo.png" alt="PulseLore Studio logo" />
+      <span class="brand-mark">PL</span>
       <span>
         <strong>Music Meter</strong>
         <small>PulseLore Studio</small>
@@ -80,45 +205,43 @@
       <a href="../">Home</a>
     </nav>
     <div class="header-meta" aria-label="Tool status">
-      <span class="badge">V1</span>
-      <span class="badge ghost">Browser-only</span>
-      <span class="dot-line"><i></i>No upload · No API</span>
+      <span class="badge">V1.1 Preview</span>
+      <span class="badge">Browser-only</span>
     </div>
   </header>
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <video class="hero-video" src="assets/PulseLore.mp4" autoplay muted loop playsinline poster="assets/pulselore-logo.png"></video>
-      <div class="hero-shade"></div>
-      <div class="hero-inner reveal">
+      <video class="hero-video" src="assets/PulseLore.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow">Emotion · Sound · Atmosphere</p>
+          <p class="eyebrow">Emotion - Sound - Release Check</p>
           <h1 id="hero-title">Drop your track here.</h1>
-          <p>Check technical readiness before release with a local browser-only meter.</p>
+          <p>Keep the same Music Meter feel, but add clearer release checks, file warnings, start/end silence detail, and exportable reports.</p>
         </div>
 
         <section class="upload-card" aria-label="Upload audio file">
-          <input id="audioInput" type="file" accept="audio/*" />
+          <input id="audioInput" type="file" accept="audio/*">
           <label class="drop-zone" id="dropZone" for="audioInput">
-            <span class="cassette-mark" aria-hidden="true">
-              <span></span><span></span><span></span>
-            </span>
+            <span class="cassette-mark" aria-hidden="true"><span></span><span></span><span></span></span>
             <strong id="fileName">Drop audio file or click to choose</strong>
             <small id="fileHelp">MP3, WAV, M4A, WEBM, and browser-supported audio</small>
           </label>
           <div class="actions">
             <button class="analyze-btn" id="analyzeBtn" type="button" disabled>
               <span class="btn-idle">Analyze Track</span>
-              <span class="btn-busy"><i></i><b id="busyText">Reading waveform…</b></span>
+              <span class="btn-busy">Reading waveform...</span>
             </button>
+            <button class="secondary-btn" id="clearBtn" type="button" disabled>Clear Track</button>
           </div>
-          <p class="privacy"><span>▣</span> Music Meter V1 analyzes audio locally in your browser. Your file is not uploaded anywhere by this page.</p>
+          <p class="privacy">Music Meter analyzes audio locally in your browser. Your file is not uploaded anywhere by this page.</p>
         </section>
       </div>
     </section>
 
     <section class="results-shell" id="results" aria-live="polite">
-      <div class="results-head reveal">
+      <div class="results-head">
         <div>
           <p class="eyebrow">Browser-only technical preview</p>
           <h2>Track analysis</h2>
@@ -127,137 +250,390 @@
       </div>
 
       <section class="top-grid">
-        <article class="card score-card reveal">
-          <div class="card-title">
-            <span>Release Readiness</span>
-            <em id="scoreStatus">Waiting</em>
-          </div>
+        <article class="card score-card">
+          <div class="card-title"><span>Release Readiness</span><em id="scoreStatus">Waiting</em></div>
           <div class="score-stage">
             <svg class="score-ring" viewBox="0 0 220 220" role="img" aria-label="Release readiness score">
               <circle class="score-bg" cx="110" cy="110" r="86"></circle>
               <circle class="score-progress" id="scoreProgress" cx="110" cy="110" r="86"></circle>
             </svg>
-            <div class="score-center">
-              <strong id="scoreValue">--</strong>
-              <small>/100</small>
-              <span>Music Meter</span>
-            </div>
+            <div class="score-center"><strong id="scoreValue">--</strong><small>/100</small><span>Music Meter</span></div>
           </div>
           <p class="score-summary" id="scoreSummary">Upload a file to calculate a local readiness score.</p>
         </article>
 
-        <article class="card waveform-card reveal">
-          <div class="card-title">
-            <span>Waveform Preview</span>
-            <em id="waveMeta">No audio loaded</em>
-          </div>
-          <div class="wave-wrap">
-            <canvas id="waveCanvas" width="1400" height="320"></canvas>
-            <div class="scanline" id="scanline" aria-hidden="true"></div>
-          </div>
+        <article class="card waveform-card">
+          <div class="card-title"><span>Waveform Preview</span><em id="waveMeta">No audio loaded</em></div>
+          <div class="wave-wrap"><canvas id="waveCanvas" width="1400" height="320"></canvas></div>
         </article>
       </section>
 
-      <section class="metrics-block reveal" aria-labelledby="metrics-title">
+      <section class="metrics-block" aria-labelledby="metrics-title">
         <h3 id="metrics-title">Technical Metrics</h3>
         <div class="metrics-grid" id="metricsGrid">
-          <article class="metric-card" data-state="idle">
-            <i></i><small>Peak Level</small><strong id="peakValue">--</strong>
-            <div class="meter"><span id="peakFill"></span></div>
-            <p id="peakText">Highest sample peak. Aim below -1 dBFS before release.</p>
-          </article>
-          <article class="metric-card" data-state="idle">
-            <i></i><small>Rough RMS</small><strong id="rmsValue">--</strong>
-            <div class="meter"><span id="rmsFill"></span></div>
-            <p id="rmsText">Average perceived loudness. Useful for rough loudness checking.</p>
-          </article>
-          <article class="metric-card" data-state="idle">
-            <i></i><small>Clipping Risk</small><strong id="clipValue">--</strong>
-            <div class="meter"><span id="clipFill"></span></div>
-            <p id="clipText">Samples near digital ceiling. Lower values are safer.</p>
-          </article>
-          <article class="metric-card" data-state="idle">
-            <i></i><small>Stereo Balance</small><strong id="stereoValue">--</strong>
-            <div class="meter"><span id="stereoFill"></span></div>
-            <p id="stereoText">Left/right energy balance. Keep centered unless intentional.</p>
-          </article>
-          <article class="metric-card" data-state="idle">
-            <i></i><small>Silence / Low Audio</small><strong id="silenceValue">--</strong>
-            <div class="meter"><span id="silenceFill"></span></div>
-            <p id="silenceText">Very quiet sections. High values may indicate gaps or long silence.</p>
-          </article>
-          <article class="metric-card" data-state="idle">
-            <i></i><small>Dynamic Feel</small><strong id="dynamicValue">--</strong>
-            <div class="meter"><span id="dynamicFill"></span></div>
-            <p id="dynamicText">Peak-to-average movement. Higher values feel more open.</p>
-          </article>
+          <article class="metric-card" data-state="idle"><i></i><small>Peak Level</small><strong id="peakValue">--</strong><div class="meter"><span id="peakFill"></span></div><p id="peakText">Aim below -1 dBFS before release.</p></article>
+          <article class="metric-card" data-state="idle"><i></i><small>Rough RMS</small><strong id="rmsValue">--</strong><div class="meter"><span id="rmsFill"></span></div><p id="rmsText">Average perceived loudness rough check.</p></article>
+          <article class="metric-card" data-state="idle"><i></i><small>Clipping Risk</small><strong id="clipValue">--</strong><div class="meter"><span id="clipFill"></span></div><p id="clipText">Samples near digital ceiling.</p></article>
+          <article class="metric-card" data-state="idle"><i></i><small>Stereo Balance</small><strong id="stereoValue">--</strong><div class="meter"><span id="stereoFill"></span></div><p id="stereoText">Left/right energy balance.</p></article>
+          <article class="metric-card" data-state="idle"><i></i><small>Start / End Silence</small><strong id="edgeSilenceValue">--</strong><div class="meter"><span id="edgeSilenceFill"></span></div><p id="edgeSilenceText">Intro/outro low-audio duration.</p></article>
+          <article class="metric-card" data-state="idle"><i></i><small>File Readiness</small><strong id="fileReadyValue">--</strong><div class="meter"><span id="fileReadyFill"></span></div><p id="fileReadyText">Sample rate, channels, file size, duration.</p></article>
         </div>
       </section>
 
       <section class="notes-grid" id="notes">
-        <article class="note-card good reveal">
+        <article class="note-card good">
           <div class="card-title"><span>What Looks Good</span><em>Auto notes</em></div>
-          <ul id="goodList">
-            <li><b>✓</b><span>Select a track to see strengths.</span></li>
-          </ul>
+          <ul id="goodList"><li><b>+</b><span>Select a track to see strengths.</span></li></ul>
         </article>
-        <article class="note-card warning reveal">
+        <article class="note-card warning">
           <div class="card-title"><span>Fix Before Release</span><em>Auto notes</em></div>
-          <ul id="fixList">
-            <li><b>!</b><span>Select a track to see release checks.</span></li>
-          </ul>
+          <ul id="fixList"><li><b>!</b><span>Select a track to see release checks.</span></li></ul>
         </article>
       </section>
 
-      <section class="studio-note reveal" id="studio-note" aria-labelledby="studio-title">
-        <div class="studio-head">
-          <span class="mini-logo"><img src="assets/pulselore-logo.png" alt="" /></span>
-          <div>
-            <h3 id="studio-title">PulseLore Studio Note</h3>
-            <p>Score breakdown · human-readable next move</p>
-          </div>
-        </div>
-
-        <div class="calc-row" id="calcRow">
-          <div class="calc-box"><small>Base Score</small><strong>100</strong></div>
-          <span class="operator">−</span>
-          <div class="calc-box penalty"><small>Peak Ceiling</small><strong id="peakPenalty">0</strong></div>
-          <span class="operator">−</span>
-          <div class="calc-box penalty"><small>Clipping Risk</small><strong id="clipPenalty">0</strong></div>
-          <span class="operator">−</span>
-          <div class="calc-box penalty"><small>Other Checks</small><strong id="otherPenalty">0</strong></div>
-          <span class="operator">=</span>
-          <div class="calc-box final"><small>Final Score</small><strong id="finalScore">--</strong></div>
-        </div>
-
-        <p class="score-path" id="scorePath">Score path will appear after analysis.</p>
-
+      <section class="studio-note" aria-labelledby="studio-title">
+        <div class="card-title"><span id="studio-title">PulseLore Studio Note</span><em>human-readable next move</em></div>
         <div class="studio-columns">
-          <article>
-            <small>Result</small>
-            <strong id="noteResult">--</strong>
-            <p id="noteResultText">Upload a file first.</p>
-          </article>
-          <article>
-            <small>Main Reason</small>
-            <strong id="noteReason">--</strong>
-            <p id="noteReasonText">The meter will find the main technical reason.</p>
-          </article>
-          <article>
-            <small>Next Move</small>
-            <strong id="noteNext">--</strong>
-            <p id="noteNextText">Action notes will appear here.</p>
-          </article>
+          <article><small>Result</small><strong id="noteResult">--</strong><p id="noteResultText">Upload a file first.</p></article>
+          <article><small>Main Reason</small><strong id="noteReason">--</strong><p id="noteReasonText">The meter will find the main technical reason.</p></article>
+          <article><small>Next Move</small><strong id="noteNext">--</strong><p id="noteNextText">Action notes will appear here.</p></article>
         </div>
+      </section>
+
+      <section class="report-card" aria-labelledby="report-title">
+        <div class="card-title"><span id="report-title">Exportable Release Check Report</span><em>new feature</em></div>
+        <p class="privacy">Copy or download this report for your local release checklist. It is not legal proof and not distributor approval.</p>
+        <div class="report-actions">
+          <button class="secondary-btn" id="copyReportBtn" type="button" disabled>Copy Report</button>
+          <button class="secondary-btn" id="downloadReportBtn" type="button" disabled>Download .txt</button>
+        </div>
+        <div class="status" id="reportStatus" aria-live="polite"></div>
+        <pre class="report-output" id="reportOutput">Report appears after analysis.</pre>
       </section>
     </section>
   </main>
 
   <footer class="footer">
-    <p>Music Meter V1 is a browser-only technical preview. For professional release decisions, compare with DAW meters and trusted reference tracks.</p>
-    <span>© 2026 PulseLore Studio · pulselore.studio</span>
+    <p>Music Meter is a browser-only technical preview. For final release decisions, compare with DAW meters and trusted reference tracks.</p>
+    <span>2026 PulseLore Studio - pulselore.studio</span>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const input = $('audioInput');
+    const dropZone = $('dropZone');
+    const analyzeBtn = $('analyzeBtn');
+    const clearBtn = $('clearBtn');
+    const fileName = $('fileName');
+    const fileHelp = $('fileHelp');
+    const canvas = $('waveCanvas');
+    const ctx = canvas.getContext('2d');
+    const copyReportBtn = $('copyReportBtn');
+    const downloadReportBtn = $('downloadReportBtn');
+    const reportOutput = $('reportOutput');
+    const reportStatus = $('reportStatus');
+    let selectedFile = null;
+    let lastReport = '';
+
+    const ids = {
+      trackHeadline: $('trackHeadline'), scoreValue: $('scoreValue'), scoreProgress: $('scoreProgress'), scoreStatus: $('scoreStatus'), scoreSummary: $('scoreSummary'), waveMeta: $('waveMeta'),
+      peakValue: $('peakValue'), rmsValue: $('rmsValue'), clipValue: $('clipValue'), stereoValue: $('stereoValue'), edgeSilenceValue: $('edgeSilenceValue'), fileReadyValue: $('fileReadyValue'),
+      peakFill: $('peakFill'), rmsFill: $('rmsFill'), clipFill: $('clipFill'), stereoFill: $('stereoFill'), edgeSilenceFill: $('edgeSilenceFill'), fileReadyFill: $('fileReadyFill'),
+      peakText: $('peakText'), rmsText: $('rmsText'), clipText: $('clipText'), stereoText: $('stereoText'), edgeSilenceText: $('edgeSilenceText'), fileReadyText: $('fileReadyText'),
+      goodList: $('goodList'), fixList: $('fixList'), noteResult: $('noteResult'), noteResultText: $('noteResultText'), noteReason: $('noteReason'), noteReasonText: $('noteReasonText'), noteNext: $('noteNext'), noteNextText: $('noteNextText')
+    };
+
+    const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+    const db = (v) => v <= 0 ? -Infinity : 20 * Math.log10(v);
+    const pct = (v) => `${v.toFixed(v < 1 ? 3 : 1)}%`;
+    const formatTime = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+    const formatBytes = (bytes) => `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+
+    function statusForScore(score) {
+      if (score >= 90) return ['Release-ready shape', 'Your track is in a strong technical shape. Do a reference listen before final upload.'];
+      if (score >= 75) return ['Good, minor checks', 'A few small adjustments can make this release-ready.'];
+      if (score >= 60) return ['Needs mix review', 'The track is usable, but a few technical issues should be checked.'];
+      return ['Fix before release', 'Important technical issues were detected before release.'];
+    }
+
+    function setFill(id, value, state = 'ok') {
+      const fill = ids[id];
+      if (!fill) return;
+      fill.style.width = `${clamp(value, 0, 100)}%`;
+      fill.closest('.metric-card')?.setAttribute('data-state', state);
+    }
+
+    function setSelectedFile(file) {
+      if (!file || !file.type.startsWith('audio')) {
+        alert('Please choose an audio file.');
+        return;
+      }
+      selectedFile = file;
+      fileName.textContent = file.name;
+      fileHelp.textContent = `${formatBytes(file.size)} - click to change file`;
+      ids.trackHeadline.textContent = `${file.name} is ready for local analysis.`;
+      analyzeBtn.disabled = false;
+      clearBtn.disabled = false;
+      dropZone.classList.add('has-file');
+    }
+
+    function resetMeter() {
+      selectedFile = null;
+      input.value = '';
+      fileName.textContent = 'Drop audio file or click to choose';
+      fileHelp.textContent = 'MP3, WAV, M4A, WEBM, and browser-supported audio';
+      analyzeBtn.disabled = true;
+      clearBtn.disabled = true;
+      copyReportBtn.disabled = true;
+      downloadReportBtn.disabled = true;
+      lastReport = '';
+      reportOutput.textContent = 'Report appears after analysis.';
+      reportStatus.textContent = '';
+      dropZone.classList.remove('has-file');
+      drawEmptyWave();
+    }
+
+    input.addEventListener('change', (event) => {
+      const file = event.target.files?.[0];
+      if (file) setSelectedFile(file);
+    });
+    ['dragenter','dragover'].forEach((name) => dropZone.addEventListener(name, (event) => { event.preventDefault(); dropZone.classList.add('dragover'); }));
+    ['dragleave','drop'].forEach((name) => dropZone.addEventListener(name, (event) => { event.preventDefault(); dropZone.classList.remove('dragover'); }));
+    dropZone.addEventListener('drop', (event) => {
+      const file = event.dataTransfer?.files?.[0];
+      if (file) setSelectedFile(file);
+    });
+    clearBtn.addEventListener('click', resetMeter);
+
+    analyzeBtn.addEventListener('click', async () => {
+      if (!selectedFile) return;
+      analyzeBtn.classList.add('loading');
+      analyzeBtn.disabled = true;
+      try {
+        const arrayBuffer = await selectedFile.arrayBuffer();
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioContext();
+        const buffer = await audioCtx.decodeAudioData(arrayBuffer.slice(0));
+        await audioCtx.close();
+        analyzeBuffer(buffer, selectedFile);
+        $('results')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (error) {
+        console.error(error);
+        alert('This audio file could not be decoded by your browser. Try MP3, WAV, M4A, or WEBM.');
+      } finally {
+        analyzeBtn.classList.remove('loading');
+        analyzeBtn.disabled = false;
+      }
+    });
+
+    function drawEmptyWave() {
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = 'rgba(255,255,255,.035)';
+      ctx.fillRect(0,0,w,h);
+      ctx.strokeStyle = 'rgba(139,232,255,.13)';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0,h/2); ctx.lineTo(w,h/2); ctx.stroke();
+      ctx.fillStyle = 'rgba(196,212,229,.48)';
+      ctx.font = '28px system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Waveform appears after analysis', w/2, h/2 - 10);
+    }
+
+    function drawWaveform(buffer) {
+      const w = canvas.width, h = canvas.height;
+      const data = buffer.getChannelData(0);
+      const step = Math.max(1, Math.ceil(data.length / w));
+      const mid = h / 2;
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle = 'rgba(255,255,255,.035)';
+      ctx.fillRect(0,0,w,h);
+      const gradient = ctx.createLinearGradient(0,0,w,0);
+      gradient.addColorStop(0,'rgba(16,120,148,.84)');
+      gradient.addColorStop(.55,'rgba(22,197,238,.96)');
+      gradient.addColorStop(1,'rgba(139,232,255,.9)');
+      ctx.fillStyle = gradient;
+      for (let x=0; x<w; x++) {
+        let min = 1, max = -1;
+        for (let j=0; j<step; j++) {
+          const v = data[(x * step) + j] || 0;
+          if (v < min) min = v;
+          if (v > max) max = v;
+        }
+        const y1 = (1 + min) * mid;
+        const y2 = (1 + max) * mid;
+        ctx.fillRect(x, y1, 1, Math.max(1, y2 - y1));
+      }
+    }
+
+    function edgeSilenceSeconds(data, sampleRate, threshold) {
+      let start = 0;
+      while (start < data.length && Math.abs(data[start]) < threshold) start++;
+      let end = data.length - 1;
+      while (end > 0 && Math.abs(data[end]) < threshold) end--;
+      return { start: start / sampleRate, end: (data.length - 1 - end) / sampleRate };
+    }
+
+    function analyzeBuffer(buffer, file) {
+      const channels = buffer.numberOfChannels;
+      const left = buffer.getChannelData(0);
+      const right = channels > 1 ? buffer.getChannelData(1) : left;
+      const len = left.length;
+      let peak = 0, sumSq = 0, clip = 0, lSq = 0, rSq = 0;
+      const clipThreshold = 0.999;
+      const edge = edgeSilenceSeconds(left, buffer.sampleRate, Math.pow(10, -50 / 20));
+      for (let i=0; i<len; i++) {
+        const l = left[i] || 0, r = right[i] || 0, mono = (l + r) / 2, abs = Math.abs(mono);
+        if (abs > peak) peak = abs;
+        sumSq += mono * mono; lSq += l * l; rSq += r * r;
+        if (Math.abs(l) >= clipThreshold || Math.abs(r) >= clipThreshold) clip++;
+      }
+      const rms = Math.sqrt(sumSq / len);
+      const peakDb = db(peak), rmsDb = db(rms), clipPct = (clip / len) * 100;
+      const lDb = db(Math.sqrt(lSq / len)), rDb = db(Math.sqrt(rSq / len));
+      const stereoDb = Math.abs(lDb - rDb);
+      const crest = peakDb - rmsDb;
+      const edgeTotal = edge.start + edge.end;
+      const fileWarnings = [];
+      if (buffer.sampleRate < 44100) fileWarnings.push('Sample rate below 44.1 kHz.');
+      if (channels === 1) fileWarnings.push('Mono file. Confirm this is intentional.');
+      if (buffer.duration < 30) fileWarnings.push('Short duration. Confirm this is the final full master.');
+      if (file.size > 150 * 1024 * 1024) fileWarnings.push('Large file. Confirm platform upload limit.');
+
+      const pPeak = peakDb >= -0.05 ? 15 : peakDb >= -0.25 ? 12 : peakDb >= -0.75 ? 8 : peakDb >= -1 ? 4 : 0;
+      const pClip = clipPct > 1 ? 18 : clipPct > 0.25 ? 12 : clipPct > 0.02 ? 5 : clipPct > 0.005 ? 2 : 0;
+      const pRms = rmsDb > -7 ? 8 : rmsDb > -9 ? 4 : rmsDb < -24 ? 8 : rmsDb < -18 ? 4 : 0;
+      const pStereo = stereoDb > 4 ? 7 : stereoDb > 2 ? 3 : 0;
+      const pEdge = edgeTotal > 10 ? 8 : edgeTotal > 4 ? 4 : 0;
+      const pFile = fileWarnings.length * 3;
+      const score = clamp(Math.round(100 - pPeak - pClip - pRms - pStereo - pEdge - pFile), 0, 100);
+      const [label, summary] = statusForScore(score);
+      const louder = lDb >= rDb ? 'L-heavy' : 'R-heavy';
+
+      ids.trackHeadline.textContent = `${file.name} - ${formatTime(buffer.duration)} - ${(buffer.sampleRate/1000).toFixed(1)} kHz - ${channels === 1 ? 'Mono' : 'Stereo'} - ${formatBytes(file.size)}`;
+      ids.waveMeta.textContent = `${formatTime(buffer.duration)} - ${channels} ch - ${(buffer.sampleRate/1000).toFixed(1)} kHz`;
+      ids.scoreStatus.textContent = label;
+      ids.scoreSummary.textContent = summary;
+      ids.scoreValue.textContent = score;
+      const ringLen = 540;
+      ids.scoreProgress.style.strokeDashoffset = `${ringLen - ringLen * score / 100}`;
+      ids.scoreProgress.style.stroke = score >= 90 ? 'var(--green)' : score >= 75 ? 'var(--cyan)' : score >= 60 ? 'var(--amber)' : 'var(--red)';
+
+      ids.peakValue.textContent = `${Number.isFinite(peakDb) ? peakDb.toFixed(2) : '-inf'} dBFS`;
+      ids.rmsValue.textContent = `${Number.isFinite(rmsDb) ? rmsDb.toFixed(2) : '-inf'} dBFS`;
+      ids.clipValue.textContent = pct(clipPct);
+      ids.stereoValue.textContent = `${stereoDb.toFixed(1)} dB ${stereoDb > 0.7 ? louder : ''}`.trim();
+      ids.edgeSilenceValue.textContent = `${edge.start.toFixed(1)}s / ${edge.end.toFixed(1)}s`;
+      ids.fileReadyValue.textContent = fileWarnings.length ? `${fileWarnings.length} note${fileWarnings.length > 1 ? 's' : ''}` : 'OK';
+
+      setFill('peakFill', clamp(100 + peakDb * 10, 0, 100), peakDb >= -0.25 ? 'bad' : peakDb >= -1 ? 'warn' : 'ok');
+      setFill('rmsFill', clamp((rmsDb + 30) * 4, 0, 100), rmsDb > -7 || rmsDb < -24 ? 'bad' : (rmsDb > -9 || rmsDb < -18 ? 'warn' : 'ok'));
+      setFill('clipFill', clamp(clipPct * 60, clipPct > 0 ? 2 : 1, 100), clipPct > 0.02 ? 'warn' : 'ok');
+      setFill('stereoFill', clamp(stereoDb * 18, 2, 100), stereoDb > 4 ? 'bad' : stereoDb > 2 ? 'warn' : 'ok');
+      setFill('edgeSilenceFill', clamp(edgeTotal * 8, 2, 100), edgeTotal > 10 ? 'bad' : edgeTotal > 4 ? 'warn' : 'ok');
+      setFill('fileReadyFill', fileWarnings.length ? 58 : 100, fileWarnings.length ? 'warn' : 'ok');
+
+      ids.peakText.textContent = peakDb >= -1 ? 'Too close to ceiling. Leave more headroom.' : 'Headroom looks safer for re-encoding.';
+      ids.rmsText.textContent = rmsDb > -9 ? 'Loud range. Check limiter pressure.' : rmsDb < -18 ? 'Quiet range. Compare references.' : 'Usable rough loudness range.';
+      ids.clipText.textContent = clipPct > 0.02 ? 'Possible clipping or limiter stress detected.' : 'No clipping-like samples detected.';
+      ids.stereoText.textContent = stereoDb > 2 ? 'Check panning or stereo widening.' : 'Center looks reasonably stable.';
+      ids.edgeSilenceText.textContent = edgeTotal > 4 ? 'Trim intro/outro silence or confirm it is intentional.' : 'Intro/outro silence looks controlled.';
+      ids.fileReadyText.textContent = fileWarnings.length ? fileWarnings.join(' ') : 'Sample rate, channels, size, and duration look acceptable.';
+
+      const good = [];
+      const fix = [];
+      if (clipPct <= 0.02) good.push('No clipping-like samples detected.');
+      else fix.push('Clipping-like samples found. Check limiter ceiling, loud chorus, 808s, or snare hits.');
+      if (peakDb < -1) good.push('Peak headroom looks safer for upload and re-encoding.');
+      else fix.push('Peak is too close to 0 dBFS. Lower master output by about 1-2 dB.');
+      if (rmsDb <= -9 && rmsDb >= -18) good.push('Rough RMS sits in a usable range.');
+      else fix.push(rmsDb > -9 ? 'RMS is very loud. Check limiter gain and listening fatigue.' : 'RMS is quiet. Compare loudness with a trusted reference.');
+      if (stereoDb <= 2) good.push('Stereo energy is reasonably centered.');
+      else fix.push(`${stereoDb.toFixed(1)} dB ${louder}. Check panning, wideners, or export channel balance.`);
+      if (edgeTotal <= 4) good.push('Start/end silence looks controlled.');
+      else fix.push(`Start/end silence is ${edgeTotal.toFixed(1)}s total. Trim or confirm intentional fade space.`);
+      fileWarnings.forEach((w) => fix.push(w));
+      renderNotes(ids.goodList, good, '+');
+      renderNotes(ids.fixList, fix.length ? fix : ['No urgent release fixes found by this rough meter.'], fix.length ? '!' : '+');
+
+      let reason = 'Balanced technical shape', reasonText = 'No single issue dominates the score.', next = 'Reference check', nextText = 'Compare with a trusted track and listen on phone, headphones, and speaker.';
+      if (pPeak > 0) { reason = 'Peak near ceiling'; reasonText = 'The master ceiling is too close to digital maximum.'; next = 'Lower ceiling'; nextText = 'Lower limiter ceiling to around -1.0 dB / -1.2 dB and export again.'; }
+      else if (pClip > 0) { reason = 'Clipping risk'; reasonText = 'Clipping-like samples or limiter stress were detected.'; next = 'Check loud hits'; nextText = 'Inspect chorus, 808s, snares, and master limiter input gain.'; }
+      else if (pEdge > 0) { reason = 'Start/end silence'; reasonText = 'Intro or outro contains extended very low audio.'; next = 'Trim edges'; nextText = 'Trim dead space or confirm the silence is intentional.'; }
+      ids.noteResult.textContent = `${score}/100 - ${label}`;
+      ids.noteResultText.textContent = summary;
+      ids.noteReason.textContent = reason;
+      ids.noteReasonText.textContent = reasonText;
+      ids.noteNext.textContent = next;
+      ids.noteNextText.textContent = nextText;
+
+      drawWaveform(buffer);
+      lastReport = buildReport({ file, buffer, score, label, peakDb, rmsDb, clipPct, stereoDb, edge, fileWarnings, good, fix });
+      reportOutput.textContent = lastReport;
+      copyReportBtn.disabled = false;
+      downloadReportBtn.disabled = false;
+      reportStatus.textContent = 'Report ready.';
+    }
+
+    function renderNotes(list, notes, icon) {
+      list.innerHTML = notes.map((note) => `<li><b>${icon}</b><span>${note}</span></li>`).join('');
+    }
+
+    function buildReport(r) {
+      return [
+        'PulseLore Music Meter - Release Check Report',
+        `Generated: ${new Date().toLocaleString()}`,
+        '',
+        'File',
+        `- Name: ${r.file.name}`,
+        `- Size: ${formatBytes(r.file.size)}`,
+        `- Duration: ${formatTime(r.buffer.duration)}`,
+        `- Sample rate: ${r.buffer.sampleRate} Hz`,
+        `- Channels: ${r.buffer.numberOfChannels}`,
+        '',
+        'Technical Summary',
+        `- Readiness: ${r.score}/100 - ${r.label}`,
+        `- Peak: ${Number.isFinite(r.peakDb) ? r.peakDb.toFixed(2) : '-inf'} dBFS`,
+        `- Rough RMS: ${Number.isFinite(r.rmsDb) ? r.rmsDb.toFixed(2) : '-inf'} dBFS`,
+        `- Clipping-like samples: ${pct(r.clipPct)}`,
+        `- Stereo balance difference: ${r.stereoDb.toFixed(1)} dB`,
+        `- Start silence: ${r.edge.start.toFixed(2)}s`,
+        `- End silence: ${r.edge.end.toFixed(2)}s`,
+        '',
+        'What Looks Good',
+        ...(r.good.length ? r.good.map((x) => `- ${x}`) : ['- None recorded.']),
+        '',
+        'Fix Before Release',
+        ...(r.fix.length ? r.fix.map((x) => `- ${x}`) : ['- No urgent release fixes found by this rough meter.']),
+        '',
+        'Disclaimer',
+        'This is a browser-only technical preview. It is not distributor approval, not a legal certificate, and not a replacement for DAW meters or professional mastering checks.'
+      ].join('\\n');
+    }
+
+    copyReportBtn.addEventListener('click', async () => {
+      if (!lastReport) return;
+      try {
+        await navigator.clipboard.writeText(lastReport);
+        reportStatus.textContent = 'Report copied.';
+      } catch {
+        reportStatus.textContent = 'Copy failed. Select the report and copy manually.';
+      }
+    });
+
+    downloadReportBtn.addEventListener('click', () => {
+      if (!lastReport) return;
+      const blob = new Blob([lastReport], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'pulselore-music-meter-report.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+      reportStatus.textContent = 'Report downloaded.';
+    });
+
+    drawEmptyWave();
+  </script>
 </body>
 </html>

@@ -3,47 +3,51 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Security White Paper — PulseLore AI Music Meter</title>
-    <link rel="stylesheet" href="../styles.css">
+    <title>Security - PulseLore Studio</title>
+    <meta name="description" content="PulseLore Studio security notes for browser-local tools, future backend systems, and private access boundaries.">
+    <link rel="stylesheet" href="../site-styles.css">
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="../">PulseLore™</a>
+      <a class="brand" href="../"><span class="brand-mark">PL</span>PulseLore Studio</a>
       <nav class="nav">
-        <a href="../services/">Services Station</a>
-        <a href="../music-meter/upload/">Start Beta Check</a>
+        <a href="../">Home</a>
+        <a href="../web-apps/">Web Apps</a>
         <a href="../privacy/">Privacy</a>
         <a href="../terms/">Terms</a>
+        <a href="../disclosures/">Disclosures</a>
       </nav>
     </header>
-    <main class="page">
-      <section>
-        <h1>Security White Paper</h1>
-        <p class="lead">PulseLore AI Music Meter — Beta. Effective Date: [insert date]. Version 0.1 Beta.</p>
+    <main class="site-shell">
+      <section class="section">
+        <p class="kicker">Security</p>
+        <h1>Phase 1 security posture.</h1>
+        <p class="lead">PulseLore Studio Phase 1 is primarily static and browser-local. Future account systems, uploads, and saved histories need server-side authentication before public use.</p>
       </section>
-      <section class="grid two">
-        <article class="panel">
-          <h2>Privacy-first storage model</h2>
-          <p>Beta preview status: real audio upload and temporary storage are not enabled yet. Planned model: uploaded audio should be stored temporarily only for analysis, and the original file must be deleted manually on request or automatically within 24 hours.</p>
-        </article>
-        <article class="panel">
-          <h2>Training boundary</h2>
-          <p>Planned backend rule: uploaded audio must not be used for AI training. It must not be sold, published, shared publicly, or distributed by PulseLore.Studio.</p>
-        </article>
-        <article class="panel">
-          <h2>Future database fields</h2>
-          <p>Planned fields include user_id, email, role, monthly_limit, used_count, upload_id, song_title, artist_name, upload_time, delete_deadline, deleted_at, consent_checked, policy_version, report_score, and report_text.</p>
-        </article>
-        <article class="panel">
-          <h2>Audit log</h2>
-          <p>The MVP should log uploaded, analyzed, manually deleted, and auto-deleted events. The auto-delete job should run at least once per hour.</p>
-        </article>
-      </section>
-      <section class="panel">
-        <h2>Security status</h2>
-          <p>This prototype is UI-only. Google login, Supabase database, temporary audio storage, Python audio analyzer, 24-hour auto-delete cron job, quota enforcement, upload deletion, and audit logging are not connected yet.</p>
-        <p>Contact: <a href="mailto:contact@pulselore.studio">contact@pulselore.studio</a></p>
+      <section class="section">
+        <div class="grid two">
+          <article class="panel">
+            <h2>Current model</h2>
+            <p>Current public tools use browser-only behavior where possible. Audio files selected in Music Meter are not uploaded by that page.</p>
+          </article>
+          <article class="panel">
+            <h2>Future backend requirement</h2>
+            <p>Any future file uploads, AI chat history, user accounts, or evidence archives must use server-side access control, storage rules, deletion controls, and audit logging.</p>
+          </article>
+          <article class="panel">
+            <h2>Private routes</h2>
+            <p>Soft locks are not high-security authentication. They are private access gates for limited personal or internal use until a real auth layer is added.</p>
+          </article>
+          <article class="panel">
+            <h2>Contact</h2>
+            <p>Security questions can be sent to <a href="mailto:contact@pulselore.studio">contact@pulselore.studio</a>.</p>
+          </article>
+        </div>
       </section>
     </main>
+    <footer class="site-footer">
+      <span>PulseLore Studio</span>
+      <span><a href="../privacy/">Privacy</a> / <a href="../terms/">Terms</a> / <a href="../disclosures/">Disclosures</a></span>
+    </footer>
   </body>
 </html>

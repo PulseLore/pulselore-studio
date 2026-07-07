@@ -1,0 +1,176 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Record - Creation Log | PulseLore Studio</title>
+    <meta name="description" content="Document human work, AI assistance, credits, prompts, stems, DAW notes, archive files, and release evidence. No fake AI percentages.">
+    <link rel="stylesheet" href="./style.css?v=20260705">
+  </head>
+  <body>
+    <header class="app-header">
+      <a class="brand" href="../services/" aria-label="Back to Service Station">
+        <span>
+          <strong>AI Record - Creation Log</strong>
+          <small>Creation Record - local browser version</small>
+        </span>
+      </a>
+      <div class="header-actions">
+        <span class="version-badge">Creation Record</span>
+        <a class="station-link" href="../services/">Service Station</a>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="disclaimer-bar" role="note">
+        <strong>What this is:</strong> a self-attested AI Record showing how a song was made - lyrics, vocals, AI tool use, DAW steps, mastering notes, and archive files.
+        <strong>What this is not:</strong> an AI detector. This version does not calculate or show a Human % / AI % score, because no validated detection model backs it. Nothing here is legal proof or a copyright registration.
+      </section>
+
+      <section class="panel-block">
+        <h2>Song &amp; Project</h2>
+        <div class="field-grid">
+          <div class="field">
+            <label for="songTitle">Song title</label>
+            <input type="text" id="songTitle" placeholder="e.g. Midnight Static">
+          </div>
+          <div class="field">
+            <label for="artistName">Artist</label>
+            <input type="text" id="artistName" placeholder="e.g. The 404 Pages">
+          </div>
+          <div class="field">
+            <label for="projectName">Project</label>
+            <input type="text" id="projectName" placeholder="Album, single, EP name">
+          </div>
+          <div class="field">
+            <label for="releaseStage">Release stage</label>
+            <select id="releaseStage">
+              <option value="Draft">Draft</option>
+              <option value="Writing">Writing</option>
+              <option value="Recording">Recording</option>
+              <option value="Mixing">Mixing</option>
+              <option value="Mastering">Mastering</option>
+              <option value="Ready for distribution">Ready for distribution</option>
+              <option value="Released">Released</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel-block">
+        <h2>Lyrics</h2>
+        <div class="field-grid">
+          <div class="field">
+            <label for="lyricsAuthor">Lyrics written by</label>
+            <input type="text" id="lyricsAuthor" placeholder="Name(s)">
+          </div>
+          <div class="field">
+            <label for="lyricsAI">AI involvement in lyrics</label>
+            <select id="lyricsAI">
+              <option value="None">None - fully human-written</option>
+              <option value="Assisted">AI-assisted (edits, suggestions, translation)</option>
+              <option value="Primarily AI">Primarily AI-generated, human-edited</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel-block">
+        <h2>Vocals</h2>
+        <div class="field-grid">
+          <div class="field">
+            <label for="vocalPerformer">Lead vocal performer</label>
+            <input type="text" id="vocalPerformer" placeholder="Name">
+          </div>
+          <div class="field">
+            <label for="vocalAI">AI involvement in vocals</label>
+            <select id="vocalAI">
+              <option value="None">None - human performance only</option>
+              <option value="AI pitch/tuning correction">AI pitch/tuning correction only</option>
+              <option value="AI voice conversion (RVC-type)">AI voice conversion (RVC-type) on a human performance</option>
+              <option value="Fully AI-generated vocal">Fully AI-generated vocal</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel-block">
+        <h2>Instrumental / Backing</h2>
+        <div class="field-grid">
+          <div class="field">
+            <label for="instrumentalSource">Instrumental source</label>
+            <select id="instrumentalSource">
+              <option value="Human-performed">Human-performed / recorded</option>
+              <option value="AI-generated (Suno/Udio/etc.)">AI-generated (Suno, Udio, or similar)</option>
+              <option value="Hybrid">Hybrid - human edits over AI-generated backing</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="daw">DAW used</label>
+            <input type="text" id="daw" placeholder="e.g. Ableton, FL Studio, Logic">
+          </div>
+        </div>
+        <div class="field">
+          <label for="masteringNotes">Mixing / mastering notes</label>
+          <textarea id="masteringNotes" rows="3" placeholder="What was done, by whom, with what tools"></textarea>
+        </div>
+      </section>
+
+      <section class="panel-block">
+        <h2>AI Tools &amp; Prompts</h2>
+        <div class="field">
+          <label for="aiTools">AI tools used (names, links, or version IDs)</label>
+          <textarea id="aiTools" rows="2" placeholder="e.g. Suno v4, RVC model name, ChatGPT for lyric editing"></textarea>
+        </div>
+        <div class="field">
+          <label for="promptNotes">Prompt / session notes</label>
+          <textarea id="promptNotes" rows="3" placeholder="Key prompts, regenerations, or workflow steps worth recording"></textarea>
+        </div>
+      </section>
+
+      <section class="panel-block">
+        <h2>Archive Checklist</h2>
+        <p class="hint">What files are actually kept for this song. This becomes part of your distributor-ready archive.</p>
+        <div class="checklist" id="archiveChecklist">
+          <label><input type="checkbox" value="Lyrics file"> Lyrics file</label>
+          <label><input type="checkbox" value="Vocal stems"> Vocal stems</label>
+          <label><input type="checkbox" value="Instrumental stems / MIDI"> Instrumental stems / MIDI</label>
+          <label><input type="checkbox" value="DAW project file"> DAW project file</label>
+          <label><input type="checkbox" value="Cover art"> Cover art</label>
+          <label><input type="checkbox" value="Final master file"> Final master file</label>
+          <label><input type="checkbox" value="AI prompt / session log"> AI prompt / session log</label>
+          <label><input type="checkbox" value="Rights / permission notes"> Rights / permission notes</label>
+        </div>
+      </section>
+
+      <section class="panel-block">
+        <h2>Rights &amp; Source Notes</h2>
+        <div class="field">
+          <label for="rightsNotes">Notes on sources, samples, or permissions</label>
+          <textarea id="rightsNotes" rows="3" placeholder="Any third-party samples, licensed sounds, or permission notes"></textarea>
+        </div>
+      </section>
+
+      <section class="action-bar">
+        <button class="primary-action" id="saveDraftBtn" type="button">Save Draft</button>
+        <button class="secondary-action" id="newDraftBtn" type="button">New / Reset</button>
+        <button class="secondary-action" id="exportJsonBtn" type="button">Export JSON</button>
+        <button class="secondary-action" id="exportTextBtn" type="button">Export Report (.txt)</button>
+        <button class="secondary-action" id="copyReportBtn" type="button">Copy Report</button>
+        <span class="save-status" id="saveStatus" role="status" aria-live="polite"></span>
+      </section>
+
+      <section class="panel-block">
+        <h2>Saved Drafts <span class="hint">(stored only in this browser)</span></h2>
+        <div id="draftList" class="draft-list">
+          <p class="hint" id="draftEmptyState">No saved drafts yet.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js?v=20260705"></script>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact - PulseLore Studio</title>
+    <meta name="description" content="Contact PulseLore Studio for music workflow support, artist pages, release preparation, and small web app projects.">
+    <link rel="stylesheet" href="../site-styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="../"><span class="brand-mark">PL</span>PulseLore Studio</a>
+      <nav class="nav">
+        <a href="../">Home</a>
+        <a href="../services/">Services</a>
+        <a href="../web-apps/">Web Apps</a>
+        <a href="../about/">About</a>
+      </nav>
+    </header>
+    <main class="site-shell">
+      <section class="hero-section">
+        <div>
+          <p class="kicker">Contact</p>
+          <h1>Start with the real project.</h1>
+          <p class="lead">Tell PulseLore what you want to build, release, document, or improve. The form prepares an email on your device and saves a local draft while you type.</p>
+        </div>
+        <section class="panel">
+          <form class="form" data-contact-form>
+            <label>Name<input name="name" autocomplete="name" required></label>
+            <label>Email<input name="email" type="email" autocomplete="email" required></label>
+            <label>Project type
+              <select name="type">
+                <option>Music workflow support</option>
+                <option>Artist website</option>
+                <option>Release preparation</option>
+                <option>Small web app</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Project summary<textarea name="project" required placeholder="What do you want to make or fix?"></textarea></label>
+            <label>Notes<textarea name="notes" placeholder="Timeline, budget range, current links, or special constraints."></textarea></label>
+            <button class="button" type="submit">Prepare email</button>
+            <p class="muted" data-contact-status></p>
+          </form>
+        </section>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <span>PulseLore Studio</span>
+      <span><a href="../privacy/">Privacy</a> / <a href="../terms/">Terms</a> / <a href="../disclosures/">Disclosures</a></span>
+    </footer>
+    <script src="../site-script.js"></script>
+  </body>
+</html>

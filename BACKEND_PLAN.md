@@ -117,8 +117,8 @@ Events:
 
 ### Frontend connection points
 
-- `music-meter/upload/index.html`
-  - Replace disabled file input with real upload control.
+- `music-meter/index.html` or a future dedicated upload route if created later
+  - Replace or extend the current local-only file picker with a real upload control.
   - Connect consent checkbox to upload submission.
   - Show real quota count from Supabase.
 
