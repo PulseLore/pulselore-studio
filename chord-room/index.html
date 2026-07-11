@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="PulseLore Chord Room V1 is a browser-only chord progression player for songwriters, artists, and producers."
+    >
+    <title>PulseLore Chord Room V1</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="../services/" aria-label="Back to Service Station">
+          <img src="../assets/pulselore-logo.png" alt="" width="42" height="42">
+          <span>
+            <strong>PulseLore Chord Room</strong>
+            <small>Browser-only songwriting tool</small>
+          </span>
+        </a>
+        <div class="header-actions">
+          <span class="version-badge">V1</span>
+          <a class="station-link" href="../services/">Service Station</a>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="control-bar" aria-label="Playback controls">
+          <button class="primary-action" id="playToggle" type="button">Play</button>
+
+          <label class="control-field">
+            <span>BPM</span>
+            <input id="bpmInput" type="number" min="45" max="220" value="100">
+          </label>
+
+          <label class="control-field">
+            <span>Key</span>
+            <select id="keySelect">
+              <option>C</option>
+              <option>Db</option>
+              <option>D</option>
+              <option>Eb</option>
+              <option>E</option>
+              <option>F</option>
+              <option>Gb</option>
+              <option>G</option>
+              <option>Ab</option>
+              <option>A</option>
+              <option>Bb</option>
+              <option>B</option>
+            </select>
+          </label>
+
+          <label class="control-field">
+            <span>Style</span>
+            <select id="styleSelect">
+              <option>Pop</option>
+              <option>Rock</option>
+              <option>Lo-fi / Bedroom Pop</option>
+              <option>Jazz</option>
+              <option>Dark Emotional</option>
+              <option>Ukulele Friendly</option>
+            </select>
+          </label>
+
+          <label class="control-field">
+            <span>Instrument</span>
+            <select id="instrumentSelect">
+              <option>Piano</option>
+              <option>Ukulele</option>
+              <option>Guitar</option>
+              <option>Soft Pad</option>
+              <option>Bass</option>
+              <option>Drums</option>
+            </select>
+          </label>
+
+          <label class="loop-toggle">
+            <input id="loopToggle" type="checkbox" checked>
+            <span>Loop</span>
+          </label>
+
+          <button class="secondary-action" id="saveBtn" type="button">Save</button>
+          <div class="export-group" aria-label="Export progression">
+            <button class="secondary-action" id="exportTextBtn" type="button">Export Text</button>
+            <button class="secondary-action" id="exportJsonBtn" type="button">Export JSON</button>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <div class="progression-area">
+            <div id="sections" class="sections" aria-live="polite"></div>
+
+            <div class="builder-actions">
+              <button id="addSectionBtn" type="button">Add Section</button>
+              <button id="generateBtn" type="button">Generate Chords</button>
+            </div>
+          </div>
+
+          <aside class="side-panel" aria-label="Chord details">
+            <div class="current-card">
+              <span class="panel-label">Current chord</span>
+              <h2 id="currentChordName">C</h2>
+              <p id="currentChordNotes">C + E + G</p>
+              <div id="instrumentVisual" class="instrument-visual"></div>
+            </div>
+
+            <div class="suggestion-card">
+              <span class="panel-label">Suggested next chords</span>
+              <div id="suggestedChords" class="suggested-chords"></div>
+            </div>
+
+            <div class="status-card">
+              <span class="status-dot"></span>
+              <p id="statusText">Ready. Audio is generated locally in your browser.</p>
+            </div>
+          </aside>
+        </section>
+      </main>
+
+      <footer class="app-footer">
+        PulseLore Chord Room V1 is a browser-only creative tool for sketching chord progressions and backing ideas.
+      </footer>
+    </div>
+
+    <dialog id="chordModal" class="chord-modal">
+      <form method="dialog" id="chordForm">
+        <div class="modal-head">
+          <h2>Edit chord</h2>
+          <button class="icon-button" value="cancel" type="submit" aria-label="Close">x</button>
+        </div>
+
+        <div class="modal-grid">
+          <label>
+            <span>Root</span>
+            <select id="modalRoot"></select>
+          </label>
+          <label>
+            <span>Quality</span>
+            <select id="modalQuality">
+              <option value="major">major</option>
+              <option value="minor">minor</option>
+              <option value="7">7</option>
+              <option value="maj7">maj7</option>
+              <option value="m7">m7</option>
+              <option value="sus4">sus4</option>
+              <option value="add9">add9</option>
+            </select>
+          </label>
+          <label>
+            <span>Beats</span>
+            <select id="modalBeats">
+              <option>1</option>
+              <option>2</option>
+              <option selected>4</option>
+              <option>8</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="modal-actions">
+          <button id="deleteChordBtn" class="danger-action" type="button">Delete</button>
+          <button class="secondary-action" value="cancel" type="submit">Cancel</button>
+          <button id="saveChordBtn" class="primary-action" value="default" type="button">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
