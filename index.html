@@ -1,65 +1,153 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PulseLore Studio</title>
-    <meta
-      name="description"
-      content="PulseLore Studio cinematic hero page."
-    />
-    <link rel="preload" as="image" href="/pulselore-radio-ashtray-hero-4k.jpg" />
-    <link rel="stylesheet" href="/home-styles.css?v=20260629-clean-video" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#02050a">
+    <title>PulseLore Studio | AI + Human Creative Production</title>
+    <meta name="description" content="PulseLore Studio builds music, web identity, portfolio systems, local-first QA tools, and release preparation workflows for independent creators.">
+    <link rel="preload" as="video" href="/assets/video/pulselore_hero.mp4">
+    <link rel="stylesheet" href="/site-styles.css">
   </head>
-  <body>
-    <main class="hero-page" id="home" aria-label="PulseLore Studio hero page">
-      <video
-        class="hero-video"
-        data-hero-video
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        poster="pulselore-radio-ashtray-hero-4k.jpg"
-        aria-hidden="true"
-      >
-        <source src="pulselore-hero-video.mp4" type="video/mp4" />
-      </video>
+  <body class="flagship-home">
+    <header class="topbar">
+      <a class="brand" href="/"><span class="brand-mark">PL</span><span>PulseLore<small>Studio</small></span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/artists/">Artists</a>
+        <a href="/portfolio/">Portfolio</a>
+        <a href="/beats/">Beats</a>
+        <a href="/services/">Services</a>
+        <a href="/web-apps/">Tools</a>
+        <a href="/contact/" class="nav-cta">Contact</a>
+      </nav>
+    </header>
 
-      <audio
-        data-hero-audio
-        src="pulselore-urban-fusion-web.wav"
-        preload="auto"
-        loop
-      ></audio>
+    <main>
+      <section class="flagship-hero" id="home">
+        <div class="hero-fallback" aria-hidden="true"></div>
+        <video autoplay muted loop playsinline preload="auto" poster="/pulselore-radio-ashtray-hero-4k.jpg" aria-hidden="true">
+          <source src="/assets/video/pulselore_hero.mp4" type="video/mp4">
+        </video>
+        <div class="flagship-shade" aria-hidden="true"></div>
+        <div class="flagship-frame" aria-hidden="true"></div>
 
-      <div class="video-fallback" aria-hidden="true"></div>
-      <div class="navy-grade" aria-hidden="true"></div>
+        <div class="flagship-left">
+          <span>Creative Direction</span>
+          <span>Music Release Systems</span>
+          <span>Artist Identity</span>
+          <span>Web Presence</span>
+        </div>
 
-      <header class="top-bar" aria-label="Main navigation">
-        <a class="site-url" href="#home">PulseLore&trade;</a>
-        <nav class="station-nav">
-          <a href="#home">Home station</a>
-          <a href="/artists/">Artist station</a>
-          <a href="/beats/">Beats station</a>
-          <a href="/web-apps/">Web apps</a>
-          <a href="/services/">Service station</a>
-          <a href="/about/">About</a>
-          <a href="/contact/">Contact</a>
-        </nav>
-      </header>
+        <div class="flagship-right">
+          <span>2026</span>
+          <span>PulseLore Studio</span>
+          <span>Founding System</span>
+        </div>
 
-      <div class="grain" aria-hidden="true"></div>
+        <div class="flagship-title">
+          <p class="overline">Emotion / Sound / Atmosphere</p>
+          <h1><span>PulseLore</span><em>Studio</em></h1>
+          <p class="flagship-line">AI + human creative production for music, web identity, portfolio systems, and release preparation.</p>
+          <div class="actions">
+            <a class="button" href="#featured">Explore Stations</a>
+            <a class="button dark" href="/contact/">Start a Project</a>
+          </div>
+        </div>
 
-      <button class="sound-toggle" type="button" data-sound-toggle hidden>
-        Sound on
-      </button>
+        <div class="flagship-seal" aria-hidden="true">
+          <span>PL</span>
+        </div>
+
+        <div class="flagship-capabilities" id="stations">
+          <article>
+            <strong>Vision that drives release</strong>
+            <span>From rough idea to public-ready presence.</span>
+          </article>
+          <article>
+            <strong>Music Meter</strong>
+            <span>Local preview before upload.</span>
+          </article>
+          <article>
+            <strong>Portfolio Systems</strong>
+            <span>Artist identity and long-scroll pages.</span>
+          </article>
+          <article>
+            <strong>QA Garden</strong>
+            <span>Launch checks with local storage.</span>
+          </article>
+          <article>
+            <strong>Service Station</strong>
+            <span>Web, sound, identity, and workflow.</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="flagship-section shell" id="featured">
+        <div class="flagship-section-head">
+          <span class="overline">Featured Work</span>
+          <a href="/portfolio/">View portfolio</a>
+        </div>
+        <div class="flagship-work-grid">
+          <a class="flagship-work-card large" href="/portfolio/">
+            <span>01</span>
+            <h2>PulseLore Studio</h2>
+            <p>Founding project / website system / local-first tools.</p>
+          </a>
+          <a class="flagship-work-card" href="/music-meter/">
+            <span>02</span>
+            <h3>Music Meter</h3>
+            <p>Waveform, estimated levels, clipping risk, release notes.</p>
+          </a>
+          <a class="flagship-work-card" href="/artists/">
+            <span>03</span>
+            <h3>The 404 Pages</h3>
+            <p>Founding identity preparing for the first public showcase.</p>
+          </a>
+          <a class="flagship-work-card" href="/baby-qa-garden/">
+            <span>04</span>
+            <h3>Baby QA Garden</h3>
+            <p>Private launch companion with checklist and issue log.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="flagship-section flagship-dark-band">
+        <div class="shell flagship-band-grid">
+          <div>
+            <span class="overline">Studio Direction</span>
+            <h2>Built for independent creators who need taste and proof.</h2>
+          </div>
+          <div class="flagship-proof-grid">
+            <article><strong>Identity</strong><span>Honest brand systems, no fake roster.</span></article>
+            <article><strong>Sound</strong><span>Release readiness checks and reference listening.</span></article>
+            <article><strong>Web</strong><span>Cinematic pages that can actually ship.</span></article>
+            <article><strong>QA</strong><span>Local-first launch companion and checklists.</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="flagship-section shell">
+        <div class="flagship-contact-panel">
+          <div>
+            <span class="overline">Let's create something useful</span>
+            <h2>Start with a clear project brief.</h2>
+            <p>For artist websites, release pages, portfolio systems, QA preparation, or a studio identity refresh, PulseLore keeps the claims honest and the visuals cinematic.</p>
+          </div>
+          <div class="actions">
+            <a class="button" href="/talk-with-zen/">Build a Brief</a>
+            <a class="button secondary" href="mailto:contact@pulselore.studio">contact@pulselore.studio</a>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <script src="script.js"></script>
+    <footer class="footer">
+      <div class="shell footer-row">
+        <span>PulseLore Studio</span>
+        <span><a href="/privacy/">Privacy</a> / <a href="/terms/">Terms</a> / <a href="/security/">Security</a></span>
+      </div>
+    </footer>
+    <script src="/site-script.js"></script>
   </body>
 </html>
-
-
-

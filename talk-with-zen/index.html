@@ -1,59 +1,21 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Talk With Zen - PulseLore Studio</title>
-    <meta name="description" content="Talk With Zen Phase 1 local shell for creative notes, prompts, lyric workflow, and PulseLore planning.">
-    <link rel="stylesheet" href="../site-styles.css">
-  </head>
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Zen Brief Builder â€” PulseLore Studio</title><meta name="description" content="A local PulseLore project brief builder. No backend or AI API is connected."><link rel="stylesheet" href="/site-styles.css"></head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="../"><span class="brand-mark">PL</span>PulseLore Studio</a>
-      <nav class="nav">
-        <a href="../web-apps/">Web Apps</a>
-        <a href="../ai-record/">Creation Log</a>
-        <a href="../services/">Services</a>
-      </nav>
-    </header>
-    <main class="site-shell">
-      <section class="section">
-        <p class="kicker">Local shell</p>
-        <h1>Talk With Zen</h1>
-        <p class="lead">A Phase 1 local chat shell for saving creative notes and prompt ideas. The AI backend is not connected yet, so this page does not claim live AI responses.</p>
-      </section>
-      <section class="grid two">
-        <div class="panel">
-          <div class="message-log" data-zen-log></div>
-          <form class="form" data-zen-form>
-            <label>Message<textarea data-zen-input placeholder="Write a music workflow question, prompt idea, or project note."></textarea></label>
-            <div class="actions">
-              <button class="button" type="submit">Save note</button>
-              <button class="button secondary" type="button" data-zen-copy>Copy</button>
-              <button class="button secondary" type="button" data-zen-export>Export JSON</button>
-              <button class="button ghost" type="button" data-zen-reset>Clear</button>
-            </div>
-            <p class="muted" data-zen-status></p>
-          </form>
-        </div>
-        <aside class="panel">
-          <h2>Planned modes</h2>
-          <ul>
-            <li>General Zen Brain</li>
-            <li>Lyrics and hook shaping</li>
-            <li>Prompt building</li>
-            <li>Music workflow advisor</li>
-            <li>Release prep discussion</li>
-          </ul>
-          <p class="muted">History saving will require a real backend later. This Phase 1 shell stores only local browser notes.</p>
-        </aside>
+    <header class="topbar"><a class="brand" href="/"><span class="brand-mark">PL</span><span>PulseLore<small>Brief</small></span></a><nav class="nav"><a href="/">Home</a><a href="/web-apps/">Tools</a><a href="/services/">Services</a><a href="/contact/" class="nav-cta">Contact</a></nav></header>
+    <main class="shell">
+      <section class="section" style="padding-top:150px"><div class="overline">Local Brief Builder</div><h1>Talk With Zen, honestly.</h1><p class="lead">This is a practical local brief builder. It saves in your browser and does not pretend Gemini, OpenAI, or any backend is connected.</p></section>
+      <section class="section split">
+        <form class="panel form-grid" id="briefForm">
+          <label>Project Type<select id="projectType"><option>Artist Website</option><option>Music Release Page</option><option>Portfolio System</option><option>QA Launch Review</option><option>Creative Brand Site</option></select></label>
+          <label>Tone<select id="tone"><option>Cinematic and premium</option><option>Warm and simple</option><option>Technical and clear</option><option>Bold editorial</option></select></label>
+          <label class="full">Your Rough Message<textarea id="briefInput" placeholder="Write the messy idea here."></textarea></label>
+          <div class="full actions"><button class="button" type="submit">Generate Local Brief</button><button class="button secondary" type="button" id="copyBrief">Copy Brief</button></div>
+        </form>
+        <aside class="panel"><h2>Output</h2><div class="output" id="briefOutput">Your local brief will appear here.</div></aside>
       </section>
     </main>
-    <footer class="site-footer">
-      <span>PulseLore Studio</span>
-      <span><a href="../privacy/">Privacy</a> / <a href="../terms/">Terms</a> / <a href="../disclosures/">Disclosures</a></span>
-    </footer>
-    <script src="../site-script.js"></script>
+    <footer class="footer"><div class="shell footer-row"><span>Zen Brief Builder</span><span>Local-only browser tool</span></div></footer>
+    <script src="/site-script.js"></script>
   </body>
 </html>
-

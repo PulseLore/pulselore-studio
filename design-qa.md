@@ -27,7 +27,7 @@ Focused regions checked were the top navigation, hero copy block, dashboard over
 - Rebuilt the Service Station hero around the reference's PulseLore Studio editorial hierarchy.
 - Added a local dark studio hero background asset.
 - Reworked the right-side service overview into a compact dashboard.
-- Restyled Music Services, Chord Room, Web & App Services, and Private App Example into reference-aligned dark panels.
+- Restyled Music Services, Web & App Services, and Private App Example into reference-aligned dark panels.
 - Adjusted hero height so Music Services is visible at the bottom of the desktop first viewport.
 - Tightened mobile hero padding and confirmed no horizontal overflow.
 
