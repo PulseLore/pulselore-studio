@@ -1,5 +1,5 @@
 ﻿/**
- * PulseLore AI Record - Creation Log
+ * PulseLore Release Record Passport
  * Creation record only. No certified AI detection. No fake percentages.
  * All storage is browser-local (localStorage) - nothing is uploaded to a server.
  */
@@ -233,11 +233,11 @@ function deleteDraft(id) {
 function buildReportText() {
   const d = collectFormData();
   const lines = [
-    "PulseLore AI Record - Creation Log",
+    "PulseLore Release Record Passport",
     "Creation Record - self-attested creative record",
     "Generated: " + new Date().toLocaleString(),
     "",
-    "This is a self-attested AI Record of the reported creative workflow, not an AI detection result.",
+    "This is a self-attested release record of the reported creative workflow, not a detection result or legal registration.",
     "No Human %/AI % score is included - no validated detector backs this version.",
     "",
     "--- Song & Project ---",
@@ -332,5 +332,6 @@ document.getElementById("copyReportBtn").addEventListener("click", async () => {
 });
 
 renderDraftList();
+
 
 

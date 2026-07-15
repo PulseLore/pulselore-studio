@@ -34,7 +34,7 @@ if (heroAudio && soundToggle) {
     }
   };
 
-  startAudio();
+  setSoundButton(false);
 
   soundToggle.addEventListener("click", async () => {
     if (heroAudio.paused) {
@@ -45,12 +45,4 @@ if (heroAudio && soundToggle) {
     heroAudio.pause();
     setSoundButton(false);
   });
-
-  window.addEventListener(
-    "pointerdown",
-    () => {
-      if (heroAudio.paused) startAudio();
-    },
-    { once: true }
-  );
 }

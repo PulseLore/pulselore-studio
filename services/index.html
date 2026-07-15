@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="PulseLore Studio Service Station for music-centered services, private tools, web apps, artist systems, and AI-assisted creative workflows."
+      content="PulseLore Studio Service Station for music-centered services, private tools, web apps, artist systems, and creator workflow support."
     >
     <title>Service Station - PulseLore Studio</title>
     <link rel="stylesheet" href="./styles.css">
@@ -2142,11 +2142,11 @@ select option {
                 <strong>Web &amp; App Services</strong>
                 <small>Temporarily closed for public browsing.</small>
               </span>
-              <a href="#private-app-example">
+              <span class="is-disabled" aria-disabled="true">
                 <span class="icon-lock" aria-hidden="true">Lock</span>
                 <strong>Private Access</strong>
-                <small>Private apps and protected experiences.</small>
-              </a>
+                <small>Private app links are not open from public pages.</small>
+              </span>
             </div>
           </div>
           <div class="dash-player">
@@ -2182,12 +2182,12 @@ select option {
           <article class="refined-card">
             <span class="card-icon cyan" aria-hidden="true">SW</span>
             <h3>Songwriting</h3>
-            <p>Verse, hook, chorus flow, bilingual tone, story direction, lyric cleanup, and AI lyric formatting.</p>
+            <p>Verse, hook, chorus flow, bilingual tone, story direction, lyric cleanup, and lyric box/tag formatting.</p>
             <small>English / Myanmar tone support and emotional story direction.</small>
           </article>
           <article class="refined-card">
             <span class="card-icon cyan" aria-hidden="true">AI</span>
-            <h3>AI Music Workflow</h3>
+            <h3>Music Tool Workflow</h3>
             <p>Prompt improvement, style direction, lyric arrangement, regeneration planning, and weak-result fixing.</p>
             <small>Workflow support for Suno, Udio, and other AI music tools.</small>
           </article>
@@ -2211,7 +2211,7 @@ select option {
             <ul class="check-list">
               <li>Website design &amp; launch</li>
               <li>Web app / mini app development</li>
-              <li>AI-assisted build workflow</li>
+              <li>Guided build workflow</li>
               <li>Mobile support and iteration after testing</li>
             </ul>
           </div>
@@ -2231,7 +2231,7 @@ select option {
           <h2>Private App Example</h2>
           <span class="gold-rule" aria-hidden="true"></span>
           <p>A private access entry for authorized internal tools. Public pages do not show private app content, credentials, personal messages, screenshots, or usage metrics.</p>
-          <a class="refined-button outline" href="https://www.pulselore.studio/baby-qa-garden/">Private Access <span aria-hidden="true">&rarr;</span></a>
+          <span class="refined-button outline is-disabled" aria-disabled="true">Private Access Paused</span>
         </div>
         <div class="qa-preview" aria-label="Private access public preview">
           <div class="qa-sidebar">
@@ -2247,7 +2247,7 @@ select option {
           <span class="lock-ring" aria-hidden="true">Lock</span>
           <h3>Private Access</h3>
           <p>This area is available through authorized private access.</p>
-          <a class="refined-button outline gold-border" href="https://www.pulselore.studio/baby-qa-garden/">Private Access</a>
+          <span class="refined-button outline gold-border is-disabled" aria-disabled="true">Private Access Paused</span>
         </aside>
       </section>
 
@@ -2327,6 +2327,7 @@ select option {
   </script>
 </body>
 </html>
+
 
 
 

@@ -1,7 +1,7 @@
-{
+﻿{
   "name": "Baby's QA Garden",
   "short_name": "QA Garden",
-  "description": "A private soft QA helper gift made by Ko Ko for Baby.",
+  "description": "A private locked QA workspace for an approved user.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -16,3 +16,4 @@
     }
   ]
 }
+

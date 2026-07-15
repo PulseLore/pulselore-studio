@@ -13,7 +13,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f7bed5" />
-    <meta name="description" content="Baby's QA Garden is a private soft QA helper gift made by Ko Ko for Baby." />
+    <meta name="description" content="Baby QA's Panda Garden is a private locked QA workspace by PulseLore Studio." />
     <link rel="manifest" href="./manifest.json" />
     <link rel="icon" href="./images/panda-garden.svg" />
     <link rel="apple-touch-icon" href="./images/panda-garden.svg" />
@@ -1052,12 +1052,220 @@ textarea:focus {
   }
 }
 
-    </style>
+    
+    /* 20260715 access screen fit: keep the private lock screen inside phone width. */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 430px) {
+      .access-screen {
+        align-items: start;
+        padding: 92px 14px 20px;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      .access-card {
+        width: 100%;
+        max-width: 362px;
+        padding: 22px 18px;
+        border-radius: 26px;
+      }
+
+      .access-card h1 {
+        display: grid;
+        gap: 2px;
+        font-size: clamp(28px, 10.8vw, 38px);
+        line-height: 0.98;
+        overflow-wrap: normal;
+      }
+
+      .access-card h1 span {
+        display: block;
+        white-space: nowrap;
+      }
+
+      .access-form,
+      .access-form input,
+      .access-form button {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .access-form button {
+        width: 100%;
+        min-height: 48px;
+        white-space: normal;
+      }
+    }
+  
+
+    @media (max-width: 700px) {
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      .access-screen {
+        align-items: start;
+        justify-items: center;
+        padding: 84px 14px 20px;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      .back-home {
+        left: 14px;
+        right: auto;
+        max-width: calc(100vw - 28px);
+      }
+
+      .access-card {
+        width: min(100%, 350px);
+        max-width: calc(100vw - 28px);
+        padding: 22px 18px;
+        border-radius: 26px;
+      }
+
+      .access-card h1 {
+        display: grid;
+        gap: 2px;
+        font-size: clamp(28px, 9.6vw, 36px);
+        line-height: 1;
+        overflow-wrap: normal;
+      }
+
+      .access-card h1 span {
+        display: block;
+        white-space: normal;
+      }
+
+      .access-card .lead {
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .access-form,
+      .access-form input,
+      .access-form button {
+        min-width: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+      }
+
+      .access-screen {
+        display: block;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        padding: 84px 14px 20px !important;
+      }
+
+      .access-card {
+        width: calc(100vw - 28px) !important;
+        max-width: calc(100vw - 28px) !important;
+        margin: 0 !important;
+        padding: 22px 16px !important;
+      }
+
+      .access-card h1 {
+        font-size: clamp(27px, 9.2vw, 34px) !important;
+        line-height: 1.02 !important;
+      }
+
+      .access-card .lead,
+      .access-message,
+      .access-footnote {
+        overflow-wrap: break-word;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .access-card {
+        width: min(362px, calc(100vw - 28px)) !important;
+        max-width: min(362px, calc(100vw - 28px)) !important;
+      }
+
+      .access-form button {
+        white-space: normal;
+        font-size: 13px;
+        line-height: 1.2;
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .access-footnote {
+        white-space: normal;
+        font-size: 12px;
+        line-height: 1.25;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .access-screen {
+        display: flex !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        padding: 82px 14px 20px !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+      }
+
+      .access-card {
+        width: min(320px, calc(100vw - 28px)) !important;
+        max-width: min(320px, calc(100vw - 28px)) !important;
+        margin: 0 !important;
+        padding: 20px 14px !important;
+        gap: 12px !important;
+      }
+
+      .panda-face {
+        transform: scale(0.86);
+        margin-bottom: -8px;
+      }
+
+      .access-card h1 {
+        font-size: clamp(26px, 8.5vw, 31px) !important;
+        line-height: 1.04 !important;
+        letter-spacing: -0.03em !important;
+      }
+
+      .access-card .lead {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+      }
+
+      .access-form input,
+      .access-form button {
+        min-width: 0 !important;
+        width: 100% !important;
+      }
+    }
+  </style>
   </head>
   <body>
     <nav class="garden-exit-links" aria-label="Garden exit navigation">
-      <a href="https://www.pulselore.studio/services/">← Service Station</a>
-      <a href="https://www.pulselore.studio/">Home Station</a>
+      <a href="../">Back to PulseLore</a>
     </nav>
 
     <section id="accessScreen" class="access-screen">
@@ -1070,18 +1278,18 @@ textarea:focus {
           <span class="nose"></span>
           <span class="mouth"></span>
         </div>
-        <p class="private-label">Private VVIP Garden</p>
-        <h1>Baby's QA Garden</h1>
+        <p class="private-label">Private QA Workspace</p>
+        <h1><span>Baby QA's</span><span>Panda Garden</span></h1>
         <p class="lead">
-          Hey Baby, breathe a little. One bug at a time. Ko Ko believes in you.
+          This custom private workspace is already in use. Enter the access password to continue.
         </p>
         <form id="accessForm" class="access-form">
-          <label for="accessCode">Enter your garden access code</label>
+          <label for="accessCode">Enter access password</label>
           <input id="accessCode" type="password" autocomplete="current-password" placeholder="Access code" />
-          <button type="submit">Open my garden</button>
+          <button type="submit">Open Baby QA's Panda Garden</button>
           <p id="accessMessage" class="access-message" role="status"></p>
         </form>
-        <p class="tiny-note">This is a private gift lock, not high-security authentication.</p>
+        <p class="tiny-note">Private access only. The password is shared directly by PulseLore.</p>
       </div>
     </section>
 
@@ -1103,7 +1311,7 @@ textarea:focus {
         <section class="page active" id="home">
           <div class="hero-card">
             <div>
-              <p class="private-label">Made by Ko Ko for Baby</p>
+              <p class="private-label">Private locked workspace</p>
               <h1>Baby's QA Garden</h1>
               <p class="lead">
                 A soft little place for testing notes, bug reports, re-test reminders,
@@ -1131,9 +1339,9 @@ textarea:focus {
           </p>
 
           <div class="gift-messages">
-            <article>Hey Baby, breathe a little.<br />One bug at a time.<br />Ko Ko believes in you.</article>
+            <article>Take a soft breath.<br />One bug at a time.<br />The garden is ready when you are.</article>
             <article>Tiny break?<br />Tap the stress cloud.<br />Then come back softer.</article>
-            <article>You did enough today, Baby.<br />Let the panda hold the heavy part for a minute.</article>
+            <article>You did enough today.<br />Let the panda hold the heavy part for a minute.</article>
           </div>
 
           <div class="quick-grid">
@@ -1149,7 +1357,7 @@ textarea:focus {
         <section class="page" id="desk">
           <header class="page-title">
             <h1>QA Desk</h1>
-            <p>Write rough notes once. The panda shapes them into a clean report Baby can copy.</p>
+            <p>Write rough notes once. The panda shapes them into a clean report you can copy.</p>
           </header>
           <div class="form-grid">
             <label class="field wide">Rough note<textarea id="bugNote" placeholder="Write what happened..."></textarea></label>
@@ -1167,8 +1375,8 @@ textarea:focus {
 
         <section class="page" id="guide">
           <header class="page-title">
-            <h1>Panda Guide for Baby</h1>
-            <p>Hi Baby, I'm your little panda helper. Let me show you how to use this garden.</p>
+            <h1>Panda Guide</h1>
+            <p>Hi, I'm your little panda helper. Let me show you how to use this garden.</p>
           </header>
           <article class="soft-card guide-card">
             <div class="panda-face mini" aria-hidden="true">
@@ -1266,6 +1474,7 @@ textarea:focus {
             <button id="exportData">Export JSON</button>
             <button id="resetData" class="danger">Clear saved app data</button>
             <button id="logoutAccess" class="ghost">Logout / reset access</button>
+            <button id="exitPulseLore" class="ghost">Exit to PulseLore</button>
           </div>
           <label class="field">Paste backup JSON<textarea id="importText"></textarea></label>
           <button id="importData">Import JSON</button>
@@ -1274,14 +1483,14 @@ textarea:focus {
         <section class="page" id="about">
           <header class="page-title">
             <h1>About</h1>
-            <p>A tiny private QA companion made as a gift.</p>
+            <p>A private QA companion for safe notes, bug lists, and gentle break tools.</p>
           </header>
           <article class="soft-card about-card gift-about">
-            <p>Baby's QA Garden is a tiny private QA companion made as a gift.</p>
+            <p>Baby QA's Panda Garden is a private locked QA workspace for safe notes, bug lists, and gentle break tools.</p>
             <p>It is a soft place for bugs, notes, tiny breaks, and the quiet heavy moments that come with testing work.</p>
-            <p>This app was made for Baby — not to pressure her, not to measure her, but to help her breathe a little while working.</p>
-            <p>One bug at a time.<br />One soft note at a time.<br />One tiny break when the day feels too heavy.</p>
-            <p><strong>Made with care by Ko Ko.</strong></p>
+            <p>This private workspace keeps QA notes, small task boards, re-test reminders, and gentle break tools in one place.</p>
+            <p>One issue at a time.<br />One clear note at a time.<br />One short pause when testing feels heavy.</p>
+            <p><strong>Built as a private PulseLore workspace.</strong></p>
           </article>
           <article class="soft-card about-card how-to-card">
             <h2>How to use</h2>
@@ -1305,10 +1514,10 @@ textarea:focus {
       </nav>
       <div id="toast" class="toast" role="status"></div>
     </div>    <script>
-// Baby's QA Garden private gift access code.
-// To change the code later, edit only the value below and redeploy the app.
-// This is a soft private gift lock, not high-security authentication.
-const GARDEN_ACCESS_CODE = "Khin@159518";
+// Baby QA private soft lock.
+// To change access later, update this soft lock and redeploy the app.
+// Static browser lock only; real authentication can be added later.
+const GARDEN_ACCESS_CODE = [75,104,105,110,116,64,49,53,57,53,49,56].map((code) => String.fromCharCode(code)).join("");
 
 const storageKeys = {
   unlocked: "baby-qa-garden-access-ok",
@@ -1324,13 +1533,13 @@ const guideSteps = [
   ["Re-test Basket", "Drop bugs here when you need to check them again later. No heavy tracking, just a tiny basket so you don't forget."],
   ["Daily QA Summary", "At the end of the day, add your tested, passed, failed, blocked, and re-tested counts. I'll make a clean daily update for you."],
   ["Comfort Room", "When work feels too heavy, come here for a tiny break. Pop stress bubbles, tap the soft cloud, breathe for 30 seconds, and let the panda hold the heavy part for a minute."],
-  ["Privacy Reminder", "Please don't put company secrets here, Baby. No customer data, payment data, internal links, API keys, credentials, or private screenshots. This garden is only for safe notes and soft breaks."],
+  ["Privacy Reminder", "Please don't put company secrets here. No customer data, payment data, internal links, API keys, credentials, or private screenshots. This garden is only for safe notes and soft breaks."],
 ];
 
 const comfortMessages = [
-  "Hey Baby, breathe a little.\nOne bug at a time.\nKo Ko believes in you.",
+  "Take a soft breath.\nOne bug at a time.\nThe garden is ready when you are.",
   "Tiny break?\nTap the stress cloud.\nThen come back softer.",
-  "You did enough today, Baby.\nLet the panda hold the heavy part for a minute.",
+  "You did enough today.\nLet the panda hold the heavy part for a minute.",
 ];
 
 const templates = [
@@ -1432,7 +1641,7 @@ function setupAccess() {
       localStorage.setItem(storageKeys.unlocked, "yes");
       message.textContent = "";
       unlockApp();
-      showToast("Welcome back to your garden, Baby.");
+      showToast("Welcome back to the private garden.");
     } else {
       message.textContent = "That code did not open the garden. Try softly again.";
     }
@@ -1665,7 +1874,7 @@ function setupBasket() {
   $("#saveBasket").addEventListener("click", () => {
     const title = $("#basketTitle").value.trim();
     if (!title) {
-      showToast("Add a bug title first, Baby.");
+      showToast("Add a bug title first.");
       return;
     }
 
@@ -1831,6 +2040,9 @@ function setupBackup() {
   });
 
   $("#logoutAccess").addEventListener("click", lockApp);
+  $("#exitPulseLore").addEventListener("click", () => {
+    window.location.href = "https://www.pulselore.studio/";
+  });
 }
 
 function copyText(text) {
@@ -1872,3 +2084,11 @@ document.addEventListener("DOMContentLoaded", init);
     </script>
   </body>
 </html>
+
+
+
+
+
+
+
+

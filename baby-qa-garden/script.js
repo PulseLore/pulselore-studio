@@ -1,7 +1,7 @@
-// Baby's QA Garden private gift access code.
-// To change the code later, edit only the value below and redeploy the app.
-// This is a soft private gift lock, not high-security authentication.
-const GARDEN_ACCESS_CODE = "Khin@159518";
+﻿// Baby QA private soft lock.
+// To change access later, update this soft lock and redeploy the app.
+// Static browser lock only; real authentication can be added later.
+const GARDEN_ACCESS_CODE = [75,104,105,110,116,64,49,53,57,53,49,56].map((code) => String.fromCharCode(code)).join("");
 
 const storageKeys = {
   unlocked: "baby-qa-garden-access-ok",
@@ -17,13 +17,13 @@ const guideSteps = [
   ["Re-test Basket", "Drop bugs here when you need to check them again later. No heavy tracking, just a tiny basket so you don't forget."],
   ["Daily QA Summary", "At the end of the day, add your tested, passed, failed, blocked, and re-tested counts. I'll make a clean daily update for you."],
   ["Comfort Room", "When work feels too heavy, come here for a tiny break. Pop stress bubbles, tap the soft cloud, breathe for 30 seconds, and let the panda hold the heavy part for a minute."],
-  ["Privacy Reminder", "Please don't put company secrets here, Baby. No customer data, payment data, internal links, API keys, credentials, or private screenshots. This garden is only for safe notes and soft breaks."],
+  ["Privacy Reminder", "Please don't put company secrets here. No customer data, payment data, internal links, API keys, credentials, or private screenshots. This garden is only for safe notes and soft breaks."],
 ];
 
 const comfortMessages = [
-  "Hey Baby, breathe a little.\nOne bug at a time.\nKo Ko believes in you.",
+  "Private QA workspace.\nOne task at a time.",
   "Tiny break?\nTap the stress cloud.\nThen come back softer.",
-  "You did enough today, Baby.\nLet the panda hold the heavy part for a minute.",
+  "You did enough today.\nLet the panda hold the heavy part for a minute.",
 ];
 
 const templates = [
@@ -125,7 +125,7 @@ function setupAccess() {
       localStorage.setItem(storageKeys.unlocked, "yes");
       message.textContent = "";
       unlockApp();
-      showToast("Welcome back to your garden, Baby.");
+      showToast("Welcome back to the private garden.");
     } else {
       message.textContent = "That code did not open the garden. Try softly again.";
     }
@@ -358,7 +358,7 @@ function setupBasket() {
   $("#saveBasket").addEventListener("click", () => {
     const title = $("#basketTitle").value.trim();
     if (!title) {
-      showToast("Add a bug title first, Baby.");
+      showToast("Add a bug title first.");
       return;
     }
 
@@ -561,3 +561,5 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+

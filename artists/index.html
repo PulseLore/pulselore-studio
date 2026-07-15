@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="PulseLore Portfolio Station — curated artist discovery, portfolio templates, and managed portfolio production." />
+<meta name="description" content="PulseLore Portfolio Station - curated artist discovery, portfolio templates, and managed portfolio production." />
 <title>PulseLore Portfolio Station</title>
 <style>
   :root{
@@ -164,14 +164,14 @@
     border:1px solid var(--line);border-radius:24px;background:rgba(11,16,32,.80);overflow:hidden;
     box-shadow:0 18px 52px rgba(0,0,0,.18)
   }
-  .artist-card{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(0,1.1fr);min-height:360px}
-  .artist-media{position:relative;overflow:hidden;min-height:360px;background:#0B0F1B}
-  .artist-media::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 58% 36%,#8B7CFF 0 10%,#493B8C 11% 23%,#1D173B 24% 48%,#070914 49%)}
-  .artist-media::after{content:"PORTFOLIO";white-space:pre;position:absolute;left:22px;bottom:24px;font-size:48px;line-height:.78;letter-spacing:-.07em;font-weight:950;color:white}
+  .artist-card{display:block;min-height:0;overflow:hidden;text-decoration:none;color:inherit;cursor:pointer}
+  .artist-media{position:relative;overflow:hidden;min-height:360px;aspect-ratio:4/3;background:#0B0F1B;border-radius:inherit;background-size:cover;background-position:center}
+  .artist-media::before{content:none;display:none}
+  .artist-media::after{content:none;display:none}
   .tag{position:absolute;z-index:2;top:15px;left:15px;padding:7px 9px;border:1px solid rgba(115,223,255,.22);border-radius:999px;background:rgba(5,7,17,.74);font-size:9px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#CFF7FF}
-  .artist-body{padding:28px;display:flex;flex-direction:column;justify-content:center}
-  .artist-body h3{margin:0;font-size:38px;letter-spacing:-.055em}
-  .artist-body p{margin:10px 0 0;color:var(--muted);line-height:1.7}
+    .artist-body{display:none}
+  .artist-card:hover{transform:translateY(-4px);border-color:rgba(48,207,255,.55);box-shadow:0 24px 80px rgba(3,12,22,.38)}
+  .artist-card:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
   .artist-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
   .empty-card{padding:28px;display:flex;flex-direction:column;justify-content:space-between;min-height:360px;background:linear-gradient(145deg,rgba(139,124,255,.07),rgba(11,16,32,.84))}
   .empty-card .orb{width:86px;height:86px;border-radius:28px;background:radial-gradient(circle at 35% 30%,#A89FFF,#6653F3 44%,#151B31 70%);box-shadow:0 20px 70px rgba(119,92,255,.25)}
@@ -219,8 +219,8 @@
   .plan p{color:var(--muted);line-height:1.58;min-height:58px}
   .plan ul{padding:0;list-style:none;margin:24px 0;display:grid;gap:11px}
   .plan li{font-size:13px;display:flex;gap:9px;color:var(--soft)}
-  .plan li::before{content:"✓";color:var(--cyan);font-weight:900}
-  .plan .not::before{content:"—";color:#5D667A}
+  .plan li::before{content:"OK";color:var(--cyan);font-weight:900;font-size:10px;letter-spacing:.08em}
+  .plan .not::before{content:"-";color:#5D667A}
   .plan .not{color:#727C94}
   .price{font-size:12px;color:var(--muted);margin-bottom:16px}
 
@@ -255,7 +255,7 @@
   .demo-link{display:inline-flex;margin-top:18px;padding-bottom:5px;border-bottom:1px solid currentColor;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
   .demo-visual{min-height:610px;border:1px solid rgba(255,255,255,.16);position:relative;overflow:hidden;background:radial-gradient(circle at 65% 34%,var(--theme) 0 9%,color-mix(in srgb,var(--theme) 45%,#111 55%) 10% 23%,#090A11 24% 54%,#03040A 55%)}
   .theme-minimal .demo-visual{border-color:rgba(16,24,43,.16);background:radial-gradient(circle at 65% 34%,#9AA7BC 0 9%,#D9DEE8 10% 23%,#B9C2D1 24% 54%,#E9EDF3 55%)}
-  .demo-visual::before{content:"01";position:absolute;left:28px;top:18px;font-size:62px;font-weight:800;opacity:.35}
+  .demo-visual::before{content:none;display:none}
   .demo-visual::after{content:"HERO PORTRAIT / CAMPAIGN IMAGE";position:absolute;right:22px;bottom:18px;font-size:9px;font-weight:900;letter-spacing:.08em}
   .demo-section{padding:100px 0;border-top:1px solid color-mix(in srgb,currentColor 14%,transparent)}
   .demo-grid{display:grid;grid-template-columns:.72fr 1.28fr;gap:48px;align-items:start}
@@ -289,6 +289,25 @@
     .preview-bar{gap:10px;padding:9px 10px}.preview-name{min-width:0}.preview-name strong{font-size:12px}.preview-bar .btn{padding:10px 12px;font-size:11px}
     .demo-hero{padding:56px 0}.demo-visual{min-height:380px}.demo-section{padding:72px 0}.demo-contact{padding:72px 0}.demo-footer{flex-direction:column}
   }
+  @media(max-width:640px){
+    html,body{width:100%;max-width:100%;overflow-x:hidden}
+    .wrap,.demo-wrap{width:calc(100vw - 28px) !important;max-width:calc(100vw - 28px) !important;padding-inline:0 !important;margin:0 auto;box-sizing:border-box}
+    .topbar{overflow-x:hidden}
+    .nav{gap:10px;min-height:68px}
+    .brand{min-width:0;max-width:190px;gap:10px}
+    .brand span:last-child{min-width:0;white-space:normal;line-height:1.08}
+    .brand small{display:block;font-size:8px;letter-spacing:.11em}
+    .nav-cta{display:none}
+    main,.hero,.hero-grid,section,.search,.hero-panel,.portfolio-preview{width:100%;max-width:100%;overflow:hidden;box-sizing:border-box}
+    h1{font-size:clamp(44px,12vw,54px);max-width:100%}
+    .hero p,.section-copy,.browse-note{max-width:100%;overflow-wrap:break-word}
+    .search{display:grid;grid-template-columns:1fr;gap:10px;padding:14px}
+    .search *{min-width:0;box-sizing:border-box}
+    .search .icon{font-size:13px;margin:0}
+    .search input{width:100%;min-width:0;padding:10px 0}
+    .search .btn{width:100%;max-width:100%;margin-top:0}
+    .hero-actions .btn,.artist-links .btn{width:100%;justify-content:center}
+  }
 </style>
 </head>
 <body>
@@ -305,7 +324,7 @@
       <a href="#plans">Plans</a>
       <a href="#artist-program">Artist Program</a>
     </nav>
-    <a class="nav-cta" href="./request/index.html">Request Portfolio ↗</a>
+    <a class="nav-cta" href="./request/index.html">Request Portfolio </a>
   </div>
 </header>
 
@@ -317,7 +336,7 @@
         <h1>Find the work.<br><span class="accent">Meet the artist.</span></h1>
         <p>PulseLore creates and publishes distinctive portfolio pages for artists, musicians, bands, producers, designers, and visual creators.</p>
         <div class="search">
-          <span class="icon">⌕</span>
+          <span class="icon">Search</span>
           <input id="artistSearch" type="search" placeholder="Search artists, bands, producers..." aria-label="Search artists" />
           <button class="btn btn-primary" type="button" onclick="runSearch()">Search</button>
         </div>
@@ -351,7 +370,7 @@
           <span class="eyebrow">Featured client space</span>
           <h3>Reserved for approved portfolio work.</h3>
           <p>The first featured client portfolio will appear here after the page is completed, reviewed, approved, and published. Paid portfolio clients are not automatically presented as PulseLore Artists.</p>
-          <a class="btn btn-soft" style="margin-top:12px" href="./request/index.html">Request a Portfolio ↗</a>
+          <a class="btn btn-soft" style="margin-top:12px" href="./request/index.html">Request a Portfolio </a>
         </div>
         <div class="mini-pages" aria-hidden="true">
           <div class="mini-page"><div class="bar"></div><div class="large"></div><div class="bar"></div></div>
@@ -406,27 +425,27 @@
       <div class="template-grid" id="templateGrid">
         <article class="template-card" data-theme="band" data-category="music motion" data-name="Band Story" onclick="openPreview(this)">
           <div class="template-thumb"><div class="thumb-title">BAND<br>STORY</div><div class="thumb-blocks"><i></i><i></i><i></i></div></div>
-          <div class="template-meta"><div><strong>Band Story</strong><span>Music · Cinematic · Dynamic</span></div><span class="template-arrow">↗</span></div>
+          <div class="template-meta"><div><strong>Band Story</strong><span>Music - Cinematic - Dynamic</span></div><span class="template-arrow"></span></div>
         </article>
         <article class="template-card" data-theme="minimal" data-category="minimal editorial" data-name="Minimal Professional" onclick="openPreview(this)">
           <div class="template-thumb"><div class="thumb-title">MINIMAL<br>PROFILE</div><div class="thumb-blocks"><i></i><i></i><i></i></div></div>
-          <div class="template-meta"><div><strong>Minimal Professional</strong><span>Clean · Light · Structured</span></div><span class="template-arrow">↗</span></div>
+          <div class="template-meta"><div><strong>Minimal Professional</strong><span>Clean - Light - Structured</span></div><span class="template-arrow"></span></div>
         </article>
         <article class="template-card" data-theme="editorial" data-category="editorial" data-name="Editorial Portrait" onclick="openPreview(this)">
           <div class="template-thumb"><div class="thumb-title">EDITORIAL<br>PORTRAIT</div><div class="thumb-blocks"><i></i><i></i><i></i></div></div>
-          <div class="template-meta"><div><strong>Editorial Portrait</strong><span>Magazine · Bold · Portrait</span></div><span class="template-arrow">↗</span></div>
+          <div class="template-meta"><div><strong>Editorial Portrait</strong><span>Magazine - Bold - Portrait</span></div><span class="template-arrow"></span></div>
         </article>
         <article class="template-card" data-theme="portal" data-category="motion music" data-name="Interactive Portal" onclick="openPreview(this)">
           <div class="template-thumb"><div class="thumb-title">DIGITAL<br>PORTAL</div><div class="thumb-blocks"><i></i><i></i><i></i></div></div>
-          <div class="template-meta"><div><strong>Interactive Portal</strong><span>Digital · Immersive · Motion</span></div><span class="template-arrow">↗</span></div>
+          <div class="template-meta"><div><strong>Interactive Portal</strong><span>Digital - Immersive - Motion</span></div><span class="template-arrow"></span></div>
         </article>
         <article class="template-card" data-theme="emerald" data-category="luxury editorial" data-name="Emerald Luxe" onclick="openPreview(this)">
           <div class="template-thumb"><div class="thumb-title">EMERALD<br>LUXE</div><div class="thumb-blocks"><i></i><i></i><i></i></div></div>
-          <div class="template-meta"><div><strong>Emerald Luxe</strong><span>Luxury · Direction · Identity</span></div><span class="template-arrow">↗</span></div>
+          <div class="template-meta"><div><strong>Emerald Luxe</strong><span>Luxury - Direction - Identity</span></div><span class="template-arrow"></span></div>
         </article>
         <article class="template-card" data-theme="cinematic" data-category="music motion" data-name="Cinematic Artist" onclick="openPreview(this)">
           <div class="template-thumb"><div class="thumb-title">CINEMATIC<br>ARTIST</div><div class="thumb-blocks"><i></i><i></i><i></i></div></div>
-          <div class="template-meta"><div><strong>Cinematic Artist</strong><span>Music · Releases · Showreel</span></div><span class="template-arrow">↗</span></div>
+          <div class="template-meta"><div><strong>Cinematic Artist</strong><span>Music - Releases - Showreel</span></div><span class="template-arrow"></span></div>
         </article>
       </div>
     </div>
@@ -481,7 +500,7 @@
 
 <footer>
   <div class="wrap footer-row">
-    <div><strong style="color:var(--soft)">PulseLore Portfolio Station</strong><br>Public discovery · Managed portfolio production · Artist services · Release preparation</div>
+    <div><strong style="color:var(--soft)">PulseLore Portfolio Station</strong><br>Public discovery - Managed portfolio production - Artist services - Release preparation</div>
     <div>contact@pulselore.studio</div>
   </div>
 </footer>
@@ -496,16 +515,16 @@
     </div>
     <div id="previewContent" class="preview-content">
       <div class="demo-wrap demo-hero">
-        <div><div class="demo-kicker">Artist / Creator Portfolio</div><h2 id="demoTitle">YOUR<br>NAME</h2><p id="demoIntro">A distinctive long-scroll portfolio direction for story, work, releases, and selected projects.</p><span class="demo-link">Explore selected work ↘</span></div>
+        <div><div class="demo-kicker">Artist / Creator Portfolio</div><h2 id="demoTitle">YOUR<br>NAME</h2><p id="demoIntro">A distinctive long-scroll portfolio direction for story, work, releases, and selected projects.</p><span class="demo-link">Explore selected work</span></div>
         <div class="demo-visual"></div>
       </div>
       <section class="demo-section"><div class="demo-wrap demo-grid"><div><div class="demo-kicker">About / Story</div><h3>Built from identity, not filler.</h3></div><p class="demo-copy">The real portfolio replaces every placeholder with the artist's approved story, images, credits, links, releases, and project context. PulseLore shapes the visual system around the creator instead of forcing every artist into one generic page.</p></div></section>
       <section class="demo-section"><div class="demo-wrap"><div class="demo-kicker">Selected Work</div><h3>Projects with room to breathe.</h3><div class="work-grid"><article class="work-card"><span>Project 01</span><strong>Identity / Release</strong></article><article class="work-card"><span>Project 02</span><strong>Campaign / Story</strong></article><article class="work-card"><span>Project 03</span><strong>Archive / Process</strong></article></div></div></section>
-      <section class="demo-section"><div class="demo-wrap demo-grid"><div><div class="demo-kicker">Project 01</div><h3>One project. Full context.</h3></div><p class="demo-copy">A long-scroll project section can hold the work itself, the reason it exists, production notes, credits, music links, video, gallery material, or process fragments — only where the chosen service level supports them.</p></div></section>
+      <section class="demo-section"><div class="demo-wrap demo-grid"><div><div class="demo-kicker">Project 01</div><h3>One project. Full context.</h3></div><p class="demo-copy">A long-scroll project section can hold the work itself, the reason it exists, production notes, credits, music links, video, gallery material, or process fragments - only where the chosen service level supports them.</p></div></section>
       <section class="demo-section"><div class="demo-wrap demo-grid"><div><div class="demo-kicker">Project 02</div><h3>Different rhythm. Same identity.</h3></div><p class="demo-copy">Each section can shift scale and pacing without losing the overall visual language. The finished page is reviewed privately before public release, then revised until the approved version is ready.</p></div></section>
-      <section class="statement"><blockquote>“The page should feel like the artist before it explains the artist.”</blockquote></section>
-      <section class="demo-contact"><div class="demo-wrap" style="display:contents"><div><div class="demo-kicker">Contact / Links</div><h3>LET'S<br>TALK.</h3></div><div><p>Management, collaboration, booking, social links, streaming, and selected contact routes can live here when approved.</p><a class="demo-link" href="javascript:void(0)">artist@example.com ↗</a></div></div></section>
-      <div class="demo-wrap demo-footer"><span>PulseLore Portfolio Demo</span><span>Long-scroll preview · Placeholder content only</span></div>
+      <section class="statement"><blockquote>"The page should feel like the artist before it explains the artist."</blockquote></section>
+      <section class="demo-contact"><div class="demo-wrap" style="display:contents"><div><div class="demo-kicker">Contact / Links</div><h3>LET'S<br>TALK.</h3></div><div><p>Management, collaboration, booking, social links, streaming, and selected contact routes can live here when approved.</p><a class="demo-link" href="javascript:void(0)">artist@example.com </a></div></div></section>
+      <div class="demo-wrap demo-footer"><span>PulseLore Portfolio Demo</span><span>Long-scroll preview - Placeholder content only</span></div>
     </div>
   </div>
 </div>
@@ -520,12 +539,12 @@
   const demoIntro=document.getElementById('demoIntro');
 
   const previewMap={
-    band:{className:'',type:'Music · Cinematic · Dynamic',title:'BAND\nSTORY',intro:'A long-scroll portfolio direction for bands, releases, members, eras, selected work, and the story behind the sound.'},
-    minimal:{className:'theme-minimal',type:'Clean · Light · Structured',title:'YOUR\nNAME',intro:'A restrained professional portfolio with clear information, calm spacing, and carefully structured work.'},
-    editorial:{className:'theme-editorial',type:'Magazine · Bold · Portrait',title:'YOUR\nNAME',intro:'A high-drama editorial portfolio for portraits, campaigns, projects, statements, and selected work.'},
-    portal:{className:'theme-portal',type:'Digital · Immersive · Motion',title:'DIGITAL\nPORTAL',intro:'A futuristic long-scroll direction for interactive work, audiovisual projects, motion, and digital identity.'},
-    emerald:{className:'theme-emerald',type:'Luxury · Direction · Identity',title:'EMERALD\nLUXE',intro:'A premium portfolio direction for brand identity, art direction, visual storytelling, and refined project presentation.'},
-    cinematic:{className:'theme-cinematic',type:'Music · Releases · Showreel',title:'CINEMATIC\nARTIST',intro:'A media-ready portfolio for music, releases, showreels, credits, visual eras, and performance context.'}
+    band:{className:'',type:'Music - Cinematic - Dynamic',title:'BAND\nSTORY',intro:'A long-scroll portfolio direction for bands, releases, members, eras, selected work, and the story behind the sound.'},
+    minimal:{className:'theme-minimal',type:'Clean - Light - Structured',title:'YOUR\nNAME',intro:'A restrained professional portfolio with clear information, calm spacing, and carefully structured work.'},
+    editorial:{className:'theme-editorial',type:'Magazine - Bold - Portrait',title:'YOUR\nNAME',intro:'A high-drama editorial portfolio for portraits, campaigns, projects, statements, and selected work.'},
+    portal:{className:'theme-portal',type:'Digital - Immersive - Motion',title:'DIGITAL\nPORTAL',intro:'A futuristic long-scroll direction for interactive work, audiovisual projects, motion, and digital identity.'},
+    emerald:{className:'theme-emerald',type:'Luxury - Direction - Identity',title:'EMERALD\nLUXE',intro:'A premium portfolio direction for brand identity, art direction, visual storytelling, and refined project presentation.'},
+    cinematic:{className:'theme-cinematic',type:'Music - Releases - Showreel',title:'CINEMATIC\nARTIST',intro:'A media-ready portfolio for music, releases, showreels, credits, visual eras, and performance context.'}
   };
 
   function runSearch(){
@@ -562,7 +581,7 @@
     const data=previewMap[theme]||previewMap.band;
     previewContent.className='preview-content '+data.className;
     previewTitle.textContent=name;
-    previewType.textContent=data.type+' · Demo Preview';
+    previewType.textContent=data.type+' - Demo Preview';
     demoTitle.innerHTML=data.title.replace('\n','<br>');
     demoIntro.textContent=data.intro;
     previewRequest.href='./request/index.html?plan=pro&template='+encodeURIComponent(name.toLowerCase().replace(/\s+/g,'-'));
@@ -574,7 +593,7 @@
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&previewModal.classList.contains('open'))closePreview()});
 
 
-  /* PulseLore published portfolio directory — reads only safe public data. */
+  /* PulseLore published portfolio directory - reads only safe public data. */
   let publicPortfolios=[];
   let directoryCategory='all';
 
@@ -625,10 +644,9 @@
     grid.innerHTML=filtered.map((item,index)=>{
       const url=publicPortfolioUrl(item);
       const target=/^https?:/i.test(url)?' target="_blank" rel="noopener"':'';
-      return `<article class="artist-card" data-name="${escapePublic([item.name,item.category,item.role].join(' ').toLowerCase())}" data-category="${escapePublic(normalizePublicCategory(item.category))}">
-        <div class="artist-media" ${publicMediaStyle(item,index)}><span class="tag">${escapePublic(item.category || 'Portfolio')}</span></div>
-        <div class="artist-body"><h3>${escapePublic(item.name || 'Untitled Portfolio')}</h3><p>${escapePublic(item.summary || item.role || 'Published client portfolio.')}</p><div class="artist-links"><a class="btn btn-primary" href="${escapePublic(url)}"${target}>View Portfolio ↗</a>${item.website?`<a class="btn btn-ghost" href="${escapePublic(item.website)}" target="_blank" rel="noopener">Artist Link ↗</a>`:''}</div></div>
-      </article>`;
+            return `<a class="artist-card" href="${escapePublic(url)}"${target} data-name="${escapePublic([item.name,item.category,item.role].join(' ').toLowerCase())}" data-category="${escapePublic(normalizePublicCategory(item.category))}" aria-label="Open ${escapePublic(item.name || 'portfolio')} portfolio">
+        <div class="artist-media" ${publicMediaStyle(item,index)}></div>
+      </a>`;
     }).join('');
 
     const noResults=document.getElementById('noResults');
@@ -642,7 +660,7 @@
     if(!item) return;
     const url=publicPortfolioUrl(item);
     const target=/^https?:/i.test(url)?' target="_blank" rel="noopener"':'';
-    strip.innerHTML=`<div><span class="eyebrow">Featured Portfolio</span><h3>${escapePublic(item.name)}</h3><p>${escapePublic(item.summary || item.role || 'A selected client portfolio built and published by PulseLore.')}</p><a class="btn btn-soft" style="margin-top:12px" href="${escapePublic(url)}"${target}>Open Portfolio ↗</a></div><div class="mini-pages" aria-hidden="true"><div class="mini-page"><div class="bar"></div><div class="large"></div><div class="bar"></div></div><div class="mini-page"><div class="bar"></div><div class="large"></div><div class="bar"></div></div></div>`;
+    strip.innerHTML=`<div><span class="eyebrow">Featured Portfolio</span><h3>${escapePublic(item.name)}</h3><p>${escapePublic(item.summary || item.role || 'A selected client portfolio built and published by PulseLore.')}</p><a class="btn btn-soft" style="margin-top:12px" href="${escapePublic(url)}"${target}>Open Portfolio</a></div><div class="mini-pages" aria-hidden="true"><div class="mini-page"><div class="bar"></div><div class="large"></div><div class="bar"></div></div><div class="mini-page"><div class="bar"></div><div class="large"></div><div class="bar"></div></div></div>`;
   }
 
   async function loadPublicPortfolios(){
@@ -683,3 +701,4 @@
 </script>
 </body>
 </html>
+

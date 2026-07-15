@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Artist Portfolio Preview | PulseLore Studio</title>
+    <meta name="description" content="PulseLore Studio artist portfolio preview.">
+    <style>
+      :root{color-scheme:dark;--bg:#03070d;--text:#f4f8ff;--muted:#9fb2c8;--line:rgba(125,203,255,.22);--cyan:#30cfff;--gold:#e3b957}
+      *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 70% 0,rgba(48,207,255,.12),transparent 30rem),var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}a{color:inherit}.top{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px clamp(18px,4vw,56px);background:rgba(3,7,13,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.brand{font-weight:900;letter-spacing:.08em;text-transform:uppercase}.back{border:1px solid var(--line);border-radius:999px;padding:10px 16px;text-decoration:none;color:var(--muted)}main{width:min(1120px,94vw);margin:32px auto 70px}.intro{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:20px}.intro h1{margin:0;font-size:clamp(34px,7vw,82px);letter-spacing:-.06em;line-height:.9}.intro p{margin:0;color:var(--muted);max-width:420px;line-height:1.6}.frame{border:1px solid var(--line);border-radius:28px;overflow:hidden;background:#05080f;box-shadow:0 30px 100px rgba(0,0,0,.42)}.frame img{display:block;width:100%;height:auto}.missing{padding:80px 24px;text-align:center;color:var(--muted)}.cta{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;background:linear-gradient(135deg,var(--cyan),var(--gold));color:#06101a;text-decoration:none;font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:12px}.btn.secondary{background:transparent;color:var(--text);border:1px solid var(--line)}@media(max-width:720px){.intro{display:block}.intro p{margin-top:12px}.top{align-items:flex-start;flex-direction:column}.frame{border-radius:18px}}
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="brand">PulseLore Artist Station</div>
+      <a class="back" href="../">Back to Artist Station</a>
+    </header>
+    <main>
+      <section class="intro">
+        <div>
+          <h1 id="title">Portfolio Preview</h1>
+        </div>
+        <p>Long-scroll image preview for artist portfolio direction. Real client details are replaced before publishing.</p>
+      </section>
+      <section class="frame" id="frame" aria-live="polite"></section>
+      <div class="cta">
+        <a class="btn" href="../request/index.html">Request Portfolio</a>
+        <a class="btn secondary" href="../">Browse Artists</a>
+      </div>
+    </main>
+    <script>
+      const data={
+        lina:{title:'Lina / Vocalist',src:'../../assets/artists/artist-lina-portfolio.png'},
+        vocalist:{title:'Aryan / Vocalist',src:'../../assets/artists/vocalist-portfolio.png'},
+        guitarist:{title:'Guitarist / Melody Sculptor',src:'../../assets/artists/guitarist-portfolio.png'},
+        beatmaker:{title:'Beatmaker / Rhythm Engineer',src:'../../assets/artists/beatmaker-portfolio.png'},
+        band:{title:'Band / Collective Force',src:'../../assets/artists/band-portfolio.png'},
+        songwriter:{title:'Songwriter / Story Weaver',src:'../../assets/artists/songwriter-portfolio.png'}
+      };
+      const key=new URLSearchParams(location.search).get('artist')||'lina';
+      const item=data[key]||data.lina;
+      document.title=item.title+' | PulseLore Studio';
+      document.getElementById('title').textContent=item.title;
+      document.getElementById('frame').innerHTML='<img src="'+item.src+'" alt="'+item.title+' long portfolio preview" loading="eager">';
+    </script>
+  </body>
+</html>

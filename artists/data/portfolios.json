@@ -1,4 +1,60 @@
-{
-  "updatedAt": null,
-  "portfolios": []
+﻿{
+  "updatedAt": "2026-07-15",
+  "portfolios": [
+    {
+      "slug": "lina",
+      "name": "Lina / Vocalist",
+      "category": "Vocalist",
+      "role": "Artist",
+      "summary": "Blue-stage vocalist portfolio direction with long-scroll visual preview.",
+      "coverImage": "/assets/artists/artist-lina-card.png",
+      "url": "./portfolio/?artist=lina",
+      "featured": true
+    },
+    {
+      "slug": "vocalist",
+      "name": "Aryan / Vocalist",
+      "category": "Vocalist",
+      "role": "Melody Crafter",
+      "summary": "Red-stage vocalist portfolio direction for singer profile pages.",
+      "coverImage": "/assets/artists/vocalist-card.png",
+      "url": "./portfolio/?artist=vocalist"
+    },
+    {
+      "slug": "guitarist",
+      "name": "Guitarist / Melody Sculptor",
+      "category": "Guitarist",
+      "role": "Performer",
+      "summary": "Purple live-performance portfolio direction for instrumental artists.",
+      "coverImage": "/assets/artists/guitarist-card.png",
+      "url": "./portfolio/?artist=guitarist"
+    },
+    {
+      "slug": "beatmaker",
+      "name": "Beatmaker / Rhythm Engineer",
+      "category": "Producer",
+      "role": "Beatmaker",
+      "summary": "Dark studio beatmaker portfolio direction for producers and rhythm engineers.",
+      "coverImage": "/assets/artists/beatmaker-card.png",
+      "url": "./portfolio/?artist=beatmaker"
+    },
+    {
+      "slug": "band",
+      "name": "Band / Collective Force",
+      "category": "Band",
+      "role": "Group",
+      "summary": "Band portfolio direction for collectives, live shows, and releases.",
+      "coverImage": "/assets/artists/band-card.png",
+      "url": "./portfolio/?artist=band"
+    },
+    {
+      "slug": "songwriter",
+      "name": "Songwriter / Story Weaver",
+      "category": "Songwriter",
+      "role": "Writer",
+      "summary": "Songwriter portfolio direction for lyrics, composition, and collaboration.",
+      "coverImage": "/assets/artists/songwriter-card.png",
+      "url": "./portfolio/?artist=songwriter"
+    }
+  ]
 }
