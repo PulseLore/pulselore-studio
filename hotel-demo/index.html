@@ -1,100 +1,103 @@
-﻿<!doctype html>
-<html lang="en">
+<!doctype html>
+<html lang="my">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="theme-color" content="#07111d">
-  <title>PulseLore Hotel Booking Proposal</title>
-  <style>
-    :root{--bg:#02070d;--panel:#08131f;--ink:#f4f7fb;--muted:#9fb2c6;--line:rgba(155,206,255,.18);--cyan:#38c8ec;--gold:#d6a94c;--radius:28px;color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;min-height:100vh;color:var(--ink);background:radial-gradient(circle at 20% 5%,rgba(56,200,236,.12),transparent 28rem),linear-gradient(180deg,#02070d,#06111d 58%,#02070d);overflow-x:hidden} a{color:inherit;text-decoration:none}
-    .wrap{width:min(1180px,calc(100% - 28px));margin:0 auto}.topbar{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:rgba(2,7,13,.76);backdrop-filter:blur(18px)}.topbar-inner{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.04em}.brand-mark{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(56,200,236,.45);color:var(--cyan);background:#040b13;box-shadow:0 0 24px rgba(56,200,236,.18)}.actions{display:flex;gap:10px;align-items:center}.button{border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:12px 18px;background:rgba(255,255,255,.06);font-weight:900;font-size:12px;letter-spacing:.08em;text-transform:uppercase}.button.primary{border-color:transparent;background:linear-gradient(135deg,var(--cyan),var(--gold));color:#05101a}.button:hover{transform:translateY(-1px)}
-    .hero{padding:72px 0 28px;display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:end}.eyebrow{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.36em;text-transform:uppercase}.hero h1{margin:18px 0 18px;font-size:clamp(42px,7vw,104px);line-height:.88;letter-spacing:-.06em;text-transform:uppercase}.hero p{max-width:680px;color:#c8d6e4;font-size:clamp(16px,2vw,22px);line-height:1.65}.notice{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:linear-gradient(145deg,rgba(8,19,31,.88),rgba(8,19,31,.42));box-shadow:0 30px 90px rgba(0,0,0,.28)}.notice strong{display:block;margin-bottom:8px}.notice span{color:var(--muted);line-height:1.7}
-    .viewer-shell{margin:34px auto 70px;border:1px solid var(--line);border-radius:32px;padding:18px;background:rgba(8,19,31,.64);box-shadow:0 34px 110px rgba(0,0,0,.42)}.viewer-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 10px 18px}.viewer-title{font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:900;color:#dbe8f5}.controls{display:flex;align-items:center;gap:10px}.count{color:#c5d4e3;font-weight:900}.slide-stage{position:relative;overflow:hidden;border-radius:24px;background:#000;min-height:420px;display:grid;place-items:center}.slide-stage img{width:100%;height:auto;display:block}.slide{display:none;width:100%}.slide.active{display:block}.dots{display:flex;justify-content:center;gap:9px;padding:18px 0 4px}.dot{width:9px;height:9px;border-radius:50%;border:0;background:rgba(255,255,255,.28);cursor:pointer}.dot.active{background:linear-gradient(135deg,var(--cyan),var(--gold));width:28px;border-radius:99px}.footer{padding:28px 0 42px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line)}
-    @media(max-width:760px){.topbar-inner{align-items:flex-start;flex-direction:column;padding:14px 0}.actions{width:100%;overflow-x:auto;padding-bottom:4px}.hero{grid-template-columns:1fr;padding-top:42px}.hero h1{font-size:clamp(42px,14vw,72px)}.viewer-shell{width:calc(100% - 18px);padding:10px;border-radius:22px}.viewer-head{align-items:flex-start;flex-direction:column}.slide-stage{min-height:260px;border-radius:18px}.button{padding:11px 14px;font-size:11px}}
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="theme-color" content="#071b35" />
+  <title>Hotel Direct Booking Proposal | PulseLore Studio</title>
+  <link rel="icon" href="../assets/favicon-48.png" sizes="48x48" />
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="https://www.pulselore.studio/" aria-label="Back to PulseLore Studio">
-        <span class="brand-mark">PL</span><span>PulseLore Studio</span>
-      </a>
-      <nav class="actions" aria-label="Proposal actions">
-        <a class="button" href="https://www.pulselore.studio/">Back</a>
-        <a class="button primary" href="mailto:contact@pulselore.studio?subject=Hotel%20Booking%20Demo%20Request&body=Hotel%20Name%3A%0AContact%20Name%3A%0APhone%3A%0AEmail%3A%0A%0AI%20would%20like%20to%20request%20a%20guided%20demo%20for%20the%20PulseLore%20Hotel%20Booking%20system.">Request Demo</a>
-      </nav>
-    </div>
+  <header class="site-header">
+    <a class="brand" href="https://www.pulselore.studio" aria-label="PulseLore Studio home">
+      <img class="brand-logo" src="../assets/pulselore-logo.png" alt="" width="44" height="44" aria-hidden="true" />
+      <span>
+        <strong>PulseLore Studio</strong>
+        <small>Hotel Direct Booking</small>
+      </span>
+    </a>
+    <a class="contact-link" href="mailto:contact@pulselore.studio">Contact</a>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div>
-        <div class="eyebrow">Hotel Booking Proposal</div>
-        <h1>Direct Booking Channel</h1>
-        <p>PulseLore Studio hotel proposal preview. Use the slide controls below to review the owner-facing summary, pricing, payment scope, notes, and next steps.</p>
+  <main>
+    <section class="hero" aria-labelledby="proposal-title">
+      <div class="hero-copy">
+        <p class="private-note">PRIVATE BUSINESS PROPOSAL</p>
+        <h1 id="proposal-title">ဟိုတယ်လုပ်ငန်းအတွက်<br />တိုက်ရိုက်ဘွတ်ကင်စနစ်</h1>
+        <p class="hero-description">
+          ဧည့်သည်များက အခန်းပုံ၊ စျေးနှုန်းနှင့် ရရှိနိုင်မှုကို ဖုန်းမှကြည့်ရှု၍
+          ဘွတ်ကင်တောင်းဆိုမှုနှင့် ငွေပေးချေမှုအထောက်အထားကို ပေးပို့နိုင်ပါသည်။
+          ဟိုတယ်ဝန်ထမ်းများကလည်း ဘွတ်ကင်များကို စနစ်တကျ စစ်ဆေးအတည်ပြုနိုင်ပါသည်။
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#proposal-viewer">Proposal အပြည့်အစုံကြည့်ရန်</a>
+          <a
+            class="button button-secondary"
+            href="mailto:contact@pulselore.studio?subject=Request%20a%20Private%20Guided%20Demo%20-%20Hotel%20Direct%20Booking&body=Hotel%20Name%3A%0AContact%20Name%3A%0APhone%3A%0AEmail%3A%0A%0AI%20would%20like%20to%20request%20a%20private%20guided%20demo."
+          >Private Demo တောင်းရန်</a>
+        </div>
       </div>
-      <aside class="notice">
-        <strong>Guided preview recommended</strong>
-        <span>This page is a private proposal preview for discussion. Final scope, hosting, payment method, domain setup, and launch support are confirmed before work starts.</span>
+
+      <aside class="security-card" aria-label="Private guided demo">
+        <span class="lock" aria-hidden="true">●</span>
+        <h2>Private Guided Demo</h2>
+        <p>
+          ဧည့်သည်၏ အခန်းရွေးချယ်မှု၊ ဘွတ်ကင်တောင်းဆိုမှု၊ ငွေပေးချေမှုအထောက်အထားနှင့်
+          ဟိုတယ်ဝန်ထမ်း၏ စီမံခန့်ခွဲမှုလုပ်ငန်းစဉ်ကို 15-minute online walkthrough ဖြင့်
+          ကြည့်ရှုနိုင်ပါသည်။
+        </p>
+        <p class="security-footnote">ဟိုတယ်၏ လက်ရှိလုပ်ငန်းစဉ်နှင့် ကိုက်ညီမှုကိုလည်း ဆွေးနွေးနိုင်ပါသည်။</p>
       </aside>
     </section>
 
-    <section class="viewer-shell" aria-labelledby="proposalTitle">
-      <div class="viewer-head">
-        <div class="viewer-title" id="proposalTitle">PulseLore Hotel Booking Proposal</div>
-        <div class="controls">
-          <button class="button" type="button" data-prev>Prev</button>
-          <span class="count"><span data-current>1</span> / <span data-total>4</span></span>
-          <button class="button" type="button" data-next>Next</button>
+    <section class="viewer-section" id="proposal-viewer" aria-labelledby="viewer-title">
+      <div class="viewer-heading">
+        <div>
+          <h2 id="viewer-title">Hotel Direct Booking Proposal</h2>
+          <p>စာမျက်နှာ ၁၂ မျက်နှာ • ဖုန်းနှင့် ကွန်ပျူတာတွင် ကြည့်ရှုနိုင်ပါသည်</p>
         </div>
+        <a class="open-button" href="proposal.pdf" target="_blank" rel="noopener noreferrer">
+          PDF ကို Tab အသစ်ဖြင့်ဖွင့်မည်
+        </a>
       </div>
-      <div class="slide-stage">
-        <img class="slide active" src="assets/01_cover_summary.png" alt="Hotel booking proposal cover and summary">
-        <img class="slide" src="assets/02_pricing_options.png" alt="Hotel booking proposal pricing options">
-        <img class="slide" src="assets/03_payment_scope.png" alt="Hotel booking proposal payment plan and scope">
-        <img class="slide" src="assets/04_notes_next_step.png" alt="Hotel booking proposal notes and next step">
+
+      <div class="pdf-shell">
+        <div class="pdf-label">CONFIDENTIAL • PULSELORE STUDIO</div>
+        <object class="pdf-viewer" data="proposal.pdf#view=FitH&toolbar=0&navpanes=0" type="application/pdf">
+          <div class="pdf-fallback">
+            <h3>ဤ Browser တွင် PDF Preview မပေါ်နိုင်ပါ</h3>
+            <p>အောက်ပါခလုတ်ကိုနှိပ်ပြီး PDF ကို Tab အသစ်ဖြင့်ဖွင့်ကြည့်နိုင်ပါသည်။</p>
+            <a class="button button-primary" href="proposal.pdf" target="_blank" rel="noopener noreferrer">
+              Proposal PDF ဖွင့်မည်
+            </a>
+          </div>
+        </object>
       </div>
-      <div class="dots" aria-label="Slide navigation"></div>
+    </section>
+
+    <section class="next-step" aria-labelledby="next-step-title">
+      <div>
+        <h2 id="next-step-title">ဟိုတယ်၏ လက်ရှိလုပ်ငန်းစဉ်နှင့် ကိုက်ညီမှုကို ဆွေးနွေးနိုင်ပါသည်</h2>
+        <p>
+          Hotel Name၊ Contact Name၊ Phone နှင့် Email ပေးပို့ပြီး Private Guided Demo အချိန်ကို
+          PulseLore Studio နှင့် ညှိနှိုင်းနိုင်ပါသည်။
+        </p>
+      </div>
+      <a
+        class="button button-gold"
+        href="mailto:contact@pulselore.studio?subject=Request%20a%20Private%20Guided%20Demo%20-%20Hotel%20Direct%20Booking&body=Hotel%20Name%3A%0AContact%20Name%3A%0APhone%3A%0AEmail%3A%0A%0AI%20would%20like%20to%20request%20a%20private%20guided%20demo."
+      >Request a Private Guided Demo</a>
     </section>
   </main>
 
-  <footer class="wrap footer">
-    <span>PulseLore Studio</span>
+  <footer>
+    <span>© 2026 PulseLore Studio</span>
     <a href="mailto:contact@pulselore.studio">contact@pulselore.studio</a>
-    <span>Private proposal preview</span>
+    <span>Private proposal • Not for redistribution</span>
   </footer>
-
-  <script>
-    const slides = [...document.querySelectorAll('.slide')];
-    const dotsWrap = document.querySelector('.dots');
-    const current = document.querySelector('[data-current]');
-    const total = document.querySelector('[data-total]');
-    let index = 0;
-    total.textContent = slides.length;
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.type = 'button';
-      dot.setAttribute('aria-label', `Open slide ${i + 1}`);
-      dot.addEventListener('click', () => show(i));
-      dotsWrap.appendChild(dot);
-    });
-    const dots = [...document.querySelectorAll('.dot')];
-    function show(next){
-      index = (next + slides.length) % slides.length;
-      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-      current.textContent = index + 1;
-    }
-    document.querySelector('[data-prev]').addEventListener('click', () => show(index - 1));
-    document.querySelector('[data-next]').addEventListener('click', () => show(index + 1));
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowLeft') show(index - 1);
-      if (event.key === 'ArrowRight') show(index + 1);
-    });
-  </script>
 </body>
 </html>

@@ -50,6 +50,16 @@ a { color: inherit; }
   display: grid; place-items: center;
   background: var(--navy); color: var(--gold); font-weight: 800;
 }
+.brand-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 0 28px rgba(34, 192, 255, .28);
+  border: 1px solid rgba(255, 255, 255, .16);
+  background: #020811;
+  flex: 0 0 auto;
+}
 .brand strong, .brand small { display: block; }
 .brand strong { font-size: 15px; }
 .brand small { margin-top: 3px; color: var(--muted); font-size: 10px; letter-spacing: .09em; text-transform: uppercase; }
