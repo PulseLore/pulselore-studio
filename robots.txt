@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /hotel-demo/
+
+Sitemap: https://www.pulselore.studio/sitemap.xml

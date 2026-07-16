@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -488,11 +488,11 @@
       margin: -1px !important;
       overflow: hidden !important;
       clip: rect(0 0 0 0) !important;
-      clip-path: inset(50%) !important;
-      border: 0 !important;
       white-space: nowrap !important;
+      border: 0 !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
-
     .request-panel {
       margin-top: 26px;
       display: grid;
@@ -623,40 +623,6 @@
       overflow: hidden;
       border: 1px solid rgba(214,169,76,.35);
       background: #060b11;
-    }
-
-    .media-button {
-      width: 100%;
-      padding: 0;
-      color: inherit;
-      cursor: pointer;
-      text-align: inherit;
-    }
-
-    .media-button::after {
-      content: "Open preview";
-      position: absolute;
-      right: 18px;
-      bottom: 18px;
-      z-index: 2;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(3, 8, 16, .72);
-      color: white;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: .25s ease;
-    }
-
-    .media-button:hover::after,
-    .media-button:focus-visible::after {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .video-frame video {
@@ -1037,7 +1003,7 @@
                 <a class="btn primary" href="./ai-record/">Prepare Record</a>
               </div>
             </div>
-            <div class="video-frame media-button" aria-label="Release Record video preview">
+            <div class="video-frame" aria-label="Release Record video preview">
               <video src="./assets/release-record-download.mp4" autoplay muted loop playsinline></video>
             </div>
           </article>

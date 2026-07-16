@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -320,7 +320,7 @@
     <nav class="navlinks" aria-label="Primary navigation">
       <a href="#featured-portfolios">Featured</a>
       <a href="#browse">Browse</a>
-      <a href="#templates">Templates</a>
+      <a href="#portfolio-styles">Styles</a>
       <a href="#plans">Plans</a>
       <a href="#artist-program">Artist Program</a>
     </nav>
@@ -342,7 +342,7 @@
         </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="./request/index.html">Request a Portfolio</a>
-          <a class="btn btn-ghost" href="#templates">Browse Templates</a>
+          <a class="btn btn-ghost" href="#portfolio-styles">Browse Styles</a>
         </div>
       </div>
 
@@ -399,7 +399,7 @@
           <div><div class="orb" aria-hidden="true"></div><h3>Published client portfolios will appear here.</h3><p>New customer work is added only after the portfolio is finished and the client has approved public publication. Until then, private requests and work-in-progress remain off the public directory.</p></div>
           <div class="artist-links">
             <a class="btn btn-primary" href="./request/index.html">Request a Portfolio</a>
-            <a class="btn btn-ghost" href="#templates">Browse Templates</a>
+            <a class="btn btn-ghost" href="#portfolio-styles">Browse Styles</a>
           </div>
         </aside>
       </div>
@@ -408,13 +408,13 @@
     </div>
   </section>
 
-  <section id="templates">
+  <section id="portfolio-styles">
     <div class="wrap">
       <div class="section-head">
-        <div><div class="kicker">Template Library</div><h2>Look first. Choose later.</h2></div>
+        <div><div class="kicker">Portfolio Styles</div><h2>Look first. Choose later.</h2></div>
         <p class="section-copy">Preview full long-scroll portfolio directions before sharing personal details. Pro and Prime requests can select a design after browsing.</p>
       </div>
-      <div class="filters" aria-label="Template filters">
+      <div class="filters" aria-label="Portfolio style filters">
         <button class="filter active" type="button" data-filter="all">All</button>
         <button class="filter" type="button" data-filter="music">Music</button>
         <button class="filter" type="button" data-filter="editorial">Editorial</button>
@@ -509,8 +509,8 @@
   <div class="preview-shell">
     <div class="preview-bar">
       <div class="preview-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="preview-name"><small id="previewType">Demo preview</small><strong id="previewTitle">Template Preview</strong></div>
-      <a id="previewRequest" class="btn btn-primary" href="./request/index.html?plan=pro">Request this Template</a>
+      <div class="preview-name"><small id="previewType">Portfolio preview</small><strong id="previewTitle">Artist Portfolio</strong></div>
+      <a id="previewRequest" class="btn btn-primary" href="./request/index.html?plan=pro">Request Portfolio</a>
       <button class="btn btn-ghost" type="button" onclick="closePreview()">Close</button>
     </div>
     <div id="previewContent" class="preview-content">
@@ -524,7 +524,7 @@
       <section class="demo-section"><div class="demo-wrap demo-grid"><div><div class="demo-kicker">Project 02</div><h3>Different rhythm. Same identity.</h3></div><p class="demo-copy">Each section can shift scale and pacing without losing the overall visual language. The finished page is reviewed privately before public release, then revised until the approved version is ready.</p></div></section>
       <section class="statement"><blockquote>"The page should feel like the artist before it explains the artist."</blockquote></section>
       <section class="demo-contact"><div class="demo-wrap" style="display:contents"><div><div class="demo-kicker">Contact / Links</div><h3>LET'S<br>TALK.</h3></div><div><p>Management, collaboration, booking, social links, streaming, and selected contact routes can live here when approved.</p><a class="demo-link" href="javascript:void(0)">artist@example.com </a></div></div></section>
-      <div class="demo-wrap demo-footer"><span>PulseLore Portfolio Demo</span><span>Long-scroll preview - Placeholder content only</span></div>
+      <div class="demo-wrap demo-footer"><span>PulseLore Portfolio Preview</span><span>Long-scroll artist page preview</span></div>
     </div>
   </div>
 </div>
@@ -581,7 +581,7 @@
     const data=previewMap[theme]||previewMap.band;
     previewContent.className='preview-content '+data.className;
     previewTitle.textContent=name;
-    previewType.textContent=data.type+' - Demo Preview';
+    previewType.textContent=data.type+' - Portfolio Preview';
     demoTitle.innerHTML=data.title.replace('\n','<br>');
     demoIntro.textContent=data.intro;
     previewRequest.href='./request/index.html?plan=pro&template='+encodeURIComponent(name.toLowerCase().replace(/\s+/g,'-'));
@@ -636,7 +636,7 @@
     });
 
     if(!publicPortfolios.length){
-      grid.innerHTML=`<aside class="empty-card" style="grid-column:1/-1;min-height:320px"><div><div class="orb" aria-hidden="true"></div><h3>Published client portfolios will appear here.</h3><p>New customer work is added only after the portfolio is finished and the client has approved public publication. Until then, private requests and work-in-progress remain off the public directory.</p></div><div class="artist-links"><a class="btn btn-primary" href="./request/index.html">Request a Portfolio</a><a class="btn btn-ghost" href="#templates">Browse Templates</a></div></aside>`;
+      grid.innerHTML=`<aside class="empty-card" style="grid-column:1/-1;min-height:320px"><div><div class="orb" aria-hidden="true"></div><h3>Published client portfolios will appear here.</h3><p>New customer work is added only after the portfolio is finished and the client has approved public publication. Until then, private requests and work-in-progress remain off the public directory.</p></div><div class="artist-links"><a class="btn btn-primary" href="./request/index.html">Request a Portfolio</a><a class="btn btn-ghost" href="#portfolio-styles">Browse Styles</a></div></aside>`;
       document.getElementById('noResults').style.display='none';
       return;
     }
