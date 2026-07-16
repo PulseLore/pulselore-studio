@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -697,54 +697,6 @@
 
     .baby-card b { display: block; margin-bottom: 10px; }
     .baby-card p { color: #a9bfd5; font-size: 14px; line-height: 1.55; }
-
-    .hotel-slide-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 22;
-      display: none;
-      background: rgba(2,6,13,.94);
-      backdrop-filter: blur(18px);
-      overflow: auto;
-      padding: 24px;
-    }
-
-    .hotel-slide-modal.open {
-      display: block;
-    }
-
-    .slide-controls {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-
-    .slide-count {
-      color: #a9bfd5;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .hotel-slide-frame {
-      max-width: 1180px;
-      margin: 0 auto;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 28px;
-      overflow: hidden;
-      background: #02060d;
-      box-shadow: 0 34px 130px rgba(0,0,0,.58);
-    }
-
-    .hotel-slide-frame img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
     .record-modal {
       position: fixed;
       inset: 0;
@@ -1032,14 +984,14 @@
             <div class="station-copy">
               <div class="label" style="color: var(--gold);">Web Apps</div>
               <h2>Working Systems.</h2>
-              <p>Clean web app proposals and practical client-ready system previews. Hotel app stays separate; the proposal opens here as guided slides.</p>
+              <p>Clean web app proposals and practical client-ready system previews. The hotel proposal opens as the latest guided landing page.</p>
               <div class="actions">
-                <button class="btn primary" type="button" data-open-hotel-slides>View Hotel Slides</button>
+                <a class="btn primary" href="/hotel-demo/?v=a53e0bd">View Hotel Proposal</a>
                 <a class="btn" href="#contact" data-request-demo="Hotel Booking Demo">Request Demo</a>
               </div>
             </div>
             <div class="list-panel">
-              <button class="row row-button" type="button" data-open-hotel-slides><div><b>Hotel Booking Proposal</b><span>Direct booking system proposal, pricing, scope, and next-step overview.</span></div><em>Slides</em></button>
+              <a class="row" href="/hotel-demo/?v=a53e0bd"><div><b>Hotel Booking Proposal</b><span>Direct booking system proposal, pricing, scope, and next-step overview.</span></div><em>Open</em></a>
               <a class="row" href="https://www.pulselore.studio/baby-qa-garden/"><div><b>Baby QA's Panda Garden</b><span>A custom private QA workspace. Open the garden page, then enter the access password.</span></div><em>Open</em></a>
               <a class="row" href="#contact" data-request-demo="Custom Web System Demo"><div><b>Custom Web Systems</b><span>Small business tools, private previews, and polished product demos.</span></div><em>Request Demo</em></a>
             </div>
@@ -1220,20 +1172,6 @@
     </div>
   </div>
 
-  <div class="hotel-slide-modal" id="hotelSlideModal" aria-hidden="true">
-    <div class="modal-bar">
-      <strong>Hotel Booking Proposal</strong>
-      <div class="slide-controls">
-        <button class="btn" id="hotelPrev" type="button">Prev</button>
-        <span class="slide-count" id="hotelSlideCount">1 / 12</span>
-        <button class="btn" id="hotelNext" type="button">Next</button>
-        <button class="btn" id="closeHotelSlides" type="button">Back</button>
-      </div>
-    </div>
-    <div class="hotel-slide-frame">
-      <img id="hotelSlideImage" src="./assets/hotel-proposal-slide-01.png" alt="Hotel booking proposal slide 1">
-    </div>
-  </div>
 
   <script>
     const progressBar = document.getElementById("progressBar");
@@ -1246,20 +1184,12 @@
     const portfolioImage = document.getElementById("portfolioImage");
     const portfolioTitle = document.getElementById("portfolioTitle");
     const closePortfolio = document.getElementById("closePortfolio");
-    const hotelSlideModal = document.getElementById("hotelSlideModal");
-    const hotelSlideImage = document.getElementById("hotelSlideImage");
-    const hotelSlideCount = document.getElementById("hotelSlideCount");
-    const hotelPrev = document.getElementById("hotelPrev");
-    const hotelNext = document.getElementById("hotelNext");
-    const closeHotelSlides = document.getElementById("closeHotelSlides");
     const contactForm = document.getElementById("contactForm");
     const contactName = document.getElementById("contactName");
     const contactEmail = document.getElementById("contactEmail");
     const contactSelect = contactForm?.querySelector("select");
     const contactMessage = document.getElementById("contactMessage");
     const sendRequest = document.getElementById("sendRequest");
-    const hotelSlides = Array.from({ length: 12 }, (_, index) => `./assets/hotel-proposal-slide-${String(index + 1).padStart(2, "0")}.png`);
-    let hotelSlideIndex = 0;
 
     function clamp(value, min, max) {
       return Math.min(max, Math.max(min, value));
@@ -1323,33 +1253,10 @@
       portfolioImage.src = "";
     }
 
-    function renderHotelSlide() {
-      hotelSlideImage.src = hotelSlides[hotelSlideIndex];
-      hotelSlideImage.alt = `Hotel booking proposal slide ${hotelSlideIndex + 1}`;
-      hotelSlideCount.textContent = `${hotelSlideIndex + 1} / ${hotelSlides.length}`;
-    }
-
-    function showHotelSlides() {
-      hotelSlideIndex = 0;
-      renderHotelSlide();
-      hotelSlideModal.classList.add("open");
-      hotelSlideModal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      closeHotelSlides.focus();
-    }
-
-    function hideHotelSlides() {
-      hotelSlideModal.classList.remove("open");
-      hotelSlideModal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    }
 
     closePortfolio.addEventListener("click", hidePortfolio);
     portfolioModal.addEventListener("click", (event) => {
       if (event.target === portfolioModal) hidePortfolio();
-    });
-    document.querySelectorAll("[data-open-hotel-slides]").forEach((button) => {
-      button.addEventListener("click", showHotelSlides);
     });
     document.querySelectorAll("[data-request-demo]").forEach((button) => {
       button.addEventListener("click", () => {
@@ -1361,23 +1268,8 @@
         window.setTimeout(() => contactName?.focus(), 500);
       });
     });
-    hotelPrev.addEventListener("click", () => {
-      hotelSlideIndex = (hotelSlideIndex - 1 + hotelSlides.length) % hotelSlides.length;
-      renderHotelSlide();
-    });
-    hotelNext.addEventListener("click", () => {
-      hotelSlideIndex = (hotelSlideIndex + 1) % hotelSlides.length;
-      renderHotelSlide();
-    });
-    closeHotelSlides.addEventListener("click", hideHotelSlides);
-    hotelSlideModal.addEventListener("click", (event) => {
-      if (event.target === hotelSlideModal) hideHotelSlides();
-    });
     window.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && portfolioModal.classList.contains("open")) hidePortfolio();
-      if (event.key === "Escape" && hotelSlideModal.classList.contains("open")) hideHotelSlides();
-      if (event.key === "ArrowLeft" && hotelSlideModal.classList.contains("open")) hotelPrev.click();
-      if (event.key === "ArrowRight" && hotelSlideModal.classList.contains("open")) hotelNext.click();
     });
 
     sendRequest?.addEventListener("click", () => {
@@ -1415,3 +1307,5 @@
   </script>
 </body>
 </html>
+
+
