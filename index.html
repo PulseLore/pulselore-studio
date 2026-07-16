@@ -5,6 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="PulseLore Studio builds music-centered artist pages, browser tools, web apps, release records, and creator services with clear privacy and rights boundaries.">
   <title>PulseLore Studio - Emotion / Sound / Atmosphere</title>
+  <!-- PulseLore search identity -->
+  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+  <meta property="og:site_name" content="PulseLore Studio">
+  <meta property="og:title" content="PulseLore Studio">
+  <meta property="og:description" content="PulseLore Studio builds music-centered digital experiences, creator tools, artist pages, release support, and human-friendly workflow guidance.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.pulselore.studio/">
+  <meta property="og:image" content="https://www.pulselore.studio/assets/pulselore-google-logo.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PulseLore Studio">
+  <meta name="twitter:description" content="PulseLore Studio builds music-centered digital experiences, creator tools, artist pages, release support, and human-friendly workflow guidance.">
+  <meta name="twitter:image" content="https://www.pulselore.studio/assets/pulselore-google-logo.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PulseLore Studio",
+    "url": "https://www.pulselore.studio/",
+    "logo": "https://www.pulselore.studio/assets/pulselore-google-logo.png",
+    "email": "contact@pulselore.studio"
+  }
+  </script>
+  <!-- /PulseLore search identity -->
   <style>
     :root {
       --bg: #02060d;
@@ -25,7 +52,7 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scrollbar-width: none; }
     body {
       margin: 0;
       color: var(--ink);
@@ -52,6 +79,31 @@
 
     a { color: inherit; text-decoration: none; }
 
+
+    .sound-toggle {
+      position: absolute;
+      right: clamp(18px, 3vw, 42px);
+      bottom: clamp(18px, 3vw, 38px);
+      z-index: 8;
+      min-width: 98px;
+      padding: 11px 16px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      background: rgba(4,8,15,.58);
+      color: rgba(244,249,255,.84);
+      font: 800 11px/1 Inter, system-ui, sans-serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 14px 44px rgba(0,0,0,.36);
+      cursor: pointer;
+    }
+
+    .sound-toggle.is-on {
+      color: #06101a;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--cyan), var(--gold));
+    }
     .nav {
       position: fixed;
       left: 50%;
@@ -91,28 +143,16 @@
       background: rgba(39, 201, 255, .12);
       box-shadow: inset 0 0 0 1px rgba(39, 201, 255, .22);
     }
-
-    .progress {
-      position: fixed;
-      right: 18px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 19;
-      width: 2px;
-      height: 46vh;
-      border-radius: 999px;
-      background: rgba(255,255,255,.12);
-      overflow: hidden;
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
     }
 
-    .progress span {
-      display: block;
-      width: 100%;
-      height: 0%;
-      border-radius: inherit;
-      background: linear-gradient(180deg, var(--cyan), var(--gold));
-      box-shadow: 0 0 22px rgba(39, 201, 255, .7);
-    }
+    body { -ms-overflow-style: none; }
+
+    .progress { display: none; }
 
     .hero {
       position: relative;
@@ -951,7 +991,8 @@
   <main>
     <section class="hero" id="home">
       <div class="hero-sticky">
-        <video src="./assets/pulselore_hero.mp4" autoplay muted loop playsinline></video>
+        <video id="homeHeroVideo" src="./assets/pulselore_hero.mp4" autoplay muted loop playsinline></video>
+        <button id="heroSoundToggle" class="sound-toggle" type="button" aria-label="Toggle hero video sound">Sound Off</button>
       </div>
     </section>
 
@@ -1042,12 +1083,11 @@
               <p>A clean release-prep record for documenting song source, tools used, permissions, and distributor notes before submission.</p>
               <div class="actions">
                 <button class="btn primary" type="button" data-open-record-form>Prepare Record</button>
-                <button class="btn" type="button" data-open-record-preview>Open Video Preview</button>
               </div>
             </div>
-            <button class="video-frame media-button" type="button" data-open-record-preview aria-label="Open Release Record video preview">
+            <div class="video-frame media-button" aria-label="Release Record video preview">
               <video src="./assets/release-record-download.mp4" autoplay muted loop playsinline></video>
-            </button>
+            </div>
           </article>
         </div>
       </div>
@@ -1228,7 +1268,7 @@
     function updateScrollUI() {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-      progressBar.style.height = `${progress * 100}%`;
+      if (progressBar) progressBar.style.height = `${progress * 100}%`;
 
       const rect = stationTrack.getBoundingClientRect();
       const scrollable = stationTrack.offsetHeight - window.innerHeight;
@@ -1356,6 +1396,19 @@
       window.location.href = `mailto:contact@pulselore.studio?subject=${subject}&body=${body}`;
     });
 
+
+    const homeHeroVideo = document.getElementById("homeHeroVideo");
+    const heroSoundToggle = document.getElementById("heroSoundToggle");
+    if (homeHeroVideo && heroSoundToggle) {
+      heroSoundToggle.addEventListener("click", async () => {
+        const turnSoundOn = homeHeroVideo.muted;
+        homeHeroVideo.muted = !turnSoundOn;
+        homeHeroVideo.volume = turnSoundOn ? 0.72 : 0;
+        heroSoundToggle.textContent = turnSoundOn ? "Sound On" : "Sound Off";
+        heroSoundToggle.classList.toggle("is-on", turnSoundOn);
+        try { await homeHeroVideo.play(); } catch (error) {}
+      });
+    }
     window.addEventListener("scroll", updateScrollUI, { passive: true });
     window.addEventListener("resize", updateScrollUI);
     updateScrollUI();
