@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PulseLore Music Meter - Feature Update Preview</title>
@@ -201,7 +200,6 @@
       </span>
     </a>
     <nav class="meter-nav" aria-label="Music Meter navigation">
-      <a href="../services/">Service Station</a>
       <a href="../">Home</a>
     </nav>
     <div class="header-meta" aria-label="Tool status">
@@ -212,7 +210,7 @@
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <video class="hero-video" src="assets/PulseLore.mp4" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      <video class="hero-video" src="assets/PulseLore.mp4" autoplay="" muted="" loop="" playsinline="" preload="metadata" aria-hidden="true"></video>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-inner">
         <div class="hero-copy">
@@ -229,11 +227,11 @@
             <small id="fileHelp">MP3, WAV, M4A, WEBM, and browser-supported audio</small>
           </label>
           <div class="actions">
-            <button class="analyze-btn" id="analyzeBtn" type="button" disabled>
+            <button class="analyze-btn" id="analyzeBtn" type="button" disabled="">
               <span class="btn-idle">Analyze Track</span>
               <span class="btn-busy">Reading waveform...</span>
             </button>
-            <button class="secondary-btn" id="clearBtn" type="button" disabled>Clear Track</button>
+            <button class="secondary-btn" id="clearBtn" type="button" disabled="">Clear Track</button>
           </div>
           <p class="privacy">Music Meter analyzes audio locally in your browser. Your file is not uploaded anywhere by this page.</p>
         </section>
@@ -304,8 +302,8 @@
         <div class="card-title"><span id="report-title">Exportable Release Check Report</span><em>new feature</em></div>
         <p class="privacy">Copy or download this report for your local release checklist. It is not legal proof and not distributor approval.</p>
         <div class="report-actions">
-          <button class="secondary-btn" id="copyReportBtn" type="button" disabled>Copy Report</button>
-          <button class="secondary-btn" id="downloadReportBtn" type="button" disabled>Download .txt</button>
+          <button class="secondary-btn" id="copyReportBtn" type="button" disabled="">Copy Report</button>
+          <button class="secondary-btn" id="downloadReportBtn" type="button" disabled="">Download .txt</button>
         </div>
         <div class="status" id="reportStatus" aria-live="polite"></div>
         <pre class="report-output" id="reportOutput">Report appears after analysis.</pre>
@@ -635,5 +633,6 @@
 
     drawEmptyWave();
   </script>
-</body>
-</html>
+
+
+</body></html>
