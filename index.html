@@ -2,1276 +2,347 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="PulseLore Studio builds music-centered artist pages, browser tools, web apps, release records, and creator services with clear privacy and rights boundaries.">
-  <title>PulseLore Studio - Emotion / Sound / Atmosphere</title>
-  <!-- PulseLore search identity -->
-  <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-  <meta property="og:site_name" content="PulseLore Studio">
-  <meta property="og:title" content="PulseLore Studio">
-  <meta property="og:description" content="PulseLore Studio builds music-centered digital experiences, creator tools, artist pages, release support, and human-friendly workflow guidance.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.pulselore.studio/">
-  <meta property="og:image" content="https://www.pulselore.studio/assets/pulselore-google-logo.png">
-  <meta property="og:image:width" content="1024">
-  <meta property="og:image:height" content="1024">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PulseLore Studio">
-  <meta name="twitter:description" content="PulseLore Studio builds music-centered digital experiences, creator tools, artist pages, release support, and human-friendly workflow guidance.">
-  <meta name="twitter:image" content="https://www.pulselore.studio/assets/pulselore-google-logo.png">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "PulseLore Studio",
-    "url": "https://www.pulselore.studio/",
-    "logo": "https://www.pulselore.studio/assets/pulselore-google-logo.png",
-    "email": "contact@pulselore.studio"
-  }
-  </script>
-  <!-- /PulseLore search identity -->
-  <style>
-    :root {
-      --bg: #02060d;
-      --bg2: #06111d;
-      --ink: #f3f7fb;
-      --muted: #9fb1c3;
-      --line: rgba(139, 198, 255, .18);
-      --cyan: #27c9ff;
-      --blue: #0b6fff;
-      --gold: #d6a94c;
-      --green: #58d79a;
-      --red: #d8464e;
-      --panel: rgba(7, 14, 24, .72);
-      --panel2: rgba(11, 24, 38, .58);
-      --radius: 28px;
-      color-scheme: dark;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scrollbar-width: none; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 80% 15%, rgba(39, 201, 255, .14), transparent 30rem),
-        radial-gradient(circle at 18% 72%, rgba(11, 111, 255, .12), transparent 34rem),
-        linear-gradient(180deg, #02050a 0%, #04101b 48%, #02060d 100%);
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 5;
-      pointer-events: none;
-      opacity: .13;
-      background-image:
-        linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 100% 4px, 4px 100%;
-      mix-blend-mode: soft-light;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-
-    .sound-toggle {
-      position: absolute;
-      right: clamp(18px, 3vw, 42px);
-      bottom: clamp(18px, 3vw, 38px);
-      z-index: 8;
-      min-width: 98px;
-      padding: 11px 16px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 999px;
-      background: rgba(4,8,15,.58);
-      color: rgba(244,249,255,.84);
-      font: 800 11px/1 Inter, system-ui, sans-serif;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      backdrop-filter: blur(18px);
-      box-shadow: 0 14px 44px rgba(0,0,0,.36);
-      cursor: pointer;
-    }
-
-    .sound-toggle.is-on {
-      color: #06101a;
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--cyan), var(--gold));
-    }
-    .nav {
-      position: fixed;
-      left: 50%;
-      top: 24px;
-      transform: translateX(-50%);
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px;
-      max-width: calc(100vw - 28px);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 999px;
-      background: rgba(4, 8, 15, .62);
-      backdrop-filter: blur(24px);
-      box-shadow: 0 22px 70px rgba(0,0,0,.3);
-      white-space: nowrap;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .nav::-webkit-scrollbar { display: none; }
-    .nav a {
-      padding: 10px 14px;
-      border-radius: 999px;
-      color: rgba(244, 249, 255, .72);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      transition: .25s ease;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: white;
-      background: rgba(39, 201, 255, .12);
-      box-shadow: inset 0 0 0 1px rgba(39, 201, 255, .22);
-    }
-    html::-webkit-scrollbar,
-    body::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-      display: none;
-    }
-
-    body { -ms-overflow-style: none; }
-
-    .progress { display: none; }
-
-    .hero {
-      position: relative;
-      min-height: 188vh;
-      background: #02050a;
-    }
-
-    .hero-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-    }
-
-    .hero video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: contrast(1.06) saturate(.95);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(2,5,10,.1), rgba(2,5,10,.08) 45%, rgba(2,5,10,.88)),
-        radial-gradient(circle at 50% 78%, rgba(39,201,255,.12), transparent 36rem);
-      pointer-events: none;
-    }
-
-    .label {
-      color: #b8c7d8;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: .34em;
-      text-transform: uppercase;
-    }
-
-    .section {
-      position: relative;
-      padding: 110px clamp(22px, 6vw, 92px);
-    }
-
-    .intro {
-      display: grid;
-      grid-template-columns: minmax(280px, .9fr) 1fr;
-      gap: clamp(36px, 6vw, 90px);
-      align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(180deg, rgba(2,6,13,.98), rgba(4,12,21,.92));
-    }
-
-    .media-card {
-      position: relative;
-      min-height: 420px;
-      border: 1px solid rgba(39,201,255,.2);
-      border-radius: 34px;
-      overflow: hidden;
-      background: rgba(4, 12, 22, .65);
-      box-shadow: 0 40px 140px rgba(0, 0, 0, .42);
-    }
-
-    .media-card video,
-    .media-card img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .media-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent, rgba(2,6,13,.55));
-    }
-
-    h1, h2, h3, p { margin: 0; }
-
-    .giant {
-      max-width: 900px;
-      font-size: clamp(54px, 9vw, 148px);
-      line-height: .9;
-      letter-spacing: -.055em;
-      text-transform: uppercase;
-    }
-
-    .copy {
-      max-width: 780px;
-      color: #c5d8eb;
-      font-size: clamp(18px, 2.1vw, 25px);
-      line-height: 1.65;
-      margin-top: 26px;
-    }
-
-    .station-track {
-      position: relative;
-      height: 520vh;
-      background:
-        radial-gradient(circle at 14% 35%, rgba(39,201,255,.1), transparent 28rem),
-        radial-gradient(circle at 88% 60%, rgba(214,169,76,.1), transparent 30rem),
-        linear-gradient(180deg, #030911, #02060d);
-    }
-
-    .station-sticky {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      padding: 76px 22px 48px;
-    }
-
-    .station-stage {
-      position: relative;
-      width: min(1180px, 94vw);
-      height: min(680px, 76vh);
-      perspective: 1300px;
-    }
-
-    .station-panel {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      grid-template-columns: .88fr 1.12fr;
-      gap: clamp(24px, 4vw, 62px);
-      align-items: center;
-      padding: clamp(24px, 4vw, 56px);
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 36px;
-      background: rgba(5, 13, 24, .78);
-      box-shadow: 0 40px 160px rgba(0,0,0,.48);
-      backdrop-filter: blur(18px);
-      opacity: 0;
-      transform: translate3d(42%, 0, -180px) rotateY(-13deg) scale(.88);
-      transition: transform .7s cubic-bezier(.2,.8,.2,1), opacity .7s ease;
-      pointer-events: none;
-    }
-
-    .station-panel.active {
-      opacity: 1;
-      transform: translate3d(0, 0, 0) rotateY(0) scale(1);
-      pointer-events: auto;
-    }
-
-    .station-panel.exit-left {
-      opacity: .22;
-      transform: translate3d(-46%, 0, -220px) rotateY(16deg) scale(.84);
-    }
-
-    .station-copy h2 {
-      font-size: clamp(48px, 8vw, 126px);
-      line-height: .88;
-      letter-spacing: -.055em;
-      text-transform: uppercase;
-    }
-
-    .station-copy p {
-      color: #bed0e3;
-      font-size: clamp(16px, 1.5vw, 20px);
-      line-height: 1.7;
-      margin-top: 24px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      padding: 0 20px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.06);
-      color: white;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .btn.primary {
-      color: #03101a;
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--cyan), var(--gold));
-    }
-
-    .artist-rail {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .artist-tile {
-      position: relative;
-      min-height: 230px;
-      border-radius: 24px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.12);
-      background: #07111c;
-      transition: transform .25s ease, border-color .25s ease;
-    }
-
-    .artist-tile:hover { transform: translateY(-4px); border-color: rgba(39,201,255,.35); }
-    .artist-tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: .9;
-    }
-
-    .artist-tile span {
-      position: absolute;
-      left: 18px;
-      bottom: 18px;
-      font-size: 22px;
-      line-height: 1;
-      font-weight: 950;
-      letter-spacing: -.04em;
-      text-transform: uppercase;
-      text-shadow: 0 12px 30px rgba(0,0,0,.75);
-    }
-
-    .artist-station {
-      padding-top: 120px;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(128, 70, 255, .12), transparent 26rem),
-        radial-gradient(circle at 82% 10%, rgba(39, 201, 255, .1), transparent 28rem),
-        linear-gradient(180deg, #02060d, #030912 45%, #02060d);
-    }
-
-    .station-topline {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 28px;
-      margin-bottom: 34px;
-    }
-
-    .artist-search {
-      width: min(360px, 100%);
-      min-height: 52px;
-      padding: 0 20px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.055);
-      color: white;
-      outline: none;
-      font: inherit;
-    }
-
-    .artist-search:focus {
-      border-color: rgba(39,201,255,.55);
-      box-shadow: 0 0 0 4px rgba(39,201,255,.12);
-    }
-
-    .profile-strip {
-      display: flex;
-      gap: 24px;
-      overflow-x: auto;
-      padding: 10px 0 28px;
-      scroll-snap-type: x mandatory;
-      scrollbar-color: rgba(39,201,255,.55) rgba(255,255,255,.08);
-    }
-
-    .profile-card {
-      flex: 0 0 min(420px, 82vw);
-      position: relative;
-      height: 360px;
-      padding: 0;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 26px;
-      overflow: hidden;
-      background: #07111c;
-      cursor: pointer;
-      scroll-snap-align: start;
-      box-shadow: 0 28px 100px rgba(0,0,0,.3);
-      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-    }
-
-    .profile-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(39,201,255,.45);
-      box-shadow: 0 34px 120px rgba(39,201,255,.12);
-    }
-
-    .profile-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .profile-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.72));
-      pointer-events: none;
-    }
-
-    .profile-card span {
-      position: absolute;
-      left: 20px;
-      bottom: 18px;
-      z-index: 1;
-      color: white;
-      font-weight: 950;
-      font-size: 14px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .artist-tile span,
-    .profile-card span {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0 0 0 0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-    }
-    .request-panel {
-      margin-top: 26px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 20px;
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 26px;
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
-    }
-
-    .request-panel b {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 6px;
-    }
-
-    .request-panel p {
-      margin: 0;
-      color: #a9bfd5;
-      line-height: 1.55;
-    }
-
-    .portfolio-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      display: none;
-      background: rgba(2,6,13,.92);
-      backdrop-filter: blur(18px);
-      overflow-y: auto;
-      padding: 26px;
-    }
-
-    .portfolio-modal.open {
-      display: block;
-    }
-
-    .modal-bar {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      max-width: 1100px;
-      margin: 0 auto 18px;
-      padding: 14px 16px;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 20px;
-      background: rgba(3,8,16,.86);
-      box-shadow: 0 18px 70px rgba(0,0,0,.35);
-    }
-
-    .modal-bar strong {
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      font-size: 13px;
-    }
-
-    .portfolio-frame {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      place-items: start center;
-    }
-
-    .portfolio-frame img {
-      width: min(100%, 980px);
-      height: auto;
-      display: block;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.14);
-      box-shadow: 0 30px 120px rgba(0,0,0,.55);
-      background: #02060d;
-    }
-
-    .list-panel {
-      display: grid;
-      gap: 14px;
-    }
-
-    .row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      min-height: 86px;
-      padding: 18px 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
-    }
-
-    .row b { display: block; font-size: 17px; }
-    .row span { display: block; margin-top: 5px; color: #a9bfd5; font-size: 13px; line-height: 1.45; }
-    .row em { color: var(--gold); font-style: normal; font-size: 11px; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
-
-    .row-button {
-      width: 100%;
-      color: inherit;
-      text-align: left;
-      font: inherit;
-      cursor: pointer;
-    }
-
-    .meter-shot {
-      display: block;
-      border-radius: 30px;
-      overflow: hidden;
-      border: 1px solid rgba(39,201,255,.25);
-      background: #08131e;
-      box-shadow: 0 26px 90px rgba(39,201,255,.1);
-    }
-
-    .meter-shot img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .video-frame {
-      position: relative;
-      min-height: 420px;
-      border-radius: 30px;
-      overflow: hidden;
-      border: 1px solid rgba(214,169,76,.35);
-      background: #060b11;
-    }
-
-    .video-frame video {
-      width: 100%;
-      height: 100%;
-      min-height: inherit;
-      object-fit: cover;
-      display: block;
-    }
-
-    .baby-preview {
-      background:
-        radial-gradient(circle at 18% 24%, rgba(88, 215, 154, .12), transparent 26rem),
-        radial-gradient(circle at 78% 42%, rgba(39, 201, 255, .11), transparent 30rem),
-        linear-gradient(180deg, #02060d, #06111d 55%, #02060d);
-    }
-
-    .baby-grid {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: clamp(24px, 5vw, 72px);
-      align-items: center;
-    }
-
-    .baby-card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .baby-card {
-      min-height: 150px;
-      padding: 22px;
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-    }
-
-    .baby-card b { display: block; margin-bottom: 10px; }
-    .baby-card p { color: #a9bfd5; font-size: 14px; line-height: 1.55; }
-    .record-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 23;
-      display: none;
-      background: rgba(2,6,13,.94);
-      backdrop-filter: blur(18px);
-      overflow: auto;
-      padding: 24px;
-    }
-
-    .record-modal.open {
-      display: block;
-    }
-
-    .record-media-frame,
-    .record-form-panel {
-      width: min(1080px, 100%);
-      margin: 0 auto;
-      border-radius: 28px;
-      border: 1px solid rgba(214,169,76,.26);
-      background: rgba(5, 13, 24, .82);
-      overflow: hidden;
-      box-shadow: 0 34px 130px rgba(0,0,0,.55);
-    }
-
-    .record-media-frame video {
-      display: block;
-      width: 100%;
-      height: min(72vh, 720px);
-      object-fit: contain;
-      background: #02060d;
-    }
-
-    .record-form-panel {
-      padding: clamp(22px, 4vw, 44px);
-    }
-
-    .record-form-panel p {
-      color: #bfd1e4;
-      line-height: 1.6;
-      margin: 10px 0 24px;
-    }
-
-    .record-form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .record-form-grid textarea {
-      grid-column: 1 / -1;
-      min-height: 132px;
-      resize: vertical;
-    }
-
-    .record-note {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-      padding: 18px;
-      border-radius: 20px;
-      border: 1px solid rgba(39,201,255,.18);
-      background: rgba(39,201,255,.055);
-      color: #cfe3f6;
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .end-section {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: clamp(32px, 5vw, 82px);
-      align-items: center;
-      background:
-        radial-gradient(circle at 74% 36%, rgba(39,201,255,.12), transparent 26rem),
-        #02060d;
-    }
-
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .trust-card {
-      padding: 22px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 22px;
-      background: rgba(255,255,255,.04);
-    }
-
-    .trust-card b { display: block; margin-bottom: 10px; }
-    .trust-card p { color: #a9bfd5; line-height: 1.55; font-size: 14px; }
-
-    .legal-section {
-      background:
-        radial-gradient(circle at 82% 18%, rgba(39,201,255,.1), transparent 28rem),
-        radial-gradient(circle at 15% 82%, rgba(214,169,76,.09), transparent 30rem),
-        linear-gradient(180deg, #02060d, #06111d 52%, #02060d);
-    }
-
-    .legal-layout {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: clamp(28px, 5vw, 70px);
-      align-items: start;
-    }
-
-    .legal-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .legal-card {
-      min-height: 190px;
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,.058), rgba(255,255,255,.018));
-    }
-
-    .legal-card b {
-      display: block;
-      margin-bottom: 12px;
-      color: white;
-      font-size: 17px;
-    }
-
-    .legal-card p {
-      color: #bfd1e4;
-      font-size: 14px;
-      line-height: 1.62;
-    }
-
-    form {
-      display: grid;
-      gap: 12px;
-      padding: clamp(22px, 4vw, 36px);
-      border-radius: 30px;
-      border: 1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.045);
-    }
-
-    input, textarea, select {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 16px;
-      background: rgba(0,0,0,.25);
-      color: white;
-      padding: 15px 16px;
-      font: inherit;
-      outline: none;
-    }
-
-    textarea { min-height: 130px; resize: vertical; }
-    button { cursor: pointer; border: 0; font: inherit; }
-
-    .footer {
-      padding: 28px clamp(22px, 6vw, 92px);
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      color: #8ca1b7;
-      border-top: 1px solid rgba(255,255,255,.09);
-      background: #02060d;
-      font-size: 13px;
-    }
-
-    @media (max-width: 900px) {
-      .progress { display: none; }
-      .intro,
-      .station-panel,
-      .end-section,
-      .legal-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .station-track { height: auto; }
-      .station-sticky {
-        position: relative;
-        height: auto;
-        padding-top: 90px;
-      }
-
-      .station-stage {
-        height: auto;
-        display: grid;
-        gap: 24px;
-      }
-
-      .station-panel,
-      .station-panel.active,
-      .station-panel.exit-left {
-        position: relative;
-        inset: auto;
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-      }
-
-      .artist-rail,
-      .baby-card-grid,
-      .baby-grid,
-      .legal-grid,
-      .record-form-grid { grid-template-columns: 1fr; }
-      .station-topline,
-      .request-panel { grid-template-columns: 1fr; align-items: start; }
-      .trust-grid { grid-template-columns: 1fr; }
-      .footer { flex-direction: column; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-      }
-      .station-track { height: auto; }
-      .station-sticky { position: relative; height: auto; }
-      .station-stage { height: auto; display: grid; gap: 24px; }
-      .station-panel { position: relative; opacity: 1; transform: none; }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#03080d">
+  <meta name="description" content="PulseLore Studio">
+  <title>PulseLore Studio</title>
+  <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <nav class="nav" aria-label="PulseLore flagship preview navigation">
-    <a href="#home" class="active">Home</a>
-    <a href="#artist-station">Artists</a>
-    <a href="#stations" data-jump="1">Web Apps</a>
-    <a href="#stations" data-jump="2">Meter</a>
-    <a href="#stations" data-jump="3">Services</a>
-    <a href="#stations" data-jump="4">Record</a>
-    <a href="#legal">Trust</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
-
   <main>
-    <section class="hero" id="home">
-      <div class="hero-sticky">
-        <video id="homeHeroVideo" src="./assets/pulselore_hero.mp4" autoplay muted loop playsinline></video>
-        <button id="heroSoundToggle" class="sound-toggle" type="button" aria-label="Toggle hero video sound">Sound Off</button>
+
+    <!-- 01 HOME HERO — video only -->
+    <section id="home" class="scene media-scene">
+      <div class="media-stage">
+        <video id="home-video" autoplay muted loop playsinline preload="auto" aria-label="PulseLore Studio Home">
+          <source src="./assets/Home.mp4" type="video/mp4">
+        </video>
+<button id="home-sound-toggle"
+                class="home-sound-toggle"
+                type="button"
+                aria-pressed="false"
+                aria-label="Turn Home music on">
+          <span class="sound-icon" aria-hidden="true">♪</span>
+          <span class="sound-label">SOUND OFF</span>
+        </button>
       </div>
     </section>
 
-    <section class="intro section" id="about">
-      <div class="media-card">
-        <video src="./assets/pulselore-cassette-portal.mp4" autoplay muted loop playsinline></video>
-      </div>
-      <div>
-        <div class="label" style="color: var(--gold);">About PulseLore</div>
-        <h1 class="giant">Emotion. Sound. Atmosphere.</h1>
-        <p class="copy">PulseLore Studio builds music-centered digital experiences: artist portfolios, creator tools, web apps, release support, and human-friendly workflow guidance.</p>
+    <!-- 02 ZEN ROBOT WELCOME — video only -->
+    <section id="zen-welcome" class="scene media-scene">
+      <div class="media-stage">
+        <video id="zen-video" autoplay muted loop playsinline preload="auto" aria-label="Zen Robot Welcome">
+          <source src="./assets/zen-welcome.mp4" type="video/mp4">
+        </video>
+
+        <button id="zen-sound-toggle"
+                class="video-sound-toggle zen-sound-toggle"
+                type="button"
+                aria-pressed="false"
+                aria-label="Turn Zen welcome sound on">
+          <span class="sound-icon" aria-hidden="true">♪</span>
+          <span class="sound-label">SOUND OFF</span>
+        </button>
       </div>
     </section>
 
-    <section class="station-track" id="stations">
-      <div class="station-sticky">
-        <div class="station-stage">
-          <article class="station-panel active" data-title="Artists">
-            <div class="station-copy">
-              <div class="label" style="color: var(--gold);">Artist Station</div>
-              <h2>Artist Pages.</h2>
-              <p>Enter a dedicated artist station with slice-scroll profile cards, search, and long portfolio previews for vocalist, band, songwriter, guitarist, and beatmaker pages.</p>
-              <div class="actions">
-                <a class="btn primary" href="#artist-station">Enter Artist Station</a>
-                <a class="btn" href="#contact">Request Portfolio</a>
+    <!-- 03 / 04 / 05 / 06 horizontal story -->
+    <section id="horizontal-story" class="horizontal-story">
+      <div class="horizontal-sticky">
+        <div class="horizontal-track">
+
+          <!-- 03 MUSIC METER -->
+          <section id="music-meter" class="horizontal-slide">
+            <div class="slide-shell">
+              <div class="media-stage slide-media tilt-card media-tilt-card">
+                <video autoplay muted loop playsinline preload="auto" aria-label="PulseLore Music Meter">
+                  <source src="./assets/music-meter-free.mp4" type="video/mp4">
+                </video>
+                <!-- FREE DOWNLOAD button baked into the video -->
+                <a class="hotspot music-download-hotspot"
+                   href="./music-meter/index.html"
+                   aria-label="Open PulseLore Music Meter page"></a>
               </div>
             </div>
-            <div class="artist-rail">
-              <a class="artist-tile" href="#artist-station"><img src="./assets/artist-lina-card.png" alt="Artist Lina profile cover"><span>Vocalist</span></a>
-              <a class="artist-tile" href="#artist-station"><img src="./assets/artist-guitarist-card.png" alt="Guitarist profile cover"><span>Guitarist</span></a>
-              <a class="artist-tile" href="#artist-station"><img src="./assets/artist-beatmaker-card.png" alt="Beatmaker profile cover"><span>Beatmaker</span></a>
-              <a class="artist-tile" href="#artist-station"><img src="./assets/artist-band-card.png" alt="Band profile cover"><span>Band</span></a>
+          </section>
+
+
+          <!-- 04 BABY QA PANDA GARDEN -->
+          <section id="baby-qa" class="horizontal-slide baby-qa-slide">
+            <div class="slide-shell">
+              <article class="baby-qa-showcase">
+
+                <div class="baby-qa-copy">
+                  <p class="baby-kicker">BABY QA'S PANDA GARDEN</p>
+                  <h1>LOCKED QA<br>GARDEN.</h1>
+                  <p class="baby-lead">
+                    Baby QA's Panda Garden is a custom private QA workspace already in use.
+                    Open the garden page and enter the access password to continue.
+                    No public access code is shown here.
+                  </p>
+
+                  <a class="baby-enter"
+                     href="https://www.pulselore.studio/baby-qa-garden/"
+                     target="_blank"
+                     rel="noopener"
+                     aria-label="Open Baby QA's Panda Garden">
+                    ENTER QA GARDEN <span>→</span>
+                  </a>
+
+                  <div class="baby-feature-grid" aria-label="Baby QA features">
+                    <article class="baby-feature-card tilt-card">
+                      <strong>Locked Account</strong>
+                      <span>Access is handled privately. Public visitors cannot open the workspace from this page.</span>
+                    </article>
+                    <article class="baby-feature-card tilt-card">
+                      <strong>QA Notes</strong>
+                      <span>Collect bugs, test results, screenshots, and calm status labels in one place.</span>
+                    </article>
+                    <article class="baby-feature-card tilt-card">
+                      <strong>Project Boards</strong>
+                      <span>Small task cards for to-do, doing, review, and done without overcomplicating the app.</span>
+                    </article>
+                    <article class="baby-feature-card tilt-card">
+                      <strong>Private Boundary</strong>
+                      <span>Personal notes, access details, and private content stay outside the public website.</span>
+                    </article>
+                  </div>
+                </div>
+
+                <a class="baby-poster-stack tilt-card"
+                   href="https://www.pulselore.studio/baby-qa-garden/"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Open Baby QA's Panda Garden">
+                  <span class="baby-shape baby-shape-one" aria-hidden="true"></span>
+                  <span class="baby-shape baby-shape-two" aria-hidden="true"></span>
+                  <img src="./assets/baby-qa-panda-card.png"
+                       alt="Baby QA's Panda Garden private QA workspace">
+                </a>
+
+              </article>
             </div>
+          </section>
+
+          <!-- 05 CREATOR SERVICES -->
+          <section id="creator-services" class="horizontal-slide">
+            <div class="slide-shell">
+              <div class="media-stage slide-media tilt-card media-tilt-card">
+                <video autoplay muted loop playsinline preload="auto" aria-label="PulseLore Creator Services">
+                  <source src="./assets/creator-services.mp4" type="video/mp4">
+                </video>
+                <!-- ASK ABOUT SERVICES button baked into the video -->
+                <a class="hotspot services-hotspot"
+                   href="#contact"
+                   aria-label="Ask about PulseLore creator services"></a>
+              </div>
+            </div>
+          </section>
+
+          <!-- 06 RELEASE RECORD -->
+          <section id="release-record" class="horizontal-slide release-slide">
+            <div class="slide-shell">
+              <article class="release-card tilt-card">
+                <div class="release-copy">
+                  <p class="kicker gold">RELEASE RECORD PASSPORT</p>
+                  <h1>RELEASE<br>RECORD.</h1>
+                  <p>
+                    A clean release-prep record for documenting song source,
+                    tools used, permissions, and distributor notes before submission.
+                  </p>
+                  <a class="pill-button" href="#contact">PREPARE RECORD</a>
+                </div>
+                <div class="release-animation">
+                  <img src="./assets/release-record.gif" alt="Release Record animated identity interface">
+                </div>
+              </article>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 07 SELECTED WORK / PORTFOLIO -->
+    <section id="portfolio" class="scene portfolio-section fade-scene">
+      <div class="wide-shell portfolio-layout">
+        <div class="portfolio-copy reveal-block">
+          <p class="kicker portfolio-kicker">SELECTED WORK</p>
+          <h2>PORTFOLIO.</h2>
+          <p>
+            A selection of website and portfolio design directions explored through PulseLore Studio.
+          </p>
+          <p class="portfolio-subcopy">
+            Creator portfolios, artist pages and personal web experiences — visual directions for tailored digital experiences.
+          </p>
+
+          <a class="portfolio-contact"
+             href="mailto:contact@pulselore.studio">
+            CONTACT PULSELORE <span>→</span>
+          </a>
+
+          <p class="portfolio-tags">WEBSITES · PORTFOLIOS · CREATOR PAGES</p>
+        </div>
+
+        <div id="portfolio-gallery" class="portfolio-gallery reveal-block" aria-label="Selected PulseLore work">
+
+          <article class="portfolio-card portfolio-card-meter tilt-card">
+            <span class="portfolio-index">01</span>
+            <img src="./assets/portfolio-web-01.jpg"
+                 alt="Dark personal creator portfolio website example">
+            <span class="portfolio-caption">
+              <strong>Creator Portfolio</strong>
+              <small>Personal website direction</small>
+            </span>
           </article>
 
-          <article class="station-panel" id="web-apps" data-title="Web Apps">
-            <div class="station-copy">
-              <div class="label" style="color: var(--gold);">Web Apps</div>
-              <h2>Working Systems.</h2>
-              <p>Clean web app proposals and practical client-ready system previews. The hotel proposal opens as the latest guided landing page.</p>
-              <div class="actions">
-                <a class="btn primary" href="/hotel-demo/?v=a53e0bd">View Hotel Proposal</a>
-                <a class="btn" href="#contact" data-request-demo="Hotel Booking Demo">Request Demo</a>
-              </div>
-            </div>
-            <div class="list-panel">
-              <a class="row" href="/hotel-demo/?v=a53e0bd"><div><b>Hotel Booking Proposal</b><span>Direct booking system proposal, pricing, scope, and next-step overview.</span></div><em>Open</em></a>
-              <a class="row" href="https://www.pulselore.studio/baby-qa-garden/"><div><b>Baby QA's Panda Garden</b><span>A custom private QA workspace. Open the garden page, then enter the access password.</span></div><em>Open</em></a>
-              <a class="row" href="#contact" data-request-demo="Custom Web System Demo"><div><b>Custom Web Systems</b><span>Small business tools, private previews, and polished product demos.</span></div><em>Request Demo</em></a>
-            </div>
+          <article class="portfolio-card portfolio-card-qa tilt-card">
+            <span class="portfolio-index">02</span>
+            <img src="./assets/portfolio-web-02.jpg"
+                 alt="Artist and vocalist portfolio website example">
+            <span class="portfolio-caption">
+              <strong>Artist Portfolio</strong>
+              <small>Music and artist website direction</small>
+            </span>
           </article>
 
-          <article class="station-panel" id="music-meter-station" data-title="Music Meter">
-            <div class="station-copy">
-              <div class="label" style="color: var(--gold);">Music Meter</div>
-              <h2>Track Readiness.</h2>
-              <p>Browser-first technical preview for checking loudness, clipping risk, stereo balance, waveform shape, silence, and upload readiness.</p>
-              <div class="actions">
-                <a class="btn primary" href="https://www.pulselore.studio/music-meter/" target="_blank" rel="noreferrer">Open Music Meter</a>
-              </div>
-            </div>
-            <a class="meter-shot" href="https://www.pulselore.studio/music-meter/" target="_blank" rel="noreferrer">
-              <img src="./assets/music-meter-preview.png" alt="PulseLore Music Meter track analysis preview">
-            </a>
+          <article class="portfolio-card portfolio-card-web tilt-card">
+            <span class="portfolio-index">03</span>
+            <img src="./assets/portfolio-web-03.jpg"
+                 alt="Clean personal web developer portfolio website example">
+            <span class="portfolio-caption">
+              <strong>Personal Website</strong>
+              <small>Clean portfolio layout direction</small>
+            </span>
           </article>
 
-          <article class="station-panel" id="services-station" data-title="Services">
-            <div class="station-copy">
-              <div class="label" style="color: var(--gold);">Service Station</div>
-              <h2>Creator Services.</h2>
-              <p>Rights-aware support for creators: no copy or cover work without permission, no unauthorized artist model training, and no fake distribution promises.</p>
-              <div class="actions">
-                <a class="btn primary" href="#contact">Ask About Service</a>
-              </div>
-            </div>
-            <div class="list-panel">
-              <a class="row" href="#contact"><div><b>Copyright / Local and International Service</b><span>Release support and creator guidance with clear permission boundaries.</span></div><em>Ask</em></a>
-              <a class="row" href="#contact"><div><b>Distributor Support</b><span>Metadata, readiness, platform communication, and release planning.</span></div><em>Ask</em></a>
-              <a class="row" href="#contact"><div><b>Tool Use + Arrangement</b><span>Suno prompt, lyric box tags, song structure, and arrangement feedback.</span></div><em>Ask</em></a>
-              <a class="row" href="#contact"><div><b>Human RVC Boundary</b><span>No copy song, no unauthorized artist model, no cover service without permission.</span></div><em>Safe</em></a>
-            </div>
-          </article>
+        </div>
+      </div>
+    </section>
 
-          <article class="station-panel" id="release-record" data-title="Release Record">
-            <div class="station-copy">
-              <div class="label" style="color: var(--gold);">Release Record Passport</div>
-              <h2>Release Record.</h2>
-              <p>A clean release-prep record for documenting song source, tools used, permissions, and distributor notes before submission.</p>
-              <div class="actions">
-                <a class="btn primary" href="./ai-record/">Prepare Record</a>
-              </div>
-            </div>
-            <div class="video-frame" aria-label="Release Record video preview">
-              <video src="./assets/release-record-download.mp4" autoplay muted loop playsinline></video>
-            </div>
+    <!-- 08 PULSELORE CASSETTE -->
+    <section id="cassette" class="scene cassette-section fade-scene">
+      <div class="wide-shell cassette-grid">
+        <div class="cassette-copy reveal-block">
+          <p class="kicker">PULSELORE™ STUDIO</p>
+          <h2>CREATE · CODE · DESIGN · MUSIC · LAUNCH</h2>
+          <p>
+            One connected creative-technology identity for tools, experiments,
+            creator services and release workflows.
+          </p>
+        </div>
+        <img class="cassette-art reveal-block tilt-card cassette-tilt-card"
+             src="./assets/pulselore-cassette.png"
+             alt="PulseLore Studio cassette artwork">
+      </div>
+    </section>
+
+    <!-- 09 CLEAR RULES / SAFER WORK — real HTML, reference-inspired -->
+    <section id="rules" class="scene rules-section fade-scene">
+      <div class="wide-shell rules-layout">
+        <div class="rules-intro reveal-block">
+          <p class="kicker gold">PRIVACY / POLICY / SECURITY</p>
+          <h2>CLEAR<br>RULES.<br>SAFER<br>WORK.</h2>
+          <p>
+            PulseLore Studio keeps public pages honest: demos are previews,
+            private tools stay private, and creator services are handled with
+            rights and permission boundaries.
+          </p>
+        </div>
+
+        <div class="rules-cards">
+          <article class="info-card reveal-block tilt-card">
+            <h3>Privacy</h3>
+            <p>Contact details are used only to reply to the requested project, service, demo, or portfolio inquiry. Private client materials are not published without permission.</p>
+          </article>
+          <article class="info-card reveal-block tilt-card">
+            <h3>Policy</h3>
+            <p>Public demos show the direction and scope of a tool. Final features, pricing, hosting, payment methods, and maintenance are confirmed before paid work begins.</p>
+          </article>
+          <article class="info-card reveal-block tilt-card">
+            <h3>Security</h3>
+            <p>API keys, passwords, private prompts, admin notes, and access codes must not be placed in public frontend files. Private tools use locked access or backend protection where needed.</p>
+          </article>
+          <article class="info-card reveal-block tilt-card">
+            <h3>Rights</h3>
+            <p>Rights-aware workflows. No unauthorized voice cloning, impersonation, or misleading distribution promises. RVC, cover, distribution, and release-preparation work require appropriate permission.</p>
+          </article>
+          <article class="info-card reveal-block tilt-card">
+            <h3>Data Handling</h3>
+            <p>Local tools such as Music Meter process files on the user’s device when stated. If a future tool needs upload, database, or AI processing, that will be clearly disclosed first.</p>
+          </article>
+          <article class="info-card reveal-block tilt-card">
+            <h3>Service Terms</h3>
+            <p>Each paid project should have a written scope, payment schedule, delivery expectation, and maintenance agreement. New feature requests outside scope are estimated separately.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="artist-station section" id="artist-station">
-      <div class="station-topline">
-        <div>
-          <div class="label" style="color: var(--gold);">Artist Station</div>
-          <h2 class="giant">Profile Library.</h2>
-          <p class="copy">Slice-scroll artist profile covers. Search by role, then open a long portfolio page preview.</p>
-        </div>
-        <input class="artist-search" id="artistSearch" type="search" placeholder="Search artist, role, style...">
-      </div>
+    <!-- 10 CLEAR BEFORE WE BUILD — real HTML contact section -->
+    <section id="contact" class="scene contact-section fade-scene">
+      <div class="wide-shell contact-layout">
+        <div class="contact-copy reveal-block">
+          <p class="kicker gold">TRUST + CONTACT</p>
+          <h2>CLEAR<br>BEFORE WE<br>BUILD.</h2>
+          <p>
+            Public pages should explain privacy, terms, security, contact handling,
+            and copyright limits honestly. If the idea is ready, send the message
+            and we can shape the next step.
+          </p>
 
-      <div class="profile-strip" id="profileStrip" aria-label="Artist profile cards">
-        <button class="profile-card" type="button" data-name="Lina vocalist artist blue singer" data-title="Lina Artist" data-portfolio-img="./assets/artist-lina-long.png">
-          <img src="./assets/artist-lina-card.png" alt="Lina artist profile cover">
-          <span>Lina / Vocalist</span>
-        </button>
-        <button class="profile-card" type="button" data-name="Aryan vocalist red singer melody crafter" data-title="Aryan Vocalist" data-portfolio-img="./assets/artist-vocalist-long.png">
-          <img src="./assets/artist-vocalist-card.png" alt="Vocalist profile cover">
-          <span>Aryan / Vocalist</span>
-        </button>
-        <button class="profile-card" type="button" data-name="Guitarist melody sculptor purple guitar" data-title="Guitarist" data-portfolio-img="./assets/artist-guitarist-long.png">
-          <img src="./assets/artist-guitarist-card.png" alt="Guitarist profile cover">
-          <span>Guitarist</span>
-        </button>
-        <button class="profile-card" type="button" data-name="Beatmaker rhythm engineer producer beats" data-title="Beatmaker" data-portfolio-img="./assets/artist-beatmaker-long.png">
-          <img src="./assets/artist-beatmaker-card.png" alt="Beatmaker profile cover">
-          <span>Beatmaker</span>
-        </button>
-        <button class="profile-card" type="button" data-name="Songwriter story weaver lyric melody" data-title="Songwriter" data-portfolio-img="./assets/artist-songwriter-long.png">
-          <img src="./assets/artist-songwriter-card.png" alt="Songwriter profile cover">
-          <span>Songwriter</span>
-        </button>
-        <button class="profile-card" type="button" data-name="Band collective force rock group" data-title="Band / Collective Force" data-portfolio-img="./assets/artist-band-long.png">
-          <img src="./assets/artist-band-card.png" alt="Band profile cover">
-          <span>Band</span>
-        </button>
-      </div>
-
-      <div class="request-panel">
-        <div>
-          <b>Request a PulseLore artist portfolio</b>
-          <p>For artists, bands, producers, songwriters, and studios who need a clean public profile page with story, works, contact, and visual identity.</p>
-        </div>
-        <a class="btn primary" href="#contact">Request Portfolio</a>
-      </div>
-    </section>
-
-    <section class="baby-preview section" id="baby-qa-preview">
-      <div class="baby-grid">
-        <div>
-          <div class="label" style="color: var(--gold);">Baby QA's Panda Garden</div>
-          <h2 class="giant">Locked QA garden.</h2>
-          <p class="copy">Baby QA's Panda Garden is a custom private QA workspace that is already in use. Open the garden page and enter the access password to continue. No public access code is shown on this page.</p>
-          <div class="actions">
-            <a class="btn primary" href="https://www.pulselore.studio/baby-qa-garden/">Baby QA's Panda Garden</a>
-            <a class="btn" href="#web-apps">Back to Web Apps</a>
+          <div class="mini-rules">
+            <article class="tilt-card"><b>Privacy</b><span>Contact details are only for replying to the requested project or service.</span></article>
+            <article class="tilt-card"><b>Terms</b><span>Creative tools and demos are scoped before paid work begins.</span></article>
+            <article class="tilt-card"><b>Security</b><span>No public API keys, passwords, or private notes in frontend files.</span></article>
+            <article class="tilt-card"><b>Rights</b><span>RVC, cover, and distribution support require proper permission boundaries.</span></article>
           </div>
         </div>
-        <div class="baby-card-grid">
-          <article class="baby-card"><b>Locked Account</b><p>Access is handled privately. Public visitors cannot open the workspace from this page.</p></article>
-          <article class="baby-card"><b>QA Notes</b><p>Collect bugs, test results, screenshots, and calm status labels in one place.</p></article>
-          <article class="baby-card"><b>Project Boards</b><p>Small task cards for todo, doing, review, and done without overcomplicating the app.</p></article>
-          <article class="baby-card"><b>Private Boundary</b><p>Personal copy, access details, and private content stay outside the public website.</p></article>
-        </div>
+
+        <form id="contact-form" class="contact-form reveal-block tilt-card" action="/api/contact" method="post">
+          <label class="contact-honeypot" aria-hidden="true">
+            <span>Website</span>
+            <input id="website" name="website" tabindex="-1" autocomplete="off">
+          </label>
+          <label>
+            <span>Name / studio / project</span>
+            <input id="name" name="name" autocomplete="name" required>
+          </label>
+          <label>
+            <span>Email</span>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            <span>Service</span>
+            <select id="service" name="service">
+              <option>Custom App & Website</option>
+              <option>AI Music Release Workflow</option>
+              <option>Distribution Support</option>
+              <option>RVC Model Training</option>
+              <option>Music Meter</option>
+              <option>Release Record</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            <span>Tell PulseLore what you want to build or ask</span>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </label>
+          <button id="contact-submit" type="submit">SEND REQUEST</button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-note">Your request will be sent directly to PulseLore Studio.</p>
+        </form>
       </div>
     </section>
 
-    <section class="legal-section section" id="legal">
-      <div class="legal-layout">
-        <div>
-          <div class="label" style="color: var(--gold);">Privacy / Policy / Security</div>
-          <h2 class="giant">Clear rules. Safer work.</h2>
-          <p class="copy">PulseLore Studio keeps public pages honest: demos are previews, private tools stay private, and creator services are handled with rights and permission boundaries.</p>
-        </div>
-        <div class="legal-grid">
-          <article class="legal-card"><b>Privacy</b><p>Contact form details are used only to reply to the requested project, service, demo, or portfolio inquiry. Private client materials are not published without permission.</p></article>
-          <article class="legal-card"><b>Policy</b><p>Public demos show the direction and scope of a tool. Final features, pricing, hosting, payment methods, and maintenance are confirmed before paid work begins.</p></article>
-          <article class="legal-card"><b>Security</b><p>API keys, passwords, private prompts, admin notes, and access codes must not be placed in public frontend files. Private tools use locked access or backend protection where needed.</p></article>
-          <article class="legal-card"><b>Rights</b><p>RVC, cover songs, artist models, distribution support, and release preparation require proper permission. PulseLore does not support unauthorized copy, cover, or artist model training work.</p></article>
-          <article class="legal-card"><b>Data Handling</b><p>Browser-only tools such as Music Meter process files locally when stated. If a future tool needs upload, database, or AI API processing, that will be clearly disclosed first.</p></article>
-          <article class="legal-card"><b>Service Terms</b><p>Each paid project should have a written scope, payment schedule, delivery expectation, and maintenance agreement. New feature requests outside scope are estimated separately.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="end-section section" id="contact">
-      <div>
-        <div class="label" style="color: var(--gold);">Trust + Contact</div>
-        <h2 class="giant">Clear before we build.</h2>
-        <p class="copy">Public pages should explain privacy, terms, security, contact handling, and copyright limits honestly. If the idea is ready, send the message and we can shape the next step.</p>
-        <div class="trust-grid">
-          <article class="trust-card"><b>Privacy</b><p>Contact details are only for replying to the requested project or service.</p></article>
-          <article class="trust-card"><b>Terms</b><p>Creative tools and demos are scoped before paid work begins.</p></article>
-          <article class="trust-card"><b>Security</b><p>No public API keys, passwords, or private notes in frontend files.</p></article>
-          <article class="trust-card"><b>Rights</b><p>RVC, cover, and distribution support require proper permission boundaries.</p></article>
-        </div>
-      </div>
-      <form id="contactForm">
-        <input id="contactName" type="text" placeholder="Name / studio / project">
-        <input id="contactEmail" type="email" placeholder="Email">
-        <select>
-          <option>Artist Portfolio</option>
-          <option>Web App</option>
-          <option>Music Meter / Track Feedback</option>
-          <option>Service / Distribution Support</option>
-          <option>Release Record</option>
-        </select>
-        <textarea id="contactMessage" placeholder="Tell PulseLore what you want to build or ask."></textarea>
-        <button class="btn primary" id="sendRequest" type="button">Send Request</button>
-      </form>
-    </section>
   </main>
 
-  <footer class="footer">
-    <span>PulseLore Studio - Emotion / Sound / Atmosphere</span>
-    <span>contact@pulselore.studio</span>
+  <footer class="site-footer">
+    <span>PulseLore Studio</span>
+    <a href="mailto:contact@pulselore.studio">contact@pulselore.studio</a>
   </footer>
 
-  <div class="portfolio-modal" id="portfolioModal" aria-hidden="true">
-    <div class="modal-bar">
-      <strong id="portfolioTitle">Artist Portfolio</strong>
-      <button class="btn" id="closePortfolio" type="button">Back to Artists</button>
-    </div>
-    <div class="portfolio-frame">
-      <img id="portfolioImage" src="" alt="Artist long portfolio preview">
-    </div>
-  </div>
-
-
-  <script>
-    const progressBar = document.getElementById("progressBar");
-    const stationTrack = document.querySelector(".station-track");
-    const panels = [...document.querySelectorAll(".station-panel")];
-    const navLinks = [...document.querySelectorAll(".nav a")];
-    const artistSearch = document.getElementById("artistSearch");
-    const profileCards = [...document.querySelectorAll(".profile-card")];
-    const portfolioModal = document.getElementById("portfolioModal");
-    const portfolioImage = document.getElementById("portfolioImage");
-    const portfolioTitle = document.getElementById("portfolioTitle");
-    const closePortfolio = document.getElementById("closePortfolio");
-    const contactForm = document.getElementById("contactForm");
-    const contactName = document.getElementById("contactName");
-    const contactEmail = document.getElementById("contactEmail");
-    const contactSelect = contactForm?.querySelector("select");
-    const contactMessage = document.getElementById("contactMessage");
-    const sendRequest = document.getElementById("sendRequest");
-
-    function clamp(value, min, max) {
-      return Math.min(max, Math.max(min, value));
-    }
-
-    function updateScrollUI() {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-      if (progressBar) progressBar.style.height = `${progress * 100}%`;
-
-      const rect = stationTrack.getBoundingClientRect();
-      const scrollable = stationTrack.offsetHeight - window.innerHeight;
-      const stationProgress = clamp(-rect.top / scrollable, 0, 1);
-      const activeIndex = Math.round(stationProgress * (panels.length - 1));
-
-      panels.forEach((panel, index) => {
-        panel.classList.toggle("active", index === activeIndex);
-        panel.classList.toggle("exit-left", index < activeIndex);
-      });
-
-      navLinks.forEach((link) => {
-        const text = link.textContent.trim().toLowerCase();
-        const current = panels[activeIndex]?.dataset.title.toLowerCase() || "home";
-        const artistVisible = document.getElementById("artist-station").getBoundingClientRect().top < window.innerHeight * .45;
-        link.classList.toggle("active", (text === "artists" && artistVisible) || current.includes(text) || (window.scrollY < window.innerHeight && text === "home"));
-      });
-    }
-
-    document.querySelectorAll("[data-jump]").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        event.preventDefault();
-        const index = Number(button.dataset.jump || 0);
-        const top = stationTrack.offsetTop + ((stationTrack.offsetHeight - window.innerHeight) * (index / (panels.length - 1)));
-        window.scrollTo({ top, behavior: "smooth" });
-      });
-    });
-
-    artistSearch?.addEventListener("input", () => {
-      const query = artistSearch.value.trim().toLowerCase();
-      profileCards.forEach((card) => {
-        card.hidden = query.length > 0 && !card.dataset.name.toLowerCase().includes(query);
-      });
-    });
-
-    profileCards.forEach((card) => {
-      card.addEventListener("click", () => {
-        portfolioTitle.textContent = card.dataset.title || "Artist Portfolio";
-        portfolioImage.src = card.dataset.portfolioImg;
-        portfolioImage.alt = `${portfolioTitle.textContent} long portfolio preview`;
-        portfolioModal.classList.add("open");
-        portfolioModal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        closePortfolio.focus();
-      });
-    });
-
-    function hidePortfolio() {
-      portfolioModal.classList.remove("open");
-      portfolioModal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-      portfolioImage.src = "";
-    }
-
-
-    closePortfolio.addEventListener("click", hidePortfolio);
-    portfolioModal.addEventListener("click", (event) => {
-      if (event.target === portfolioModal) hidePortfolio();
-    });
-    document.querySelectorAll("[data-request-demo]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const demoName = button.dataset.requestDemo || "Web App Demo";
-        if (contactSelect) contactSelect.value = "Web App";
-        if (contactMessage && contactMessage.value.trim().length === 0) {
-          contactMessage.value = `I want to request a guided ${demoName}. Please contact me with the next step.`;
-        }
-        window.setTimeout(() => contactName?.focus(), 500);
-      });
-    });
-    window.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && portfolioModal.classList.contains("open")) hidePortfolio();
-    });
-
-    sendRequest?.addEventListener("click", () => {
-      const projectName = contactName?.value.trim() || "PulseLore request";
-      const fromEmail = contactEmail?.value.trim();
-      const requestType = contactSelect?.value || "Web App";
-      const message = contactMessage?.value.trim() || "I want to request a demo.";
-      const subject = encodeURIComponent(`${requestType}: ${projectName}`);
-      const body = encodeURIComponent([
-        `Name / project: ${projectName}`,
-        fromEmail ? `Email: ${fromEmail}` : "",
-        `Request type: ${requestType}`,
-        "",
-        message
-      ].filter(Boolean).join("\n"));
-      window.location.href = `mailto:contact@pulselore.studio?subject=${subject}&body=${body}`;
-    });
-
-
-    const homeHeroVideo = document.getElementById("homeHeroVideo");
-    const heroSoundToggle = document.getElementById("heroSoundToggle");
-    if (homeHeroVideo && heroSoundToggle) {
-      heroSoundToggle.addEventListener("click", async () => {
-        const turnSoundOn = homeHeroVideo.muted;
-        homeHeroVideo.muted = !turnSoundOn;
-        homeHeroVideo.volume = turnSoundOn ? 0.72 : 0;
-        heroSoundToggle.textContent = turnSoundOn ? "Sound On" : "Sound Off";
-        heroSoundToggle.classList.toggle("is-on", turnSoundOn);
-        try { await homeHeroVideo.play(); } catch (error) {}
-      });
-    }
-    window.addEventListener("scroll", updateScrollUI, { passive: true });
-    window.addEventListener("resize", updateScrollUI);
-    updateScrollUI();
-  </script>
+  <script src="./script.js"></script>
 </body>
 </html>
-
-
