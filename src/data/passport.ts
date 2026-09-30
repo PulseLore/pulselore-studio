@@ -120,11 +120,11 @@ export const officialLinks: OfficialLink[] = [
 ]
 
 export const productionRoute = [
-  { name: 'Zen', role: 'Songwriting / Composition', kind: 'human' },
+  { name: 'Zen', role: 'Songwriting', kind: 'human' },
   { name: 'Suno', role: 'AI Demo / Source Stems', kind: 'source' },
-  { name: 'PulseLore Studio', role: 'Arrangement / Re-Production / Instrumentation', kind: 'studio' },
-  { name: 'Zen', role: 'Lead Vocals / Vocal Recording', kind: 'human' },
-  { name: 'PulseLore Studio', role: 'Vocal Production / Mixing / Mastering', kind: 'studio' },
+  { name: 'PulseLore Studio', role: 'Production Development', kind: 'studio' },
+  { name: 'Zen', role: 'Vocal Recording', kind: 'human' },
+  { name: 'PulseLore Studio', role: 'Final Mix & Master', kind: 'studio' },
 ] as const
 
 export const getCredit = (role: string) => credits.find((credit) => credit.role === role)

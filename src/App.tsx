@@ -52,7 +52,7 @@ function SiteFooter() {
         <span>Passport ID: <b>{passport.id}</b></span>
         <span>ISRC: <b>{passport.isrc}</b></span>
       </div>
-      <ExternalLink className="footer-domain" href={studioWebsite}>pulselore.studio ↗</ExternalLink>
+      <ExternalLink className="footer-domain" href={`https://${passport.verificationDomain}`}>{passport.verificationDomain} ↗</ExternalLink>
     </footer>
   )
 }
@@ -208,7 +208,6 @@ function PassportPage() {
 
             <section className="record-section route-section" id="route">
               <SectionHeading number="06" eyebrow="Creation route" title="From signal to master" />
-              <p className="section-deck">A restrained production journey, kept in the order the work moved through the room.</p>
               <RouteRail />
             </section>
 
@@ -281,7 +280,7 @@ function PassportCardPage() {
           <div><span className="eyebrow">Square social post</span><PassportCardPreview format="square" /></div>
         </div>
         <PassportCardActions />
-        <p className="card-page-note">This preview QR encodes <code>{verificationUrl}</code>. The production QR will use the official PulseLore domain after approval and domain connection.</p>
+          <p className="card-page-note">This Card QR encodes the official production verification URL: <code>{verificationUrl}</code></p>
       </main>
     </div>
   )

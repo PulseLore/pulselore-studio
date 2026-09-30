@@ -8,7 +8,7 @@ Build only the public, read-only Track Passport preview for **Stay In The Blue â
 
 - **Frontend:** Vite + React + TypeScript, served as a static single-page application during Preview.
 - **Data:** typed local/mock records in `src/data/passport.ts`, separated into artists, tracks, passports, credits, and official links so future database wiring does not require a UI rewrite.
-- **Routing:** lightweight pathname-based rendering for `/` and `/verify/PL-404-STB-001`; the Vite fallback keeps the verification URL previewable directly. The canonical route is also listed in `public/manus-routes.json`.
+- **Routing:** lightweight pathname-based rendering for `/`, `/verify/PL-404-STB-001`, and the separate `/card/PL-404-STB-001` shareable asset route; the Vite fallback keeps these URLs previewable directly. The routes are also listed in `public/manus-routes.json`.
 - **Assets:** the uploaded cover artwork is copied into `public/assets/` without transformation. The supplied official PulseLore Studio logo is used unchanged in the header, studio section, Passport Card, favicon and footer.
 - **Serving:** static Preview on the managed runtime port 3000, listening on `0.0.0.0`; no server or database features are enabled.
 
@@ -20,7 +20,7 @@ Build only the public, read-only Track Passport preview for **Stay In The Blue â
 
 ## Verification
 
-The page explicitly uses the phrase **Production Record Verified by PulseLore Studio** and distinguishes provenance documentation from legal ownership/copyright certification. Suno is labeled only as an AI Demo / Source Stems stage. Official links are real direct destinations. The verification page opens a separate Passport Card route with a real QR generated from the single configurable `verificationBaseUrl`; the preview defaults to the current managed Preview origin.
+The page explicitly uses the phrase **Production Record Verified by PulseLore Studio** and distinguishes provenance documentation from legal ownership/copyright certification. Suno is labeled only as an AI Demo / Source Stems stage. Official links are real direct destinations. The verification page opens a separate Passport Card route with a real QR generated from the single configurable `verificationBaseUrl`, whose final default is `https://passport.pulselore.studio`.
 
 ## Validation
 
