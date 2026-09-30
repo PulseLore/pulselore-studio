@@ -1,12 +1,14 @@
 import type { ReactNode } from 'react'
 import { CreditList } from './components/CreditList'
 import { OfficialLinks } from './components/OfficialLinks'
-import { QrPlaceholder } from './components/QrPlaceholder'
+import { PassportCardActions, PassportCardPreview, verificationUrl } from './components/PassportCard'
 import { RouteRail } from './components/RouteRail'
 import { SectionHeading } from './components/SectionHeading'
-import { artist, credits, officialLinks, passport, track, getCredit } from './data/passport'
+import { artist, credits, officialLinks, passport, studioWebsite, track, getCredit } from './data/passport'
 
 const verificationPath = `/verify/${passport.id}`
+const cardPath = `/card/${passport.id}`
+const logoAsset = '/assets/pulselore-studio-logo.png'
 
 function ExternalLink({ href, children, className = '' }: { href: string; children: ReactNode; className?: string }) {
   return <a className={className} href={href} target="_blank" rel="noreferrer">{children}</a>
@@ -21,25 +23,100 @@ function MetaItem({ label, value, mono = false }: { label: string; value: string
   )
 }
 
-export function App() {
-  const path = window.location.pathname
-  const isVerificationRoute = path === verificationPath || path.startsWith('/verify/')
+function SiteHeader({ context = 'PUBLIC RECORD' }: { context?: string }) {
+  return (
+    <header className="site-header">
+      <a className="brand-lockup" href={verificationPath} aria-label="PulseLore Track Passport home">
+        <img src={logoAsset} alt="PulseLore Studio official logo" />
+        <span><b>PulseLore</b><em>Track Passport</em></span>
+      </a>
+      <div className="header-context">
+        <span className="status-dot" />
+        <span>{context}</span>
+        <span className="header-slash">/</span>
+        <span>01 / 01</span>
+      </div>
+    </header>
+  )
+}
 
+function SiteFooter() {
+  return (
+    <footer className="site-footer verification-footer">
+      <div className="footer-brand">
+        <img src={logoAsset} alt="PulseLore Studio official logo" />
+        <span>Issued by PulseLore Studio</span>
+      </div>
+      <div className="footer-verification">
+        <strong>Production Record Verified by PulseLore Studio</strong>
+        <span>Passport ID: <b>{passport.id}</b></span>
+        <span>ISRC: <b>{passport.isrc}</b></span>
+      </div>
+      <ExternalLink className="footer-domain" href={studioWebsite}>pulselore.studio ↗</ExternalLink>
+    </footer>
+  )
+}
+
+function NotFoundState() {
+  return (
+    <div className="app simple-page">
+      <div className="grain" aria-hidden="true" />
+      <SiteHeader context="NO MATCH" />
+      <main className="not-found-shell">
+        <span className="eyebrow">Verification error / 404</span>
+        <h1>Track Passport<br /><em>Not Found</em></h1>
+        <p>No PulseLore Studio production record matches this Passport ID.</p>
+        <a className="primary-button" href={verificationPath}>Open the first Passport <span aria-hidden="true">↗</span></a>
+      </main>
+    </div>
+  )
+}
+
+function RootLanding() {
+  return (
+    <div className="app simple-page root-page">
+      <div className="grain" aria-hidden="true" />
+      <SiteHeader context="PREVIEW INDEX" />
+      <main className="root-shell">
+        <div className="root-copy">
+          <span className="eyebrow">A public production provenance archive</span>
+          <h1>PulseLore<br /><em>Track Passport</em></h1>
+          <p>Read the production record behind a finished track: the writing, performance, source stage and studio pass.</p>
+          <a className="primary-button" href={verificationPath}>View Stay In The Blue — The 404 Pages <span aria-hidden="true">↗</span></a>
+        </div>
+        <a className="root-track-link" href={verificationPath}>
+          <img src={track.coverAsset} alt="Stay In The Blue cover artwork by The 404 Pages" />
+          <span><small>01 / first passport</small><strong>Stay In The Blue</strong><em>The 404 Pages</em></span>
+        </a>
+      </main>
+    </div>
+  )
+}
+
+function StudioSection() {
+  return (
+    <section className="record-section studio-section" id="studio">
+      <div className="studio-section-content">
+        <div className="studio-section-copy">
+          <span className="eyebrow">10 — Studio identity</span>
+          <h2>Made through<br /><em>PulseLore Studio</em></h2>
+          <p>Music production, arrangement, creative technology and artist-focused digital work.</p>
+          <div className="studio-ctas">
+            <ExternalLink className="primary-button" href={studioWebsite}>Explore PulseLore Studio <span aria-hidden="true">↗</span></ExternalLink>
+            <ExternalLink className="text-button" href={studioWebsite}>Work With PulseLore Studio <span aria-hidden="true">↗</span></ExternalLink>
+          </div>
+        </div>
+        <img className="studio-logo" src={logoAsset} alt="PulseLore Studio official logo" />
+      </div>
+    </section>
+  )
+}
+
+function PassportPage() {
   return (
     <div className="app">
       <div className="grain" aria-hidden="true" />
-      <header className="site-header">
-        <a className="brand-lockup" href={verificationPath} aria-label="PulseLore Track Passport home">
-          <img src="/icons/pulselore-passport-mark.png" alt="" />
-          <span><b>PulseLore</b><em>Track Passport</em></span>
-        </a>
-        <div className="header-context">
-          <span className="status-dot" />
-          <span>{isVerificationRoute ? 'PUBLIC RECORD' : 'PREVIEW RECORD'}</span>
-          <span className="header-slash">/</span>
-          <span>01 / 01</span>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="passport-shell">
         <div className="desktop-grid">
@@ -154,8 +231,10 @@ export function App() {
               <OfficialLinks links={officialLinks.slice(1)} />
             </section>
 
+            <StudioSection />
+
             <section className="record-section verification-section" id="verification">
-              <SectionHeading number="09" eyebrow="Official verification" title="The record is on file" />
+              <SectionHeading number="11" eyebrow="Official verification" title="The record is on file" />
               <div className="verification-layout">
                 <div className="verification-copy">
                   <div className="verification-seal"><span className="status-dot" />{passport.issuedBy}</div>
@@ -164,21 +243,55 @@ export function App() {
                   <div className="verification-meta">
                     <MetaItem label="Passport" value={passport.id} mono />
                     <MetaItem label="ISRC" value={passport.isrc} mono />
-                    <MetaItem label="Future official domain" value={passport.verificationDomain} mono />
+                    <MetaItem label="Official studio" value="pulselore.studio" mono />
                   </div>
                 </div>
-                <QrPlaceholder />
+                <a className="card-cta" href={cardPath}>
+                  <span className="eyebrow">Shareable asset</span>
+                  <strong>View / Download<br />Passport Card</strong>
+                  <span className="card-cta-arrow" aria-hidden="true">↗</span>
+                </a>
               </div>
             </section>
 
-            <footer className="site-footer">
-              <span>PulseLore Studio</span>
-              <span>Production Record Verified</span>
-              <span className="mono">{passport.id}</span>
-            </footer>
+            <SiteFooter />
           </div>
         </div>
       </main>
     </div>
   )
+}
+
+function PassportCardPage() {
+  return (
+    <div className="app card-page">
+      <div className="grain" aria-hidden="true" />
+      <SiteHeader context="SHAREABLE ASSET" />
+      <main className="card-page-shell">
+        <div className="card-page-heading">
+          <div>
+            <span className="eyebrow">Passport card / {passport.id}</span>
+            <h1>Stay In The Blue<br /><em>Passport Card</em></h1>
+            <p>A premium shareable record for social posts, press, artist pages and websites. Detailed credits remain on the official verification page.</p>
+          </div>
+          <a className="text-button" href={verificationPath}>Back to verification page <span aria-hidden="true">↗</span></a>
+        </div>
+        <div className="card-preview-grid">
+          <div><span className="eyebrow">Portrait social post</span><PassportCardPreview format="portrait" /></div>
+          <div><span className="eyebrow">Square social post</span><PassportCardPreview format="square" /></div>
+        </div>
+        <PassportCardActions />
+        <p className="card-page-note">This preview QR encodes <code>{verificationUrl}</code>. The production QR will use the official PulseLore domain after approval and domain connection.</p>
+      </main>
+    </div>
+  )
+}
+
+export function App() {
+  const path = window.location.pathname.replace(/\/$/, '') || '/'
+  if (path === '/') return <RootLanding />
+  if (path === verificationPath) return <PassportPage />
+  if (path === cardPath) return <PassportCardPage />
+  if (path.startsWith('/verify/') || path.startsWith('/card/')) return <NotFoundState />
+  return <NotFoundState />
 }

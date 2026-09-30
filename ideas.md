@@ -33,7 +33,7 @@ Mobile is a measured vertical reading sequence. Desktop becomes a two-column edi
 - Monospace passport IDs and release metadata.
 - Hairline blue rules and small section numerals.
 - A vertical provenance rail with connected nodes, styled like a studio log rather than a business flowchart.
-- A QR placeholder rendered as a paper/ink diagnostic mark, clearly labeled as a preview placeholder.
+- A real QR lives on the separate shareable Passport Card; the verification page uses a restrained View / Download Passport Card action instead of a QR block.
 - Tiny “field notes” labels, used sparingly.
 
 ## Interaction philosophy
@@ -58,7 +58,7 @@ Measured, specific, archival, human-made, non-legalistic.
 
 ## Wordmark / logo
 
-Use the PulseLore Track Passport wordmark in the header, paired with a small project-specific monogram mark based on a passport stamp / waveform idea. Keep the mark flat, opaque and legible at favicon size.
+Use the supplied official PulseLore Studio logo unchanged in the header, studio section, Passport Card, favicon and footer. Keep it subtle and legible without redrawing or reinterpretation.
 
 ## Signature brand color
 

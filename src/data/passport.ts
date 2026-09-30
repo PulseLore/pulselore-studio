@@ -36,6 +36,8 @@ export type TrackPassport = {
   verifiedLabel: string
 }
 
+export const studioWebsite = 'https://pulselore.studio/'
+
 export const artist: Artist = {
   id: 'the-404-pages',
   name: 'The 404 Pages',
@@ -65,7 +67,7 @@ export const credits: Credit[] = [
   { role: 'Artist', person: artist.name },
   { role: 'Lead Vocals', person: 'Zen' },
   { role: 'Vocal Recording', person: 'Zen' },
-  { role: 'AI Demo / Source Stems', person: 'Suno', note: 'Used during the initial demo/source stage of the production.' },
+  { role: 'AI Demo / Source Stems', person: 'Suno', note: 'Used during the initial demo and source-stem stage of production.' },
   { role: 'Arrangement', person: 'PulseLore Studio' },
   { role: 'Re-Production', person: 'PulseLore Studio' },
   { role: 'Instrumentation', person: 'PulseLore Studio' },
@@ -121,7 +123,7 @@ export const productionRoute = [
   { name: 'Zen', role: 'Songwriting / Composition', kind: 'human' },
   { name: 'Suno', role: 'AI Demo / Source Stems', kind: 'source' },
   { name: 'PulseLore Studio', role: 'Arrangement / Re-Production / Instrumentation', kind: 'studio' },
-  { name: 'Zen', role: 'Lead Vocal / Vocal Recording', kind: 'human' },
+  { name: 'Zen', role: 'Lead Vocals / Vocal Recording', kind: 'human' },
   { name: 'PulseLore Studio', role: 'Vocal Production / Mixing / Mastering', kind: 'studio' },
 ] as const
 

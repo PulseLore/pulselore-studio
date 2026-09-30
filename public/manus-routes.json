@@ -1,6 +1,7 @@
 {
   "routes": [
     { "path": "/", "title": "PulseLore Track Passport" },
-    { "path": "/verify/:passportId", "title": "Track Passport Verification" }
+    { "path": "/verify/:passportId", "title": "Track Passport Verification" },
+    { "path": "/card/:passportId", "title": "Shareable Track Passport Card" }
   ]
 }
