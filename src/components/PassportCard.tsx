@@ -113,20 +113,25 @@ async function renderCard(format: CardFormat, imageFormat: CardImageFormat) {
     drawLabel(ctx, 'PULSELORE TRACK PASSPORT', 74, 88, 16)
     drawLogo(ctx, logoImage, 860, 52, 132)
     drawCoverContained(ctx, coverImage, 110, 132, 860)
-    drawLabel(ctx, 'PRODUCTION RECORD', 110, 1050, 16)
+    drawLabel(ctx, 'PRODUCTION RECORD', 110, 1040, 16)
     ctx.fillStyle = '#e9efdc'
     ctx.font = '600 58px Georgia, serif'
-    ctx.fillText('STAY IN THE BLUE', 110, 1110)
+    ctx.fillText('STAY IN THE BLUE', 110, 1095)
     ctx.font = '500 25px Arial, sans-serif'
-    ctx.fillText('THE 404 PAGES', 110, 1150)
+    ctx.fillText('THE 404 PAGES', 110, 1135)
+    ctx.font = '500 21px Arial, sans-serif'
+    ctx.fillText('Produced through PulseLore Studio', 110, 1170)
+    ctx.font = '500 20px Georgia, serif'
+    ctx.fillText('Production Record Verified by', 110, 1200)
+    ctx.fillText('PulseLore Studio', 110, 1225)
     ctx.strokeStyle = '#2e75c9'
     ctx.lineWidth = 5
-    ctx.beginPath(); ctx.moveTo(110, 1180); ctx.lineTo(390, 1180); ctx.stroke()
-    drawLabel(ctx, `PASSPORT ID  ${passport.id}`, 110, 1220, 14, '#aeb9c8')
-    drawLabel(ctx, `ISRC  ${passport.isrc}`, 110, 1250, 14, '#aeb9c8')
-    drawLabel(ctx, 'RELEASED  ·  APRIL 1, 2026', 110, 1280, 14, '#aeb9c8')
+    ctx.beginPath(); ctx.moveTo(110, 1150); ctx.lineTo(390, 1150); ctx.stroke()
+    drawLabel(ctx, `PASSPORT ID  ${passport.id}`, 110, 1260, 14, '#aeb9c8')
+    drawLabel(ctx, `ISRC  ${passport.isrc}`, 110, 1285, 14, '#aeb9c8')
+    drawLabel(ctx, 'RELEASED  ·  APRIL 1, 2026', 110, 1310, 14, '#aeb9c8')
     drawQr(ctx, qrImage, 830, 1170, 150)
-    drawLabel(ctx, 'SCAN TO VIEW OFFICIAL PRODUCTION RECORD', 110, 1318, 12, '#76b8ff')
+    drawLabel(ctx, 'SCAN TO VIEW OFFICIAL PRODUCTION RECORD', 110, 1335, 12, '#76b8ff')
   } else {
     drawLogo(ctx, logoImage, 72, 62, 150)
     drawLabel(ctx, 'PULSELORE TRACK PASSPORT', 260, 101, 16)
